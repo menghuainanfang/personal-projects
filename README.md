@@ -1,37 +1,37 @@
-# Python Data Science Projects
+# Python 数据科学项目
 
-This repository is an evolving portfolio of end-to-end Python data science case studies. It begins as an independent study inspired by Leonard Apeltsin's *Data Science Bookcamp* and will grow into a collection of reproducible, original projects.
+这是一个持续完善的 Python 端到端数据科学案例作品集。仓库以 Leonard Apeltsin 的 *Data Science Bookcamp* 为学习起点，并将逐步发展为一组可复现、具有原创性的独立项目。
 
-The goal is not to copy the official source code verbatim, but to:
+本仓库的目标不是逐字复制官方源代码，而是：
 
-1. Understand the methods.
-2. Reimplement the workflows independently.
-3. Reproduce and verify results.
-4. Modify data, parameters, and methods.
-5. Turn selected case studies into original portfolio projects.
+1. 理解案例所使用的方法。
+2. 独立重新实现完整工作流程。
+3. 复现并验证分析结果。
+4. 修改数据、参数和方法，观察结果如何变化。
+5. 将部分案例发展为原创的数据科学作品集项目。
 
-## Project roadmap
+## 项目路线
 
-|  # | Case study                | Core topics                                                   | Status  |
-| -: | ------------------------- | ------------------------------------------------------------- | ------- |
-| 01 | Probability simulations   | Probability, Monte Carlo simulation, NumPy                    | Planned |
-| 02 | Ad-click statistics       | Statistical inference, hypothesis testing, A/B testing        | Planned |
-| 03 | Outbreak detection        | Clustering, geospatial analysis, visualization                | Planned |
-| 04 | Job-market NLP            | Text processing, TF-IDF, dimensionality reduction, clustering | Planned |
-| 05 | Social-network prediction | Graph analysis, feature engineering, machine learning         | Planned |
+| 编号 | 案例 | 核心主题 | 状态 |
+| ---: | --- | --- | --- |
+| 01 | 概率模拟 | 概率、蒙特卡洛模拟、NumPy | 计划中 |
+| 02 | 广告点击统计 | 统计推断、假设检验、A/B 测试 | 计划中 |
+| 03 | 疫情异常检测 | 聚类、地理空间分析、可视化 | 计划中 |
+| 04 | 就业市场 NLP | 文本处理、TF-IDF、降维、聚类 | 计划中 |
+| 05 | 社交网络预测 | 图分析、特征工程、机器学习 | 计划中 |
 
-## Working method
+## 工作方法
 
-Each case study will progress through the same sequence:
+每个案例将按照同一条路径逐步推进：
 
-**Implementation → Reproduction → Extension → Independent project**
+**实现 → 复现 → 扩展 → 独立项目**
 
-- **Implementation:** Build the core workflow independently to understand each technique.
-- **Reproduction:** Check whether the implementation reproduces the expected behavior and conclusions.
-- **Extension:** Change data, parameters, features, or methods and examine the consequences.
-- **Independent project:** Develop selected ideas into self-contained portfolio case studies with original framing and analysis.
+- **实现：** 独立搭建核心工作流程，真正理解每项技术。
+- **复现：** 检查实现能否得到预期的现象和结论。
+- **扩展：** 改变数据、参数、特征或方法，并分析其影响。
+- **独立项目：** 将具有潜力的案例发展为问题定义清晰、分析完整的作品集项目。
 
-## Repository structure
+## 仓库结构
 
 ```text
 .
@@ -44,22 +44,22 @@ Each case study will progress through the same sequence:
     └── PROJECT_README_TEMPLATE.md
 ```
 
-Each project directory starts with a scoped README. Code, notebooks, tests, figures, and data directories will be added only when the corresponding project begins.
+每个项目目录目前只包含一份范围明确的 README。代码、Notebook、测试、图表和数据目录将在对应项目正式开始时按需添加。
 
-## Reproducibility
+## 可复现性
 
-Python versions, dependencies, data-acquisition instructions, and execution commands will be documented as each project begins. Random seeds and relevant environment details will be recorded where they affect results.
+每个项目开始后，都会记录所使用的 Python 版本、依赖项、数据获取方法和执行命令。对于会影响结果的随机过程，还会记录随机种子和必要的环境信息。
 
-Datasets will only be redistributed when their licenses permit it. Otherwise, each project will provide instructions for obtaining the data from its original source.
+只有在数据许可证允许的情况下，数据集才会随仓库重新分发；否则，项目文档会说明如何从原始来源获取数据。
 
-## Progress philosophy
+## 进度原则
 
-The repository favors clear reasoning and verifiable progress over polished but unexplained output. Project claims will be supported by code, documented assumptions, and reproducible evidence; planned work will remain clearly distinguished from completed work.
+本仓库重视清晰的推理和可以验证的进展，而不是缺少解释的表面成果。项目中的结论将由代码、明确记录的假设和可复现的证据支持；计划中的工作也会与已经完成的内容清楚区分。
 
-## Acknowledgment
+## 致谢
 
-The initial study path is inspired by Leonard Apeltsin's *Data Science Bookcamp*. The book provides learning context and case-study inspiration; the implementations and portfolio extensions in this repository are developed independently.
+最初的学习路线受到 Leonard Apeltsin 的 *Data Science Bookcamp* 启发。本书为学习和案例选择提供参考；仓库中的实现及作品集扩展将独立完成。
 
-## License
+## 许可证
 
-The code and original documentation in this repository are available under the [MIT License](LICENSE). Third-party datasets and other external materials remain subject to their respective licenses and terms.
+本仓库中的代码和原创文档采用 [MIT License](LICENSE)。第三方数据集及其他外部材料仍遵循各自的许可证和使用条款。
