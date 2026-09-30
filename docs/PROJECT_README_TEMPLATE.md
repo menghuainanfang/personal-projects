@@ -1,47 +1,51 @@
-# Project title
+# 项目名称
 
-Use a concise title that identifies the problem or outcome. Add a one-sentence summary when the title alone does not establish the context.
+用简洁的标题说明项目主题或目标。如果标题不能完整表达背景，可在下方增加一句项目摘要。
 
-## Demo
+## 当前状态
 
-Show the most useful result, visualization, or usage example. If no interactive demo is available, provide a representative static output and explain what it demonstrates.
+标明项目处于计划、进行中、暂停还是已完成状态，并简要说明当前进展。不要把尚未进行的实验描述为已有结果。
 
-## Problem
+## 演示
 
-Define the question being answered, why it matters, and the scope of the analysis. State the criteria for a useful result.
+展示最能说明项目价值的结果、图表、动画、界面或使用示例。如果暂时没有演示，可以说明计划展示的内容。
 
-## Dataset
+## 问题与目标
 
-Describe the data source, collection period, relevant fields, licensing, and known quality issues. Include acquisition instructions instead of redistributing data when its license does not permit redistribution.
+说明项目要回答什么问题、为什么值得研究，以及本次工作的范围和完成标准。
 
-## Method
+## 数据或资料
 
-Explain the workflow and justify the main analytical or modeling choices. Identify important assumptions and how results are evaluated.
+记录来源、许可证、规模、主要字段或内容，以及已知的质量问题。若许可证不允许重新分发，应提供获取方法而不是提交原始材料。
 
-## Repository layout
+## 方法
 
-Summarize the purpose of the main directories and files. Keep the description aligned with the actual repository structure.
+说明从输入到结果的工作流程，并解释主要方法、工具和参数的选择。列出会影响结论的重要假设。
 
-## Setup and usage
+## 项目结构
 
-Document the supported Python version, environment setup, dependencies, data preparation, and commands needed to reproduce the work from a clean checkout.
+概述主要目录与文件的用途，使读者能够快速找到代码、数据说明、测试、图表和结果。
 
-## Experiments and results
+## 环境与运行
 
-Report the experiments performed, evaluation measures, and main findings. Distinguish observed evidence from interpretation and include useful tables or figures.
+记录所需的软件版本、依赖安装方式、数据准备步骤和执行命令，确保项目可以从干净环境开始运行。
 
-## Limitations
+## 实验与结果
 
-State the most important data, method, and generalization constraints. Explain how they affect the conclusions without overstating certainty.
+说明进行了哪些实验、采用什么评价方式，以及观察到了什么结果。将事实、解释和推测清楚地区分开。
 
-## Extensions beyond the book
+## 限制
 
-Identify original changes to the data, parameters, methods, evaluation, or problem framing. Explain what each extension is intended to reveal.
+集中说明数据、方法、评价和结论的主要限制，以及这些限制会如何影响项目的适用范围。
 
-## What I learned
+## 后续方向
 
-Record the central technical and analytical lessons from the project. Focus on insights that could guide future work.
+记录值得继续验证的问题和可实施的扩展。优先列出能够明显改善项目或回答新问题的方向。
 
-## References
+## 我的收获
 
-List the books, papers, documentation, datasets, and other sources used. Provide stable links and access dates where appropriate.
+总结项目中最重要的技术、数学、建模或实践认识，以及这些认识如何帮助后续工作。
+
+## 参考资料
+
+列出使用的书籍、论文、文档、数据集和外部代码，并提供清楚、稳定的来源信息。
