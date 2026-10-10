@@ -9,6 +9,7 @@
 | 类别 | 项目 | 内容 | 状态 |
 | --- | --- | --- | --- |
 | 数据科学学习 | [Data Science Bookcamp 独立学习专题](projects/data-science-bookcamp/) | 独立实现、复现并扩展书中的数据科学案例 | 计划中 |
+| 数据分析工具 | [空间研究室 · Qzone Lab](projects/qzone-lab/) | 本地分析 QQ 空间动态的题材、配图、发布时间与点赞浏览关系 | 可运行初版 |
 
 新的数学学习、实际建模和兴趣项目会在正式开始后加入此表，而不会提前创建空目录。
 
@@ -38,6 +39,7 @@
 ```text
 personal-projects/
 ├── projects/
+│   ├── qzone-lab/
 │   └── data-science-bookcamp/
 │       ├── 01-probability-simulations/
 │       ├── 02-ad-click-statistics/
