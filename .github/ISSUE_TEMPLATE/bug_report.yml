@@ -1,0 +1,21 @@
+name: 问题反馈
+description: 报告 ReadingOS 使用中的问题
+body:
+  - type: input
+    id: version
+    attributes:
+      label: ReadingOS 版本与 Windows 版本
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 描述实际操作、预期与实际结果；请勿上传私人图书或数据库。
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: 补充说明
+      description: 如与阅读器有关，请注明 PDF / EPUB、是否扫描/加密、页码或章节。截图中请遮挡私人内容。

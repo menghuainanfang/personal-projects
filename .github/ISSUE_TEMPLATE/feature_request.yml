@@ -1,0 +1,13 @@
+name: 功能建议
+description: 提出阅读、思考与实践流程的改进建议
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 希望解决的实际问题
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: 建议的使用体验
