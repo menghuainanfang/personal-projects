@@ -1,22 +1,30 @@
 # GitHub 与朋友测试发布
 
-当前项目仅在本机，尚未设置远程或上传任何内容。未取得公开发布授权。未读取私人凭据，未使用个人图书测试。
+源码仓库：[menghuainanfang/personal-projects](https://github.com/menghuainanfang/personal-projects)。ReadingOS 独立位于 `projects/readingos/`，桌面工作副本位于 `D:\桌面\ReadingOS`。在此仓库根目录使用 Git，同一仓库的其他项目保持各自目录。
 
-先在 GitHub 创建自己的空仓库 `ReadingOS`，不要勾选自动创建 README。确认所有者和地址后，在项目目录执行：
+## 维护和同步
+
+在修改前执行 `git pull --ff-only`，在 `projects/readingos/` 编辑应用、运行相关测试并构建。随后在仓库根目录执行：
 
 ```powershell
-git remote add origin https://github.com/YOUR_ACCOUNT/ReadingOS.git
-git remote -v
-git push -u origin main
+ git add projects/readingos .github/workflows/readingos-windows.yml
+ git diff --cached --stat
+ git commit -m "Update ReadingOS"
+ git push origin main
 ```
 
-`YOUR_ACCOUNT` 替换为实际所有者。Git 的登录流程由用户自行完成；不要把 token 写入项目。若远程已有工作，先查看远程历史，不强制覆盖。
+`node_modules`、`dist`、`release`、`research` 和 `test-results` 均被忽略。个人图书、数据库、日志备份不进入仓库。
 
-朋友测试发布步骤：
+## 版本发布
 
-1. 在本机运行 README 中的构建和测试命令，查看 `docs/testing.md`。
-2. 使用 `v0.1.0` 创建 release，粘贴 `docs/release_notes_v0.1.md`。
-3. 上传 `release/ReadingOS-0.1.0-win-x64-setup.exe`。不要上传 `test-results`、数据库、备份或朋友图书。
-4. 朋友下载安装包，导入自己的书籍；通过 issue 模板反馈。
+首版标签为 `readingos-v0.1.0`，安装包位于 [GitHub Releases](https://github.com/menghuainanfang/personal-projects/releases/tag/readingos-v0.1.0)。多个项目共用仓库，因此 ReadingOS 的发布标签以 `readingos-` 开头。
 
-CI 只构建并存储 artifact，不自动公开发布。未配置签名。发布者应说明未签名状态与已知限制，不要求关闭 Windows 安全功能。
+后续朋友测试发布步骤：
+
+1. 更新版本号与 CHANGELOG，在应用目录执行相关测试及 `npm run package`。
+2. 按 `docs/testing.md` 验收安装版，在仓库根目录提交并上传源码。
+3. 创建新的 `readingos-v版本号` 标签，推送标签，在 GitHub 创建对应 Release，使用 `docs/release_notes_v0.1.md` 的结构撰写说明。
+4. 上传应用目录 `release/` 下的新安装包；只分发原创或获许可的示例。
+5. 朋友下载安装、导入自己的书籍，通过 GitHub Issues 反馈。
+
+仓库根目录的 Windows 工作流构建 ReadingOS，保留 artifact，不自动创建公开 Release。安装包未签名；发布说明应注明 SmartScreen 可能提示和已知限制。

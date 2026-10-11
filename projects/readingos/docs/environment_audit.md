@@ -1,13 +1,13 @@
 # 环境审计
 
-检查日期：2026-10-11。项目新建于 `D:\ReadingOS`，未覆盖已有目录或修改其他项目。
+检查日期：2026-10-11。桌面仓库为 `D:\桌面\ReadingOS`，应用独立位于 `projects/readingos/`，远程为 `menghuainanfang/personal-projects`。
 
 | 项目              | 实际结果                                  | 决策                                           |
 | ----------------- | ----------------------------------------- | ---------------------------------------------- |
 | Windows           | Windows 11 家庭版 中文版，10.0.26200，x64 | 面向 Windows x64                               |
 | PowerShell        | 7.6.6                                     | 本地开发命令                                   |
 | Node.js / npm     | v24.21.0 / 11.19.0                        | 复用已有安装                                   |
-| Git               | 2.53.0.windows.2，已有全局作者配置        | 新建本地仓库；无远程地址                       |
+| Git               | 2.53.0.windows.2，已有全局作者配置        | 桌面工作副本关联用户指定的 personal-projects 仓库 |
 | Rust / Cargo      | PATH 和用户 `.cargo/bin` 未发现           | 不安装系统工具链                               |
 | Visual Studio C++ | vswhere 已存在，实例查询返回空数组        | Tauri 构建前置条件缺失                         |
 | WebView2 Runtime  | 154.0.4258.62                             | 已安装；Electron 使用自带 Chromium             |

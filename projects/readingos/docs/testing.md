@@ -40,7 +40,7 @@
 
 ## Windows 安装
 
-已构建 `release/ReadingOS-0.1.0-win-x64-setup.exe`，119,492,635 字节，约 114 MiB。静默安装到 `D:\ReadingOS\test-results\installed` 返回退出码 0，实际生成 `ReadingOS.exe`。最终用户不需要开发运行时。
+已构建 `release/ReadingOS-0.1.0-win-x64-setup.exe`，119,492,635 字节，约 114 MiB。静默安装验收退出码为 0，实际生成 `ReadingOS.exe`；安装测试产物随项目保存在 `test-results/installed`。最终用户不需要开发运行时。
 
 安装后的应用通过同一套 12 项完整桌面验收，无意外 renderer 错误，`info.packaged` 为 `true`；结果记录为 `test-results/desktop-packaged/results.json`。截图在捕获时显示实际窗口，核对了 PDF 绘图位置与 EPUB 重排后的整段高亮。
 

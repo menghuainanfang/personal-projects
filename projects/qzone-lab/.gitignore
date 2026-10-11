@@ -1,0 +1,9 @@
+data/
+__pycache__/
+*.log
+exports/
+reports/
+*.csv
+*.har
+*.json
+*.zip
