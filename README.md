@@ -11,6 +11,7 @@
 | 数据科学学习 | [Data Science Bookcamp 独立学习专题](projects/data-science-bookcamp/) | 独立实现、复现并扩展书中的数据科学案例 | 计划中 |
 | 数据分析工具 | [空间研究室 · Qzone Lab](projects/qzone-lab/) | 本地分析 QQ 空间动态的题材、配图、发布时间与点赞浏览关系 | 交付 |
 | 桌面阅读工具 | [ReadingOS](projects/readingos/) | PDF / EPUB 阅读、批注、读后感、洞见和实践记录 | v0.2更新中 |
+| 数学学习工具 | [本地数学翻译工作流](projects/math-translation-workflow/) | PDF 与 arXiv/LaTeX 数学材料的中文翻译、编译及审校 | 精译流程已验证 |
 
 新的数学学习、实际建模和兴趣项目会在正式开始后加入此表，而不会提前创建空目录。
 
@@ -40,6 +41,7 @@
 ```text
 personal-projects/
 ├── projects/
+│   ├── math-translation-workflow/
 │   ├── qzone-lab/
 │   ├── readingos/
 │   └── data-science-bookcamp/

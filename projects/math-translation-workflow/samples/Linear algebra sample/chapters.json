@@ -1,0 +1,10 @@
+{
+  "source_original": "source/main.tex 与 output/pdf/original.pdf",
+  "page_numbering": "PDF 物理页 1-4；与本样例页脚一致",
+  "chapters": [
+    {"id":"section01","pdf_pages":[1,1],"status":"reviewed","tex":"translation/main.tex","review":"review.md"},
+    {"id":"section02","pdf_pages":[2,2],"status":"reviewed","tex":"translation/main.tex","review":"review.md"},
+    {"id":"section03","pdf_pages":[3,3],"status":"reviewed","tex":"translation/main.tex","review":"review.md"},
+    {"id":"section04","pdf_pages":[4,4],"status":"reviewed","tex":"translation/main.tex","review":"review.md"}
+  ]
+}

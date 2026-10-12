@@ -1,0 +1,5 @@
+English	中文首选	备选	语境	审校状态
+Euclidean norm	欧几里得范数	欧氏范数	实向量空间	已核对
+linear map	线性映射		矩阵映射	已核对
+uniform bound	统一上界		同一常数适用于所有向量	已核对
+invertible	可逆		矩阵	已核对

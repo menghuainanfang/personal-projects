@@ -1,0 +1,16 @@
+config.json
+.venvs/
+vendor/
+tools/
+downloads/
+cache/
+state/
+blobs/
+projects/
+output/builds/
+output/acceptance/
+output/preview/
+*.local.toml
+*.local.json
+.env
+__pycache__/

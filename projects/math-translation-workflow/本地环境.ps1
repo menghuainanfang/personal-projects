@@ -1,0 +1,7 @@
+$env:MINERU_HOME = Join-Path $PSScriptRoot 'state/mineru'
+$env:HF_HOME = Join-Path $PSScriptRoot 'cache/huggingface'
+$env:MODELSCOPE_CACHE = Join-Path $PSScriptRoot 'cache/modelscope'
+$env:PIP_CACHE_DIR = Join-Path $PSScriptRoot 'cache/pip'
+$env:GRADIO_TEMP_DIR = Join-Path $PSScriptRoot 'state/gradio'
+$env:GRADIO_ANALYTICS_ENABLED = 'False'
+$env:HF_HUB_DISABLE_TELEMETRY = '1'
