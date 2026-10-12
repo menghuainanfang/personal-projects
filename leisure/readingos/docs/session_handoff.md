@@ -3,9 +3,9 @@
 ## 项目位置与启动
 
 - 仓库：`D:\桌面\ReadingOS`，分支 `main`，远程 `https://github.com/menghuainanfang/personal-projects.git`。
-- 应用目录：`D:\桌面\ReadingOS\projects\readingos`。
-- 安装包：`D:\桌面\ReadingOS\projects\readingos\release\ReadingOS-0.1.0-win-x64-setup.exe`。
-- 本机安装测试位置：`D:\桌面\ReadingOS\projects\readingos\test-results\installed\ReadingOS.exe`。
+- 应用目录：`D:\桌面\ReadingOS\leisure\readingos`。
+- 安装包：`D:\桌面\ReadingOS\leisure\readingos\release\ReadingOS-0.1.0-win-x64-setup.exe`。
+- 本机安装测试位置：`D:\桌面\ReadingOS\leisure\readingos\test-results\installed\ReadingOS.exe`。
 - 开发启动：`npm run build` 后 `npm run desktop`。不需要 Vite 开发服务器。
 - 用户资料位置由 `app.getPath('userData')` 决定；设置页显示实际路径。测试通过 `READINGOS_TEST_DATA` 指定隔离目录。
 
@@ -32,7 +32,7 @@ TypeScript / 生产构建通过，8 项持久化测试通过。12 项桌面流�
 
 安装包已在本机隔离目录安装，退出码 0。安装后的 12 项验收全部通过，无意外 renderer 错误，记录位于 `test-results/desktop-packaged/results.json`。测试时文件选择器返回原创样本路径；资料库、reader、文件副本和备份执行生产代码。
 
-GitHub 项目目录为 `menghuainanfang/personal-projects/projects/readingos`，发布标签为 `readingos-v0.1.0`。仓库根目录提供 ReadingOS 专用 CI 和 issue 模板，中文指南与发布步骤已准备。远程 CI 状态以 GitHub Actions 页面为准；本机测试证据见 `docs/testing.md`。安装包未签名。
+GitHub 项目目录为 `menghuainanfang/personal-projects/leisure/readingos`，发布标签为 `readingos-v0.1.0`。仓库根目录提供 ReadingOS 专用 CI 和 issue 模板，中文指南与发布步骤已准备。远程 CI 状态以 GitHub Actions 页面为准；本机测试证据见 `docs/testing.md`。安装包未签名。
 
 ## 继续开发
 

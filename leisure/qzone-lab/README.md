@@ -36,7 +36,7 @@
 
 ```bash
 git clone https://github.com/menghuainanfang/personal-projects.git
-cd personal-projects/projects/qzone-lab
+cd personal-projects/leisure/qzone-lab
 python app.py
 ```
 

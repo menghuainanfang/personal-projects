@@ -4,7 +4,7 @@
 
 ## 使用
 
-当前状态：v0.1 已在 Windows 11 x64 完成安装验证；8 项持久化测试、源码版与安装版各 12 项桌面验收通过。源码位于本仓库的 `projects/readingos/`。
+当前状态：v0.1 已在 Windows 11 x64 完成安装验证；8 项持久化测试、源码版与安装版各 12 项桌面验收通过。源码位于本仓库的 `leisure/readingos/`。
 
 [下载 v0.1 安装包](https://github.com/menghuainanfang/personal-projects/releases/tag/readingos-v0.1.0)。
 
@@ -22,7 +22,7 @@
 需要 Windows x64、Node.js 24 和 npm、Git。项目采用 Electron、React、TypeScript、Vite、SQLite、PDF.js、epub.js 和 Tiptap。
 
 ```powershell
-cd D:\桌面\ReadingOS\projects\readingos
+cd D:\桌面\ReadingOS\leisure\readingos
 npm ci --registry=https://registry.npmjs.org
 node node_modules/electron/install.js
 node node_modules/esbuild/install.js
@@ -64,14 +64,14 @@ SQLite 数据库和导入文件副本位于 Electron userData（实际路径在�
 
 ## 本机维护
 
-桌面仓库位于 `D:\桌面\ReadingOS`，应用源码、构建产物和文档位于 `projects/readingos/`。从其他位置克隆仓库时，在自己的仓库目录进入 `projects/readingos` 运行开发命令。
+桌面仓库位于 `D:\桌面\ReadingOS`，应用源码、构建产物和文档位于 `leisure/readingos/`。从其他位置克隆仓库时，在自己的仓库目录进入 `leisure/readingos` 运行开发命令。
 
 修改后先执行相关测试，在仓库根目录提交并同步：
 
 ```powershell
 cd D:\桌面\ReadingOS
 git pull --ff-only
-git add projects/readingos .github/workflows/readingos-windows.yml
+git add leisure/readingos .github/workflows/readingos-windows.yml
 git commit -m "Update ReadingOS"
 git push
 ```

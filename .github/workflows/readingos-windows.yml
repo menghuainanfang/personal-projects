@@ -2,11 +2,11 @@ name: ReadingOS Windows build
 on:
   push:
     paths:
-      - 'projects/readingos/**'
+      - 'leisure/readingos/**'
       - '.github/workflows/readingos-windows.yml'
   pull_request:
     paths:
-      - 'projects/readingos/**'
+      - 'leisure/readingos/**'
       - '.github/workflows/readingos-windows.yml'
   workflow_dispatch:
 permissions:
@@ -16,14 +16,14 @@ jobs:
     runs-on: windows-latest
     defaults:
       run:
-        working-directory: projects/readingos
+        working-directory: leisure/readingos
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
           cache: npm
-          cache-dependency-path: projects/readingos/package-lock.json
+          cache-dependency-path: leisure/readingos/package-lock.json
       - run: npm ci
       - run: node node_modules/electron/install.js
       - run: node node_modules/esbuild/install.js
@@ -40,9 +40,9 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: ReadingOS-Windows-x64
-          path: projects/readingos/release/*setup.exe
+          path: leisure/readingos/release/*setup.exe
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: desktop-test-results
-          path: projects/readingos/test-results/**/results.json
+          path: leisure/readingos/test-results/**/results.json

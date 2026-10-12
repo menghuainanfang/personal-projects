@@ -1,13 +1,13 @@
 # GitHub 与朋友测试发布
 
-源码仓库：[menghuainanfang/personal-projects](https://github.com/menghuainanfang/personal-projects)。ReadingOS 独立位于 `projects/readingos/`，桌面工作副本位于 `D:\桌面\ReadingOS`。在此仓库根目录使用 Git，同一仓库的其他项目保持各自目录。
+源码仓库：[menghuainanfang/personal-projects](https://github.com/menghuainanfang/personal-projects)。ReadingOS 独立位于 `leisure/readingos/`，桌面工作副本位于 `D:\桌面\ReadingOS`。在此仓库根目录使用 Git，同一仓库的其他项目保持各自目录。
 
 ## 维护和同步
 
-在修改前执行 `git pull --ff-only`，在 `projects/readingos/` 编辑应用、运行相关测试并构建。随后在仓库根目录执行：
+在修改前执行 `git pull --ff-only`，在 `leisure/readingos/` 编辑应用、运行相关测试并构建。随后在仓库根目录执行：
 
 ```powershell
- git add projects/readingos .github/workflows/readingos-windows.yml
+ git add leisure/readingos .github/workflows/readingos-windows.yml
  git diff --cached --stat
  git commit -m "Update ReadingOS"
  git push origin main

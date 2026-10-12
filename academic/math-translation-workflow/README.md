@@ -30,7 +30,7 @@
 
 ```powershell
 git clone https://github.com/menghuainanfang/personal-projects.git
-Set-Location personal-projects/projects/math-translation-workflow
+Set-Location personal-projects/academic/math-translation-workflow
 python scripts/setup_local.py
 .\翻译工具.ps1 build 'samples\Linear algebra sample\translation'
 ```
