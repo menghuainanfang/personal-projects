@@ -1,9 +1,14 @@
-# 环境要求与验证环境
+# 验证环境
 
-2026-10-12 的本机验证环境为 Windows 11 x64、PowerShell 7、Python 3.13、TeX Live 2024、32 GB 内存、RTX 4060 Laptop 8 GB。Git Bash 和 WSL 可用，实际部署使用原生 Windows。
+| 项目 | 实测配置 |
+|---|---|
+| 系统 | Windows、PowerShell |
+| 内存 / GPU | 32 GB / RTX 4060 Laptop 8 GB |
+| Python | Python 3.13；可选解析使用独立虚拟环境 |
+| TeX | 既有 TeX Live 2024、XeLaTeX、latexmk、Biber、ctex/Fandol |
+| PDF 翻译 | PDFMathTranslate-next 2.9.0 / BabelDOC 0.6.4 官方便携包 |
+| 本地模型 | Ollama 0.40.3、Qwen3 4B Instruct，约 2.5 GB |
+| 扫描辅助 | MinerU 4.0.12，ONNX basic |
+| 源码辅助 | LaTeXTrans 0.1.0，本地输入已验证 |
 
-工作流复用 XeLaTeX、latexmk、Biber、Fandol 中文字体和 Poppler。MinerU 4.0.12 采用 ONNX basic CPU 解析，不要求 CUDA Toolkit。PDFMathTranslate 使用官方 Windows 便携包内置运行时；LaTeXTrans 使用独立 Python 环境。
-
-其他电脑运行 `python scripts/setup_local.py` 生成自己的 `config.json`。技能采用用户目录 `.agents/skills/mathtranslations`；该目录在新 Codex 进程中实际验证可发现。初始化脚本不覆盖现有配置、不改变全局 PATH、不安装模型。
-
-原始机器路径、账号配置和运行缓存未包含在公开仓库。模型、环境、下载及个人译稿都定位到各自项目目录。
+工具、模型与主要缓存保存在项目部署目录。用户技能位于 `.agents/skills/mathtranslations`；译文数据库沿用 `.cache/pdf2zh_next/cache.v1.db`。不修改全局 PATH 或既有 TeX 安装。第三方运行时与模型不随公开仓库分发。

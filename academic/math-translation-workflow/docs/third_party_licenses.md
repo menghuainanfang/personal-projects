@@ -13,6 +13,9 @@
 | MinerU 模型 | ONNX 模型卡明确原模型许可和署名仍适用；manifest.json 记录 PP-DocLayout、PP-OCR、PP-FormulaNet 与表格模型来源；下载用于本机测试，不重新发布权重 |
 | Marker | 未安装；当前代码 Apache-2.0；权重许可为修改的 AI Pubs Open Rail-M，个人研究允许，超出商业门槛需另查授权 |
 | 无 LICENSE 的两个参考技能 | 公开可阅读不等于可复用代码；未注册、未嵌入交付实现；证据快照只作本地研究 |
+| Ollama | MIT；保留上游 LICENSE，不随仓库分发运行时 |
+| Qwen3 4B Instruct | Apache-2.0；本地保留模型许可，不重新分发权重 |
+| 教材与论文源作品 | 原文及译稿保留在本机，公开报告不附原书或整本译稿 |
 | 样例原稿、译文、图示 | 原创，CC0 1.0；目录中附许可说明 |
 | TeX Live 与 Fandol | 复用既有安装，按各组件自身许可；不打包发布整个 TeX 系统 |
 

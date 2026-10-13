@@ -1,0 +1,38 @@
+{
+  "original_sample": {
+    "source_pages": 4,
+    "translated_pages": 4,
+    "acceptance_passed": 21
+  },
+  "paper": {
+    "arxiv": "1410.7872v2",
+    "source_pages": 22,
+    "translated_pages": 20,
+    "numbered_math_environments": 48,
+    "unnumbered_math_blocks": 27,
+    "figure_environments": 10,
+    "subfigures": 31,
+    "equation_numbers": 41,
+    "bibliography_entries": 23
+  },
+  "islp": {
+    "source_pages": 613,
+    "mono_pages": 613,
+    "dual_pages": 613,
+    "mono_bookmarks": 309,
+    "dual_bookmarks": 309,
+    "rendered_pdf_pages": [
+      25,
+      26,
+      51,
+      144,
+      406,
+      613
+    ],
+    "quality": "machine draft; not proofread page by page",
+    "model": "qwen3:4b-instruct",
+    "engine": "local Ollama",
+    "paid_translation_api_used": false,
+    "public_book_artifacts": false
+  }
+}

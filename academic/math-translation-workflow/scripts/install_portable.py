@@ -1,4 +1,4 @@
-import json, urllib.request, zipfile
+import json, urllib.request, zipfile, subprocess, sys
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
 data=json.loads((root/'evidence'/'pdf2zh-current-release.json').read_text())
@@ -20,4 +20,5 @@ if not archive.exists() or archive.stat().st_size!=asset['size']:
 dest=root/'tools'/'pdf2zh';dest.mkdir(parents=True,exist_ok=True)
 with zipfile.ZipFile(archive) as z:z.extractall(dest)
 print('便携版已解压：',dest)
-print(list(dest.rglob('*.exe'))[:10])
+for patch in ('patch_pdf_gui.py', 'patch_formula_placeholders.py', 'patch_pdf_runtime_encoding.py'):
+    subprocess.run([sys.executable, str(root/'scripts'/patch)], check=True)
