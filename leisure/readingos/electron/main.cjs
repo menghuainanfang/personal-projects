@@ -24,6 +24,7 @@ app.whenReady().then(() => {
     "readAsset",
     "annotations",
     "preferences",
+    "batchPlans",
   ])
     on(name, (...args) => store[name](...args));
   on("info", () => ({

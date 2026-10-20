@@ -1,14 +1,14 @@
-# ReadingOS v0.2
+# ReadingOS v0.2.1 本机候选版
 
 面向 Windows 的本地阅读应用。把 PDF、EPUB 和纸质书放进同一个书库，以自己的主读后感为中心，连接日志、洞见和实践行动。
 
 ## 使用
 
-当前版本：v0.2.0，源码位于 `leisure/readingos/`。新版提供暖纸书房、按书保存的阅读设置、批注引用日志及精确来源跳转。验收与验证边界见 [v0.2 验收记录](docs/V02_ACCEPTANCE.md)。
+本机候选版本：v0.2.1，在阅读计划新增批量书单导入、预览去重与自动排期。当前公开版本为 v0.2.0，远程源码位于 `leisure/readingos/`；本机工作副本位于 `projects/readingos/`，功能分支 `readingos-micro-002`。本轮新增逻辑与测试见 [PapaParse 学习记录](docs/micro-iterations/002-papaparse.md) 和 [微迭代验收](docs/micro-iterations/002-acceptance.md)。
 
 [下载 v0.2 安装包](https://github.com/menghuainanfang/personal-projects/releases/tag/readingos-v0.2.0)。
 
-安装包：`release/ReadingOS-0.2.0-win-x64-setup.exe`。支持 Windows x64，为当前用户安装。应用自带运行环境，使用时无需 Node、Rust 或网络。升级前创建完整备份；v1 数据库会自动升级到 v2。
+本机候选安装包：`release/ReadingOS-0.2.1-win-x64-setup.exe`。支持 Windows x64，为当前用户安装。应用自带运行环境，使用时无需 Node、Rust 或网络。v0.2.1 继续使用 SQLite v2，无数据库迁移。
 
 1. 导入无 DRM PDF / EPUB，或添加纸质书。
 2. 在阅读器中高亮、评论、绘图和记录书签。
@@ -31,6 +31,7 @@ npm run build
 npm test
 npm run test:desktop
 npm run test:v02
+npm run test:micro002
 npm run desktop
 ```
 
@@ -45,6 +46,7 @@ Remove-Item Env:ELECTRON_BUILDER_COMPRESSION_LEVEL
 $env:READINGOS_EXECUTABLE = "$pwd\release\win-unpacked\ReadingOS.exe"
 npm run test:desktop
 npm run test:v02
+npm run test:micro002
 Remove-Item Env:READINGOS_EXECUTABLE
 ```
 
@@ -73,16 +75,16 @@ SQLite 数据库和导入文件副本位于 Electron userData（实际路径在�
 
 ## 本机维护
 
-桌面仓库位于 `D:\桌面\ReadingOS`，应用源码、构建产物和文档位于 `leisure/readingos/`。从其他位置克隆仓库时，在自己的仓库目录进入 `leisure/readingos` 运行开发命令。
+桌面仓库位于 `D:\桌面\ReadingOS`，应用源码、构建产物和文档位于 `projects/readingos/`。从公开仓库克隆时进入 `leisure/readingos` 运行开发命令；两处目录不同。
 
-修改后先执行相关测试，在自己的工作分支提交，经确认后同步到 GitHub：
+修改后先执行相关测试，在仓库根目录提交。v0.2 公开推送和发布需确认后执行：
 
 ```powershell
 cd D:\桌面\ReadingOS
-git switch -c readingos-update
-git add leisure/readingos .github/workflows/readingos-windows.yml
+git switch readingos-micro-002
+git add projects/readingos .github/workflows/readingos-windows.yml
 git commit -m "Update ReadingOS"
-git push -u origin readingos-update
+git push -u origin readingos-micro-002
 ```
 
 本地安装包、依赖、测试资料和个人书库不进入 Git。Windows 构建工作流位于仓库根目录 `.github/workflows/readingos-windows.yml`。
