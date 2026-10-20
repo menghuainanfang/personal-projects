@@ -8,9 +8,9 @@
 
 未来模块可以增加自己的领域实体和页面，复用窗口与 persistence 边界。本版没有云服务、账户、插件框架或后台遥测。
 
-## SQLite v1
+## SQLite v2
 
-数据库在 Electron userData 目录的 `library.sqlite`，原书在 `assets/<UUID>.pdf|epub`。foreign_keys 开启，WAL 日志和 FULL 同步用于可靠提交。`PRAGMA user_version=1` 标识本版结构；首次建表和版本写入在同一事务中。再次打开 v1 不重建表；数据库版本高于支持范围时拒绝打开。后续升级应在 `Store.open()` 添加逐版本事务迁移，不删除已建数据库。
+数据库在 Electron userData 目录的 `library.sqlite`，原书在 `assets/<UUID>.pdf|epub`。foreign_keys 开启，WAL 日志和 FULL 同步用于可靠提交。`PRAGMA user_version=2` 标识本版结构。首次建表和版本写入在同一事务中。打开 v1 时先用 `VACUUM INTO` 保存 `before-v2.sqlite`，再事务新增阅读设置表；原有 14 张表不改写。数据库版本高于支持范围时拒绝打开。v1 备份在 staging 完成同一迁移，检查后再交换资料。
 
 | 表                 | 作用和关系                                                                       |
 | ------------------ | -------------------------------------------------------------------------------- |
@@ -27,6 +27,7 @@
 | goals              | period 主键；年或年月与目标本数                                                  |
 | plans              | book_id + month 联合主键；计划与完成日期分离                                     |
 | bookmarks          | asset_id、位置、标签                                                             |
+| reader_preferences | book_id 主键；settings JSON 保存字号、行距、PDF 缩放、线宽、高亮颜色、阅读主题、背景与文字色；updated |
 
 实体 ID 是 UUID；数据库中的原书路径由程序创建，不使用用户书名拼接。哈希只在导入时用于查重，匹配后跳过解析与复制。不同电子版本作为不同 asset，可以关联同一 book，但不共享位置和批注。
 
@@ -37,6 +38,8 @@ PDF 渲染保持页面原始方向。高亮保存 `{page,rects:[[x,y,w,h],...]}`
 EPUB 保存 `{cfi}` 与完整选文；selected 事件中的 DOM Range 先将元素边界转为文字节点边界，再通过 contents.cfiFromRange 生成锚点。位置来自 relocated。高亮由 rendition.annotations 恢复，点击批注通过 display(CFI) 跳转。重排影响显示页面，不改变当前版本内容树的锚点。未实现跨版本锚点迁移。
 
 默认工具是选文，SVG 不接收 pointer。显式选择手绘/形状/文本工具后才接收主鼠标按键；中键、滚轮和右键不创建绘图。橡皮擦删除完整笔画或批注。撤销/重做历史针对当前阅读器会话，记录写入数据库。
+
+阅读设置按逻辑书保存，部分更新合并已有 JSON，不影响其他书。进度仍按 asset 保存。日志引用保存原批注 ID，打开来源必须找到对应 asset，再用原始 PDF 页/EPUB CFI；不会使用另一版本的最近进度代替。阅读器位置、偏好和批注写入同一异步队列，退出等待已发出的保存任务。
 
 ## 保存与备份
 

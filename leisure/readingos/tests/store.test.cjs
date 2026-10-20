@@ -185,16 +185,62 @@ test("Incomplete backup does not replace the live library", async () => {
     s.close();
   }
 });
-test("Version 1 reopen preserves data and newer database is rejected", () => {
+test("Version 2 reopen preserves data and newer database is rejected", () => {
   const dir = path.join(root, "migration");
   let s = new Store(dir);
   const id = s.save("books", { title: "升级保留" });
   s.close();
   s = new Store(dir);
   assert.equal(s.snapshot().books[0].id, id);
-  s.db.exec("PRAGMA user_version=2");
+  s.db.exec("PRAGMA user_version=3");
   s.close();
   assert.throws(() => new Store(dir), /较新版本/);
+});
+test('Version 1 migration preserves the complete reading workflow and keeps a rollback database', async()=>{
+  const dir=path.join(root,'v1-all');
+  let s=new Store(dir);
+  const original=await fixtures(path.join(root,'v1-files'));
+  const book=(await s.importFile(path.join(original,'sample.pdf'))).bookId;
+  const asset=s.snapshot().assets[0].id;
+  s.summary(book,'<p>旧版完整心得</p>');
+  const annotation=s.save('annotations',{asset_id:asset,kind:'highlight',anchor:JSON.stringify({page:1,rects:[[.1,.2,.4,.02]]}),color:'#e6b84e',width:2,text:'旧版摘录',comment:'旧版评论'});
+  const journal=s.save('journals',{book_id:book,title:'旧版日志',date:'2026-10-11',content:'<p>保留日志</p>',source:annotation});
+  const insight=s.save('insights',{title:'旧版观点',content:'保留观点'});
+  s.save('insight_links',{insight_id:insight,book_id:book,journal_id:journal,annotation_id:annotation});
+  const action=s.save('actions',{book_id:book,insight_id:insight,description:'旧版实践',status:'active',planned:''});
+  s.save('feedback',{action_id:action,content:'旧版反馈',date:'2026-10-11'});
+  s.save('bookmarks',{asset_id:asset,location:JSON.stringify({page:2}),label:'旧版书签'});
+  s.progress(asset,JSON.stringify({page:2}));s.goal('2026',12);s.plan(book,'2026-10',true);
+  const before=s.snapshot();
+  s.db.exec('DROP TABLE reader_preferences; PRAGMA user_version=1');
+  const legacyBackup=path.join(root,'legacy.readingos');await s.backup(legacyBackup);s.close();
+  s=new Store(dir);
+  try {
+    assert.equal(s.db.prepare('PRAGMA user_version').get().user_version,2);
+    assert.deepEqual(s.snapshot(),before);
+    assert.ok(fs.existsSync(path.join(dir,'before-v2.sqlite')));
+    const {DatabaseSync}=require('node:sqlite');
+    const rollback=new DatabaseSync(path.join(dir,'before-v2.sqlite'));
+    assert.equal(rollback.prepare('PRAGMA user_version').get().user_version,1);rollback.close();
+    s.preferences(book,{fontSize:28,readerTheme:'custom',background:'#ece3d2'});
+    await s.restore(legacyBackup);
+    assert.deepEqual(s.snapshot(),before);
+    assert.ok(s.readAsset(asset).equals(fs.readFileSync(path.join(original,'sample.pdf'))));
+    assert.ok(s.markdown(book).includes('旧版完整心得'));
+  } finally {s.close();}
+});
+test('Book-specific preferences survive restart and full backup without changing another book',async()=>{
+  const dir=path.join(root,'preferences');let s=new Store(dir);
+  const a=s.save('books',{title:'独立排版 A'}),b=s.save('books',{title:'独立排版 B'});
+  s.preferences(a,{fontSize:28,lineHeight:2.2,background:'#f2e8d3',foreground:'#252923',readerTheme:'custom',color:'#a78842',width:4,zoom:1.25});
+  s.preferences(a,{fontSize:30});s.preferences(b,{fontSize:18});
+  const before=s.snapshot();s.close();s=new Store(dir);
+  try {
+    assert.deepEqual(s.snapshot(),before);
+    assert.equal(JSON.parse(s.snapshot().reader_preferences.find(p=>p.book_id===a).settings).color,'#a78842');
+    assert.equal(JSON.parse(s.snapshot().reader_preferences.find(p=>p.book_id===b).settings).fontSize,18);
+    const backup=path.join(root,'preferences.readingos');await s.backup(backup);s.remove('books',a);await s.restore(backup);assert.deepEqual(s.snapshot(),before);
+  }finally{s.close();}
 });
 test("Transactions roll back dependent writes on foreign-key failure", () => {
   const s = new Store(path.join(root, "transaction"));

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import {
   api,
   statuses,
@@ -8,6 +8,7 @@ import {
   type Snapshot,
 } from "./domain";
 import { Editor } from "./Editor";
+import { Modal } from './Modal';
 export type Dialog = {
   kind: string;
   row?: Partial<Row>;
@@ -22,19 +23,15 @@ export function RecordDialog({
   close,
   done,
   notify,
+  openSource,
 }: {
   dialog: Dialog;
   data: Snapshot;
   close: () => void;
   done: () => Promise<void>;
   notify: (s: string) => void;
+  openSource: (id:string)=>void;
 }) {
-  const form = useRef<HTMLFormElement>(null);
-  useEffect(() => {
-    const previous = document.activeElement as HTMLElement | null;
-    form.current?.querySelector<HTMLInputElement>("input,textarea")?.focus();
-    return () => previous?.focus();
-  }, []);
   const [row, setRow] = useState<Partial<Row>>({ ...dialog.row }),
     [busy, setBusy] = useState(false),
     [journalId, setJournalId] = useState(dialog.row?.id || crypto.randomUUID()),
@@ -116,48 +113,7 @@ export function RecordDialog({
     }
   };
   return (
-    <div
-      className="modal-backdrop"
-      onMouseDown={(e) => {
-        if (e.target === e.currentTarget) close();
-      }}
-    >
-      <form
-        ref={form}
-        role="dialog"
-        aria-modal="true"
-        aria-label={titles[kind]}
-        className={"modal " + (kind === "journal" ? "wide" : "")}
-        onSubmit={save}
-        onKeyDown={(e) => {
-          if (e.key === "Escape") {
-            e.preventDefault();
-            close();
-          }
-          if (e.key === "Tab") {
-            const elements = Array.from(
-              e.currentTarget.querySelectorAll<HTMLElement>(
-                'button:not(:disabled),input,select,textarea,[contenteditable="true"]',
-              ),
-            );
-            const first = elements[0],
-              last = elements[elements.length - 1];
-            if (e.shiftKey && document.activeElement === first) {
-              e.preventDefault();
-              last?.focus();
-            } else if (!e.shiftKey && document.activeElement === last) {
-              e.preventDefault();
-              first?.focus();
-            }
-          }
-        }}
-      >
-        <div className="section-heading">
-          <h2>{titles[kind]}</h2>
-          <button type="button" aria-label="关闭对话框" onClick={close}>
-            ×
-          </button>
-        </div>
+    <Modal title={titles[kind]} wide={kind==='journal'} onClose={close} onSubmit={save}>
         {kind === "book" && (
           <>
             {field("title", "书名", "text", true)}
@@ -231,12 +187,12 @@ export function RecordDialog({
                     </option>
                   ))}
               </select>
-              <input
+              {data.annotations.some(a=>a.id===row.source) ? <button type="button" className="source" onClick={()=>openSource(row.source!)}>返回引用原文</button> : <input
                 aria-label="章节说明"
                 placeholder="也可输入章节说明"
                 value={row.source || ""}
                 onChange={(e) => set("source", e.target.value)}
-              />
+              />}
             </label>
             <Editor
               label="日志正文"
@@ -346,7 +302,6 @@ export function RecordDialog({
             {busy ? "保存中…" : "保存"}
           </button>
         </div>
-      </form>
-    </div>
+    </Modal>
   );
 }

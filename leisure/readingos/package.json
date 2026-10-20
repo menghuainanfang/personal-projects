@@ -1,6 +1,6 @@
 {
   "name": "readingos",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Local-first reading, reflection and practice",
   "author": "ReadingOS contributors",
@@ -15,14 +15,17 @@
     "build": "tsc --noEmit && vite build && node scripts/copy-pdf-assets.cjs",
     "test": "node --test tests/store.test.cjs",
     "test:desktop": "node tests/desktop.cjs",
+    "test:v02": "node tests/v02-desktop.cjs",
+    "screenshots": "node tests/visual.cjs after",
     "package": "npm run build && electron-builder --win nsis --x64",
     "notices": "node scripts/notices.cjs"
   },
   "dependencies": {
-    "@xmldom/xmldom": "0.8.15",
+    "@radix-ui/react-dialog": "^1.2.0",
     "@tiptap/extension-link": "^3.0.0",
     "@tiptap/react": "^3.0.0",
     "@tiptap/starter-kit": "^3.0.0",
+    "@xmldom/xmldom": "0.8.15",
     "dompurify": "^3.3.0",
     "epubjs": "0.3.93",
     "jszip": "^3.10.1",

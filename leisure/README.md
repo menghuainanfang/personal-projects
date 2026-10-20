@@ -7,7 +7,7 @@
 | 项目 | 主要用途 | 当前状态 | 入口 |
 | --- | --- | --- | --- |
 | 空间研究室 · Qzone Lab | 探索 QQ 空间题材、配图和发布时间与点赞浏览的关系 | 初版已交付 | [介绍与运行](qzone-lab/) |
-| ReadingOS | 本地阅读、批注、读后记录、洞见与实践管理 | v0.1 已发布，v0.2 更新中 | [介绍与下载](readingos/) |
+| ReadingOS | 本地阅读、批注、读后记录、洞见与实践管理 | v0.2 已发布 | [介绍与下载](readingos/) |
 
 ## 空间研究室 · Qzone Lab
 
@@ -38,10 +38,10 @@
 - 在书籍主页写主读后感和日志，整理洞见与实践反馈。
 - 设置阅读目标和月度书单，备份本机资料，导出读后记录。
 
-v0.1 已在 Windows 11 x64 完成安装验证；项目文档记录了 8 项持久化测试，以及源码版和安装版各 12 项桌面验收。v0.2 更新中。
+v0.2 已在 Windows 11 x64 完成安装验证：10 项数据测试、安装版 12 项基础流程和 6 项新版专项通过，另有 36 组窗口与缩放检查。
 
-- [下载 v0.1 安装包](https://github.com/menghuainanfang/personal-projects/releases/tag/readingos-v0.1.0)：Windows x64，应用自带运行环境。
-- [中文用户指南](readingos/docs/user_guide_zh.md)、[测试结果](readingos/docs/testing.md)与[后续路线](readingos/docs/roadmap.md)。
+- [下载 v0.2 安装包](https://github.com/menghuainanfang/personal-projects/releases/tag/readingos-v0.2.0)：Windows x64，应用自带运行环境。
+- [中文用户指南](readingos/docs/user_guide_zh.md)、[测试结果](readingos/docs/V02_ACCEPTANCE.md)与[后续路线](readingos/docs/roadmap.md)。
 - [开发与构建说明](readingos/README.md)：源码位于 `leisure/readingos`，使用 Electron、React、TypeScript、Vite、SQLite、PDF.js、epub.js 和 Tiptap。
 
 ## 数据与隐私

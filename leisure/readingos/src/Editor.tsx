@@ -47,6 +47,8 @@ export function Editor({
         <button
           type="button"
           aria-label="加粗"
+          title="加粗（Ctrl+B）"
+          aria-pressed={editor.isActive('bold')}
           className={editor.isActive("bold") ? "active" : ""}
           onClick={() => editor.chain().focus().toggleBold().run()}
         >
@@ -55,6 +57,8 @@ export function Editor({
         <button
           type="button"
           aria-label="斜体"
+          title="斜体（Ctrl+I）"
+          aria-pressed={editor.isActive('italic')}
           onClick={() => editor.chain().focus().toggleItalic().run()}
         >
           <i>I</i>
@@ -85,7 +89,7 @@ export function Editor({
         >
           撤销
         </button>
-        <span role="status">{status}</span>
+        <span role="status" aria-live="polite">{status}</span>
       </div>
       <EditorContent editor={editor} />
     </div>

@@ -14,6 +14,8 @@ permissions:
 jobs:
   windows:
     runs-on: windows-latest
+    env:
+      ELECTRON_BUILDER_COMPRESSION_LEVEL: "5"
     defaults:
       run:
         working-directory: leisure/readingos
@@ -31,12 +33,14 @@ jobs:
       - run: npm run notices
       - run: npm run build
       - run: npm run test:desktop
+      - run: npm run test:v02
       - run: npm run package
       - name: Test packaged application
         shell: pwsh
         run: |
           $env:READINGOS_EXECUTABLE = "$pwd\release\win-unpacked\ReadingOS.exe"
           npm run test:desktop
+          npm run test:v02
       - uses: actions/upload-artifact@v4
         with:
           name: ReadingOS-Windows-x64

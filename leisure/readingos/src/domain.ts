@@ -24,6 +24,17 @@ export type Annotation = Row & {
   text: string;
   comment: string;
 };
+export type ReaderPreferences = {
+  fontSize?: number; lineHeight?: number; zoom?: number; color?: string; width?: number;
+  background?: string; foreground?: string; readerTheme?: 'system'|'light'|'dark'|'custom';
+};
+export function annotationLocation(asset: Asset, annotation: Annotation): string {
+  if (asset.id !== annotation.asset_id) throw Error('批注所属版本不匹配');
+  const anchor = JSON.parse(annotation.anchor);
+  if (asset.format === 'pdf' && Number.isInteger(anchor.page) && anchor.page > 0) return JSON.stringify({page:anchor.page});
+  if (asset.format === 'epub' && typeof anchor.cfi === 'string' && anchor.cfi.startsWith('epubcfi(')) return anchor.cfi;
+  throw Error('批注位置已不可用');
+}
 export type Snapshot = {
   books: Book[];
   assets: Asset[];
@@ -39,6 +50,7 @@ export type Snapshot = {
   goals: Row[];
   plans: Row[];
   bookmarks: Row[];
+  reader_preferences: Row[];
 };
 export interface DesktopAPI {
   snapshot(): Promise<Snapshot>;
@@ -47,6 +59,7 @@ export interface DesktopAPI {
   summary(bookId: string, content: string): Promise<void>;
   progress(id: string, location: string): Promise<void>;
   annotations(assetId: string, rows: Annotation[]): Promise<void>;
+  preferences(bookId: string, settings: ReaderPreferences): Promise<void>;
   goal(period: string, target: number): Promise<void>;
   plan(bookId: string, month: string, enabled: boolean): Promise<void>;
   importBook(
@@ -83,4 +96,5 @@ export const empty: Snapshot = {
   goals: [],
   plans: [],
   bookmarks: [],
+  reader_preferences: [],
 };

@@ -19,10 +19,12 @@
 
 首版标签为 `readingos-v0.1.0`，安装包位于 [GitHub Releases](https://github.com/menghuainanfang/personal-projects/releases/tag/readingos-v0.1.0)。多个项目共用仓库，因此 ReadingOS 的发布标签以 `readingos-` 开头。
 
+v0.2 发布标签为 `readingos-v0.2.0`，安装包见对应 GitHub Release。公开源码与安装包包含原创示例，不包含个人书库。
+
 后续朋友测试发布步骤：
 
 1. 更新版本号与 CHANGELOG，在应用目录执行相关测试及 `npm run package`。
-2. 按 `docs/testing.md` 验收安装版，在仓库根目录提交并上传源码。
+2. 按 `docs/V02_ACCEPTANCE.md` 验收安装版，确认公开发布后在仓库根目录上传源码。
 3. 创建新的 `readingos-v版本号` 标签，推送标签，在 GitHub 创建对应 Release，使用 `docs/release_notes_v0.1.md` 的结构撰写说明。
 4. 上传应用目录 `release/` 下的新安装包；只分发原创或获许可的示例。
 5. 朋友下载安装、导入自己的书籍，通过 GitHub Issues 反馈。

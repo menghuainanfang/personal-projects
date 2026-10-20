@@ -5,7 +5,7 @@ import DOMPurify from "dompurify";
 import type { ReaderProps } from "./PdfReader";
 import { textRange } from "./epubSelection";
 export function EpubReader(
-  p: ReaderProps & { fontSize: number; lineHeight: number; theme: string },
+  p: ReaderProps & { fontSize: number; lineHeight: number; theme: string; background:string; foreground:string },
 ) {
   const host = useRef<HTMLDivElement>(null),
     rendition = useRef<Rendition | null>(null),
@@ -103,9 +103,9 @@ export function EpubReader(
     if (!r || !ready) return;
     r.themes.fontSize(p.fontSize + "px");
     r.themes.override("line-height", String(p.lineHeight));
-    r.themes.override("color", p.theme === "dark" ? "#e6e5dc" : "#302f29");
-    r.themes.override("background", p.theme === "dark" ? "#242722" : "#fffdf6");
-  }, [p.fontSize, p.lineHeight, p.theme, ready]);
+    r.themes.override("color", p.foreground);
+    r.themes.override("background", p.background);
+  }, [p.fontSize, p.lineHeight, p.background, p.foreground, ready]);
   useEffect(() => {
     const r = rendition.current;
     if (!r || !ready) return;

@@ -8,6 +8,7 @@ contextBridge.exposeInMainWorld("readingos", {
   summary: (bookId, content) => call("summary", bookId, content),
   progress: (id, location) => call("progress", id, location),
   annotations: (assetId, rows) => call("annotations", assetId, rows),
+  preferences: (bookId, settings) => call('preferences',bookId,settings),
   goal: (period, target) => call("goal", period, target),
   plan: (bookId, month, enabled) => call("plan", bookId, month, enabled),
   importBook: (bookId) => call("import", bookId),

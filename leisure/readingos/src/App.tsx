@@ -14,7 +14,6 @@ import {
   ArrowUpRight,
   ArrowLeft,
   Download,
-  BookMarked,
 } from "lucide-react";
 import {
   api,
@@ -26,6 +25,8 @@ import {
   type Row,
   type Snapshot,
   type Asset,
+  type Annotation,
+  annotationLocation,
 } from "./domain";
 import { RecordDialog, type Dialog } from "./RecordDialog";
 import { Editor } from "./Editor";
@@ -40,7 +41,7 @@ function Plain({ html }: { html: string }) {
   );
 }
 function Cover({ book, small = false }: { book: Book; small?: boolean }) {
-  const colors = ["#476454", "#b78058", "#5d7287", "#8a6b74", "#7a7860"];
+  const colors = ["#506453", "#675343", "#52616d", "#685864", "#626147"];
   let n = 0;
   for (const c of book.id) n += c.charCodeAt(0);
   return (
@@ -52,10 +53,9 @@ function Cover({ book, small = false }: { book: Book; small?: boolean }) {
         <img src={book.cover} alt={book.title + " 封面"} />
       ) : (
         <>
-          <span className="cover-line">READING LIBRARY</span>
+          <span className="cover-line">{book.category || '读书档案'}</span>
           <strong>{book.title}</strong>
           <span>{book.author || "未署名"}</span>
-          <BookOpen size={small ? 22 : 30} />
         </>
       )}
     </div>
@@ -67,6 +67,7 @@ export function App() {
     [view, setView] = useState("library"),
     [bookId, setBookId] = useState<string | null>(null),
     [asset, setAsset] = useState<Asset | null>(null),
+    [readerLocation, setReaderLocation] = useState<{value:string} | undefined>(),
     [dialog, setDialog] = useState<Dialog | null>(null),
     [toast, setToast] = useState(""),
     [theme, setTheme] = useState(
@@ -138,6 +139,21 @@ export function App() {
     }
   };
   const book = data.books.find((b) => b.id === bookId);
+  const startReading = (file:Asset, location?:string) => {
+    setBookId(file.book_id); setView('book'); setReaderLocation(location ? {value:location} : undefined); setAsset(file);
+  };
+  const openSource = (id:string) => {
+    const a=data.annotations.find(a=>a.id===id);
+    const file=a && data.assets.find(f=>f.id===a.asset_id);
+    if(!a || !file) {notify('关联批注或原书已删除，无法定位原文。');return;}
+    try {setDialog(null);startReading(file,annotationLocation(file,a));}catch{notify('这条批注的位置已不可用。');}
+  };
+  const quoteAnnotation = async (annotation:Annotation) => {
+    await reload();
+    const block=document.createElement('blockquote'); block.textContent=annotation.text || 'PDF 绘图批注';
+    const comment=document.createElement('p');comment.textContent=annotation.comment;
+    setDialog({kind:'journal',row:{book_id:asset!.book_id,date:today(),title:'原文与我的理解',source:annotation.id,content:block.outerHTML+comment.outerHTML}});
+  };
   const linkedInsights = (id?: string) =>
     id
       ? data.insights.filter((i) =>
@@ -254,7 +270,11 @@ export function App() {
                 key={l.id}
                 className="source"
                 onClick={() => {
-                  if (l.book_id) openBook(l.book_id);
+                  if(l.annotation_id) openSource(l.annotation_id);
+                  else if(l.journal_id) {
+                    const journal=data.journals.find(j=>j.id===l.journal_id);
+                    if(journal) setDialog({kind:'journal',row:journal}); else notify('来源日志已删除。');
+                  } else if (l.book_id) void openBook(l.book_id);
                 }}
               >
                 {data.books.find((b) => b.id === l.book_id)?.title ||
@@ -289,6 +309,8 @@ export function App() {
           reload={reload}
           promote={promote}
           notify={notify}
+          quote={a=>void quoteAnnotation(a)}
+          initialLocation={readerLocation}
         />
         {dialog && (
           <RecordDialog
@@ -305,6 +327,7 @@ export function App() {
               notify("已保存");
             }}
             notify={notify}
+            openSource={openSource}
           />
         )}
         <Toast message={toast} close={() => setToast("")} />
@@ -337,7 +360,7 @@ export function App() {
           <div className="brand-mark">
             <BookOpen size={24} />
           </div>
-          <div>
+          <div className="brand-copy">
             ReadingOS<small>为阅读留一处空间</small>
           </div>
         </div>
@@ -349,6 +372,8 @@ export function App() {
         ].map(([v, label, Icon]: any) => (
           <button
             key={v}
+            aria-label={label}
+            title={label}
             className={
               "nav-item " +
               (view === v || (v === "library" && view === "book")
@@ -361,45 +386,40 @@ export function App() {
             }}
           >
             <Icon size={19} />
-            {label}
-            {v === "library" && <span>{data.books.length}</span>}
+            <span className="nav-label">{label}</span>
+            {v === "library" && <span className="nav-count">{data.books.length}</span>}
           </button>
         ))}
-        <div className="sidebar-note">
-          <BookMarked size={24} />
-          <p>
-            阅读之后，
-            <br />
-            让想法继续生长。
-          </p>
-          <small>书籍 · 思考 · 实践</small>
-        </div>
         <div className="grow" />
         <button
+          aria-label="资料与设置"
+          title="资料与设置"
           className={"nav-item " + (view === "settings" ? "selected" : "")}
           onClick={() => setView("settings")}
         >
           <Settings size={19} />
-          资料与设置
+          <span className="nav-label">资料与设置</span>
         </button>
         <button
           className="nav-item"
+          aria-label={theme === "light" ? "深色主题" : "浅色主题"}
+          title={theme === "light" ? "深色主题" : "浅色主题"}
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         >
           {theme === "light" ? <Moon size={19} /> : <Sun size={19} />}{" "}
-          {theme === "light" ? "深色主题" : "浅色主题"}
+          <span className="nav-label">{theme === "light" ? "深色主题" : "浅色主题"}</span>
         </button>
         <div className="offline">
           <span />
-          本地书库 · 离线可用
+          <span className="offline-text">本地书库 · 离线可用</span>
         </div>
       </aside>
-      <main className="main-area">
+      <main className={'main-area '+(view==='book'?'book-home':'')}>
         {view === "library" && (
           <>
             <header className="page-heading">
               <div>
-                <p className="eyebrow">YOUR READING SPACE</p>
+                <p className="eyebrow">书房 · 阅读与思考</p>
                 <h1>
                   我的书库<span>{data.books.length} 本</span>
                 </h1>
@@ -442,6 +462,7 @@ export function App() {
               <div className="view-toggle">
                 <button
                   aria-label="封面网格"
+                  title="封面网格"
                   className={layout === "grid" ? "active" : ""}
                   onClick={() => setLayout("grid")}
                 >
@@ -449,6 +470,7 @@ export function App() {
                 </button>
                 <button
                   aria-label="书籍列表"
+                  title="书籍列表"
                   className={layout === "list" ? "active" : ""}
                   onClick={() => setLayout("list")}
                 >
@@ -499,6 +521,7 @@ export function App() {
             ) : (
               <div className={layout === "grid" ? "book-grid" : "book-list"}>
                 {visible.map((b) => (
+                  <article className="book-entry" key={b.id}>
                   <button
                     className="book-card"
                     key={b.id}
@@ -522,6 +545,12 @@ export function App() {
                       {b.tags && <small className="tags">{b.tags}</small>}
                     </div>
                   </button>
+                  {data.assets.some(a=>a.book_id===b.id) && <button className="resume-book" aria-label={'继续阅读《'+b.title+'》'} onClick={()=>{
+                    const files=data.assets.filter(a=>a.book_id===b.id);
+                    const last=[...files].sort((a,b)=>(data.progress.find(p=>p.asset_id===b.id)?.updated || '').localeCompare(data.progress.find(p=>p.asset_id===a.id)?.updated || ''))[0];
+                    startReading(last);
+                  }}>继续阅读 <ArrowUpRight size={14}/></button>}
+                  </article>
                 ))}
               </div>
             )}
@@ -536,7 +565,7 @@ export function App() {
             <header className="book-heading">
               <Cover book={book} small />
               <div>
-                <p className="eyebrow">BOOK & REFLECTION</p>
+                <p className="eyebrow">书籍 · 我的阅读档案</p>
                 <h1>{book.title}</h1>
                 <p>
                   {book.author || "作者未填写"}{" "}
@@ -577,7 +606,7 @@ export function App() {
                   <button
                     className="primary"
                     key={a.id}
-                    onClick={() => setAsset(a)}
+                    onClick={() => startReading(a)}
                   >
                     <BookOpen size={16} />
                     继续阅读 · {a.format.toUpperCase()}
@@ -588,7 +617,7 @@ export function App() {
             <section className="reflection-section">
               <div className="section-heading">
                 <div>
-                  <span className="eyebrow">PINNED REFLECTION</span>
+                  <span className="eyebrow">置顶 · 随时续写</span>
                   <h2>我的主读后感</h2>
                 </div>
                 <button
@@ -747,38 +776,17 @@ export function App() {
                     </div>
                     <h3>{j.title}</h3>
                     <Plain html={j.content} />
-                    {j.source && (
+                    {j.source && (data.annotations.some(a=>a.id===j.source) ? (
                       <button
                         className="source"
-                        onClick={() => {
-                          const a = data.annotations.find(
-                            (a) => a.id === j.source,
-                          );
-                          if (a) {
-                            const file = data.assets.find(
-                              (f) => f.id === a.asset_id,
-                            );
-                            if (file) {
-                              void api
-                                .progress(
-                                  file.id,
-                                  file.format === "pdf"
-                                    ? JSON.stringify({
-                                        page: JSON.parse(a.anchor).page,
-                                      })
-                                    : JSON.parse(a.anchor).cfi,
-                                )
-                                .then(() => reload())
-                                .then(() => setAsset(file));
-                            }
-                          }
-                        }}
+                        disabled={!data.annotations.some(a=>a.id===j.source)}
+                        onClick={() => openSource(j.source)}
                       >
                         {data.annotations.some((a) => a.id === j.source)
-                          ? "查看关联批注"
+                          ? "返回引用原文"
                           : "来源：" + j.source}
                       </button>
-                    )}
+                    ) : <small className="source-note">{/^[0-9a-f]{8}-/.test(j.source) ? '关联批注已删除' : '章节：'+j.source}</small>)}
                   </article>
                 ))}
             </section>
@@ -795,18 +803,7 @@ export function App() {
                     className="annotation-overview"
                     key={a.id}
                     onClick={() => {
-                      const f = data.assets.find((f) => f.id === a.asset_id)!;
-                      void api
-                        .progress(
-                          f.id,
-                          f.format === "pdf"
-                            ? JSON.stringify({
-                                page: JSON.parse(a.anchor).page,
-                              })
-                            : JSON.parse(a.anchor).cfi,
-                        )
-                        .then(() => reload())
-                        .then(() => setAsset(f));
+                      openSource(a.id);
                     }}
                   >
                     <span style={{ background: a.color }} />
@@ -1000,7 +997,7 @@ export function App() {
               </p>
             </section>
             <section className="settings-card">
-              <h2>ReadingOS {info?.version || "0.1.0"}</h2>
+              <h2>ReadingOS {info?.version || "0.2.0"}</h2>
               <p>数据位置</p>
               <code>{info?.dataPath || "正在读取…"}</code>
               <p>
@@ -1026,6 +1023,7 @@ export function App() {
             notify("已保存");
           }}
           notify={notify}
+          openSource={openSource}
         />
       )}
       <Toast message={toast} close={() => setToast("")} />

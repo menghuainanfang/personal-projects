@@ -1,28 +1,28 @@
-# ReadingOS v0.1
+# ReadingOS v0.2
 
 面向 Windows 的本地阅读应用。把 PDF、EPUB 和纸质书放进同一个书库，以自己的主读后感为中心，连接日志、洞见和实践行动。
 
 ## 使用
 
-当前状态：v0.1 已在 Windows 11 x64 完成安装验证；8 项持久化测试、源码版与安装版各 12 项桌面验收通过。源码位于本仓库的 `leisure/readingos/`。
+当前版本：v0.2.0，源码位于 `leisure/readingos/`。新版提供暖纸书房、按书保存的阅读设置、批注引用日志及精确来源跳转。验收与验证边界见 [v0.2 验收记录](docs/V02_ACCEPTANCE.md)。
 
-[下载 v0.1 安装包](https://github.com/menghuainanfang/personal-projects/releases/tag/readingos-v0.1.0)。
+[下载 v0.2 安装包](https://github.com/menghuainanfang/personal-projects/releases/tag/readingos-v0.2.0)。
 
-安装包：`release/ReadingOS-0.1.0-win-x64-setup.exe`。支持 Windows x64，为当前用户安装。应用自带运行环境，使用时无需 Node、Rust 或网络。
+安装包：`release/ReadingOS-0.2.0-win-x64-setup.exe`。支持 Windows x64，为当前用户安装。应用自带运行环境，使用时无需 Node、Rust 或网络。升级前创建完整备份；v1 数据库会自动升级到 v2。
 
 1. 导入无 DRM PDF / EPUB，或添加纸质书。
 2. 在阅读器中高亮、评论、绘图和记录书签。
 3. 在书籍主页写主读后感和日志，提炼洞见，记录实践反馈。
 4. 在「阅读计划」设置目标和月度书单，在「资料与设置」备份资料。
 
-[中文使用指南](docs/user_guide_zh.md) · [测试结果](docs/testing.md) · [已知限制](docs/known_issues.md)
+[中文使用指南](docs/user_guide_zh.md) · [新版测试结果](docs/V02_ACCEPTANCE.md) · [已知限制](docs/known_issues.md)
 
 ## 开发
 
 需要 Windows x64、Node.js 24 和 npm、Git。项目采用 Electron、React、TypeScript、Vite、SQLite、PDF.js、epub.js 和 Tiptap。
 
 ```powershell
-cd D:\桌面\ReadingOS\leisure\readingos
+cd D:\桌面\ReadingOS\projects\readingos
 npm ci --registry=https://registry.npmjs.org
 node node_modules/electron/install.js
 node node_modules/esbuild/install.js
@@ -30,6 +30,7 @@ npm run notices
 npm run build
 npm test
 npm run test:desktop
+npm run test:v02
 npm run desktop
 ```
 
@@ -38,13 +39,18 @@ npm run desktop
 构建 Windows NSIS 安装包并测试实际发布程序：
 
 ```powershell
+$env:ELECTRON_BUILDER_COMPRESSION_LEVEL = "5"
 npm run package
+Remove-Item Env:ELECTRON_BUILDER_COMPRESSION_LEVEL
 $env:READINGOS_EXECUTABLE = "$pwd\release\win-unpacked\ReadingOS.exe"
 npm run test:desktop
+npm run test:v02
 Remove-Item Env:READINGOS_EXECUTABLE
 ```
 
 测试使用项目原创样本和隔离的数据目录，不读取个人书库。`tests/fixtures.cjs` 的原创样本按 CC0 提供。`READINGOS_TEST_DATA` 仅供测试指定隔离目录。
+
+`npm run screenshots` 保存六个真实场景和两个视觉候选。首次运行新版验收或截图时，`tests/legacy-fixture.cjs` 会生成完整的原创 v1 结构资料，用于旧备份兼容检查；本机已有的实际 v0.1 基线优先保留。`node tests/v02-desktop.cjs --layout-only` 可单独复测窗口、缩放和对比度。
 
 ## 资料归属
 
@@ -54,9 +60,12 @@ SQLite 数据库和导入文件副本位于 Electron userData（实际路径在�
 
 - [环境审计与技术选择](docs/environment_audit.md)
 - [开源组件研究](docs/open_source_research.md)
+- [v0.2 开源决策](docs/V02_OPEN_SOURCE_DECISIONS.md)
+- [视觉方向](docs/ART_DIRECTION.md) · [设计变量](docs/DESIGN_TOKENS.md) · [组件规则](docs/COMPONENT_RULES.md)
 - [架构和数据库](docs/architecture.md)
 - [发布准备](docs/publishing.md)
 - [v0.1 发布说明](docs/release_notes_v0.1.md)
+- [v0.2 发布说明](docs/release_notes_v0.2.md) · [更新记录](CHANGELOG.md)
 - [后续路线](docs/roadmap.md)
 - [会话交接](docs/session_handoff.md)
 
@@ -66,14 +75,14 @@ SQLite 数据库和导入文件副本位于 Electron userData（实际路径在�
 
 桌面仓库位于 `D:\桌面\ReadingOS`，应用源码、构建产物和文档位于 `leisure/readingos/`。从其他位置克隆仓库时，在自己的仓库目录进入 `leisure/readingos` 运行开发命令。
 
-修改后先执行相关测试，在仓库根目录提交并同步：
+修改后先执行相关测试，在自己的工作分支提交，经确认后同步到 GitHub：
 
 ```powershell
 cd D:\桌面\ReadingOS
-git pull --ff-only
+git switch -c readingos-update
 git add leisure/readingos .github/workflows/readingos-windows.yml
 git commit -m "Update ReadingOS"
-git push
+git push -u origin readingos-update
 ```
 
 本地安装包、依赖、测试资料和个人书库不进入 Git。Windows 构建工作流位于仓库根目录 `.github/workflows/readingos-windows.yml`。

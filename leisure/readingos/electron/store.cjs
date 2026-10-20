@@ -50,6 +50,7 @@ const fields = {
   feedback: ["action_id", "content", "date"],
   bookmarks: ["asset_id", "location", "label"],
 };
+const preferencesSchema = `CREATE TABLE reader_preferences(book_id TEXT PRIMARY KEY REFERENCES books(id) ON DELETE CASCADE,settings TEXT NOT NULL,updated TEXT NOT NULL); PRAGMA user_version=2;`;
 class Store {
   constructor(root) {
     this.root = root;
@@ -62,12 +63,16 @@ class Store {
       "PRAGMA foreign_keys=ON; PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL;",
     );
     const version = this.db.prepare("PRAGMA user_version").get().user_version;
-    if (version > 1) {
+    if (version > 2) {
       this.db.close();
       throw new Error("数据库来自较新版本，请使用相应版本 ReadingOS。");
     }
-    if (version === 0)
-      this.transaction(() => this.db.exec(schema + "PRAGMA user_version=1;"));
+    if (version === 0) this.transaction(() => this.db.exec(schema + preferencesSchema));
+    if (version === 1) {
+      const backup = path.join(this.root, 'before-v2.sqlite');
+      if (!fs.existsSync(backup)) this.db.exec(`VACUUM INTO '${backup.replace(/'/g, "''")}'`);
+      this.transaction(() => this.db.exec(preferencesSchema));
+    }
   }
   transaction(fn) {
     this.db.exec("BEGIN IMMEDIATE");
@@ -97,6 +102,7 @@ class Store {
       "goals",
       "plans",
       "bookmarks",
+      "reader_preferences",
     ])
       result[table] = this.db.prepare(`SELECT * FROM ${table}`).all();
     return result;
@@ -217,6 +223,14 @@ class Store {
         "INSERT INTO progress VALUES(?,?,?) ON CONFLICT(asset_id) DO UPDATE SET location=excluded.location,updated=excluded.updated",
       )
       .run(assetId, location, new Date().toISOString());
+  }
+  preferences(bookId, settings) {
+    const current = this.db.prepare('SELECT settings FROM reader_preferences WHERE book_id=?').get(bookId);
+    const allowed = ['fontSize','lineHeight','zoom','color','width','background','foreground','readerTheme'];
+    const next = { ...(current ? JSON.parse(current.settings) : {}) };
+    for (const key of allowed) if (settings[key] !== undefined) next[key] = settings[key];
+    this.db.prepare('INSERT INTO reader_preferences VALUES(?,?,?) ON CONFLICT(book_id) DO UPDATE SET settings=excluded.settings,updated=excluded.updated')
+      .run(bookId,JSON.stringify(next),new Date().toISOString());
   }
   goal(period, target) {
     if (
@@ -388,13 +402,15 @@ class Store {
       if (!data) throw new Error("备份缺少数据库");
       fs.writeFileSync(path.join(stage, "library.sqlite"), data);
       candidate = new DatabaseSync(path.join(stage, "library.sqlite"));
+      const version = candidate.prepare('PRAGMA user_version').get().user_version;
       if (
-        candidate.prepare("PRAGMA user_version").get().user_version !== 1 ||
+        ![1,2].includes(version) ||
         candidate.prepare("PRAGMA integrity_check").get().integrity_check !==
           "ok" ||
         candidate.prepare("PRAGMA foreign_key_check").all().length
       )
         throw new Error("备份数据库无效");
+      if (version === 1) candidate.exec('BEGIN IMMEDIATE;'+preferencesSchema+'COMMIT;');
       for (const table of Object.keys(this.snapshot()))
         candidate.prepare(`SELECT * FROM ${table} LIMIT 0`).all();
       for (const { id, format, file } of candidate
