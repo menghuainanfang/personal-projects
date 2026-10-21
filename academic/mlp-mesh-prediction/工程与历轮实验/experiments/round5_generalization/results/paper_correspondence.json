@@ -1,0 +1,26 @@
+{
+  "source": "Huang & Kamenski, JCP 301 (2015), 322-337, arXiv:1410.7872v2",
+  "checked_local_pdf_pages": [
+    1,
+    12,
+    13,
+    14
+  ],
+  "printed_pages": [
+    1,
+    12,
+    13,
+    14
+  ],
+  "smoothing": "Example 4.1: M=I, Huang theta=1/3 p=2, Q optimization and R reconstruction",
+  "differences": [
+    "Armijo minimization instead of ode15s integration to t=1",
+    "fixed own perturbation seeds and diagonal triangulation"
+  ],
+  "wave": "Example 4.2 exact phase-zero analytic field, custom bounded isotropic monitor",
+  "not_reproduced": [
+    "paper Hessian-based monitor and recovery choices",
+    "horseshoe-domain cases",
+    "3D nine-sphere case"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "converged": true,
+  "stop_reason": "converged",
+  "iterations": 445,
+  "energy_evaluations": 1688,
+  "backtracks": 1263,
+  "illegal_candidates": 21,
+  "initial_energy": 1.3334231120726918,
+  "final_energy": 1.2437828510727424,
+  "final_gradient_norm": 9.816997388001173e-06,
+  "gradient_tolerance": 1e-05,
+  "seconds": 1.8016149000031874,
+  "min_area": 0.0014312430763049598
+}

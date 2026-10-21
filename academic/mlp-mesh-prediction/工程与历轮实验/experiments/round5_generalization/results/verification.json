@@ -1,0 +1,10 @@
+{
+  "cases": 60,
+  "states": 180,
+  "timed_runs": 540,
+  "saved_state_metrics_checked": true,
+  "area_bound_verified": true,
+  "energy_monotone": true,
+  "failures": [],
+  "comparable_energy_relative_tolerance": 1e-07
+}

@@ -1,0 +1,105 @@
+{
+  "conclusions": [
+    "新同分布样本上X/Q物理初始化误差为1.54%/1.40%，对应同目标平均加速1.20/1.14倍。",
+    "分布外窄强峰的X误差升至71.2%，宽弱峰为51.4%；不能把同分布精度推广为外推保证。",
+    "网络原生输出固定242维；8/16/24规模的结果使用显式双线性位移场插值，没有重新训练，属于带适配器的迁移。",
+    "波前和双峰没有原生输入接口。固定高斯代理初始化在双峰组X加速为0.97倍，没有稳定优势；不能称为网络学会这些外部场。",
+    "窄强峰组物理能量下降后，X初始化的插值RMSE反而增加20.3%。能量最小化与插值最小化不是同一目标。"
+  ],
+  "speedups": [
+    {
+      "group": "fresh_ID",
+      "method": "X_mlp",
+      "speedup": 1.2037712610295586
+    },
+    {
+      "group": "fresh_ID",
+      "method": "Q_mlp",
+      "speedup": 1.1423476779637578
+    },
+    {
+      "group": "OOD_center",
+      "method": "X_mlp",
+      "speedup": 1.2620626857282538
+    },
+    {
+      "group": "OOD_center",
+      "method": "Q_mlp",
+      "speedup": 1.3452793476510654
+    },
+    {
+      "group": "OOD_narrow",
+      "method": "X_mlp",
+      "speedup": 1.1102344479742967
+    },
+    {
+      "group": "OOD_narrow",
+      "method": "Q_mlp",
+      "speedup": 1.2747250039032458
+    },
+    {
+      "group": "OOD_broad",
+      "method": "X_mlp",
+      "speedup": 1.0462260712280491
+    },
+    {
+      "group": "OOD_broad",
+      "method": "Q_mlp",
+      "speedup": 1.0682571030345371
+    },
+    {
+      "group": "scale_8",
+      "method": "X_mlp",
+      "speedup": 1.2519744333591176
+    },
+    {
+      "group": "scale_8",
+      "method": "Q_mlp",
+      "speedup": 1.1819541628706947
+    },
+    {
+      "group": "scale_16",
+      "method": "X_mlp",
+      "speedup": 1.2146904633080078
+    },
+    {
+      "group": "scale_16",
+      "method": "Q_mlp",
+      "speedup": 1.2488534090751768
+    },
+    {
+      "group": "scale_24",
+      "method": "X_mlp",
+      "speedup": 1.2584077480113771
+    },
+    {
+      "group": "scale_24",
+      "method": "Q_mlp",
+      "speedup": 1.1704398076041806
+    },
+    {
+      "group": "paper_wave",
+      "method": "X_mlp",
+      "speedup": 1.062498410859764
+    },
+    {
+      "group": "paper_wave",
+      "method": "Q_mlp",
+      "speedup": 1.0641180719184633
+    },
+    {
+      "group": "double_peak",
+      "method": "X_mlp",
+      "speedup": 0.9719403079785157
+    },
+    {
+      "group": "double_peak",
+      "method": "Q_mlp",
+      "speedup": 1.0035784282407045
+    }
+  ],
+  "overview_table": "|测试组|例数|X初始化误差/%|Q初始化误差/%|X同目标加速|Q同目标加速|\n|---|---|---|---|---|---|\n|新同分布参数|16|1.54|1.40|1.20|1.14|\n|中心外推|8|20.47|30.91|1.26|1.35|\n|窄峰强加密|8|71.21|73.43|1.11|1.27|\n|宽峰弱加密|8|51.41|52.61|1.05|1.07|\n|8×8规模迁移|4|3.57|3.06|1.25|1.18|\n|16×16规模迁移|4|4.83|3.96|1.21|1.25|\n|24×24规模迁移|4|5.39|3.56|1.26|1.17|\n|论文波前代理|4|99.86|100.18|1.06|1.06|\n|双峰代理|4|136.36|137.25|0.97|1.00|",
+  "narrow_interpolation_error_increase_percent": 20.251806450189846,
+  "total_cases": 60,
+  "total_timing_runs": 540
+}

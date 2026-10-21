@@ -19,7 +19,6 @@ personal-projects/
 │   ├── README.md
 │   ├── data-science-bookcamp/
 │   ├── math-translation-workflow/
-│   ├── ml-moving-mesh/
 │   └── mlp-mesh-prediction/
 ├── leisure/         兴趣与休闲项目
 │   ├── README.md
@@ -38,18 +37,14 @@ personal-projects/
 
 新项目可从 [项目 README 模板](docs/PROJECT_README_TEMPLATE.md) 开始，根据实际规模补充问题、数据来源、运行环境、结果与限制。
 
-## 网格与机器学习实验
+## 网格与机器学习课程实验
 
-[二维变分网格与随机森林步长预测](academic/ml-moving-mesh/)保存了三个二维算例、四种步长策略、真实数据、七页报告和离线汇报网页。实验显示森林减少能量评价但增加总耗时，按练手项目归档。
+[机器学习辅助二维变分网格](academic/mlp-mesh-prediction/)统一整理了随机森林练手、X/Q网格预测、直接物理精修，以及60个新问题的泛化、规模和原论文核验。中文总览提供图、算例、理论证明、代码阅读和各轮论文/汇报入口。
 
-[基于MLP的二维变分自适应网格预测](academic/mlp-mesh-prediction/)直接预测内部物理节点位移，并与传统教师及同目标精修比较。新项目与前期练手实验并列保存，源码、真实数据、模型、七页报告和离线汇报页均已归档，待本人评估。
-
-[计算坐标预测与传统方法对照](academic/mlp-mesh-prediction/experiments/round3/)保存了坐标往返诊断、Q-MLP与物理预测及传统方法的三次配对实验、七页论文和离线汇报网页。第二轮文件保留，新增实验独立归档。[完整课程项目ZIP](downloads/mesh_prediction_round3_course_project.zip)。
-
-[直接物理网格预测与变分精修](academic/mlp-mesh-prediction/experiments/round4_direct_physical/)比较直接X预测、Q重建与解析函数插值误差，并在独立物理能量下比较规则和MLP初值。包含真实数据、六页中文论文与离线汇报网页，前三轮成果保留。[完整课程项目ZIP](downloads/mesh_prediction_round4_course_project.zip)。
+当前证据支持有限高斯参数族内的近似与条件初始化收益；分布外误差明显增大，没有“学习X普遍优于Q”的结论。[完整整理版ZIP](downloads/机器学习网格课程设计_泛化与理论整理版.zip)。
 
 ## 数据与许可
 
-个人数据、本机配置和运行产物保留在本地。可分发的数据和样例注明来源及许可；第三方材料遵循各自的使用条款。
+个人数据和本机配置保留在本地。项目自己的合成数据、模型及可复现实验产物按项目说明归档；第三方材料遵循各自的使用条款。
 
 原创代码和文档采用 [MIT License](LICENSE)，第三方代码、数据和资料保留原有许可。
