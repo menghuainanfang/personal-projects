@@ -1,0 +1,16 @@
+{
+  "pdf_pages": 7,
+  "tex_layout_warnings": [],
+  "page_text_lengths": [
+    1089,
+    719,
+    962,
+    564,
+    340,
+    1014,
+    1534
+  ],
+  "html_build_checks": "existing reporting generator verifier",
+  "browser_visual_check": "Not completed: local file protocol is unavailable in the browser tool",
+  "pdf_visual_review": "All seven pages inspected; no clipping, overlaps or missing glyphs"
+}

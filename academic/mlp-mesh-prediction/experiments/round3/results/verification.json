@@ -1,0 +1,10 @@
+{
+  "states_checked": 165,
+  "timed_runs": 495,
+  "consistent_physical_reconstruction": true,
+  "correct_energy_coordinate": true,
+  "monotone_energy": true,
+  "nearest_neighbor_train_only": true,
+  "normalization_train_only": true,
+  "failures": []
+}

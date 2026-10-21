@@ -1,0 +1,11 @@
+{
+  "seed": 20261022,
+  "epochs": 2600,
+  "best_epoch": 2567,
+  "validation_normalized_mse": 0.00037706532748416066,
+  "validation_coordinate_mse": 8.367360826622004e-07,
+  "training_seconds": 25.89204609999433,
+  "training_instances": 140,
+  "validation_instances": 30,
+  "parameters": 20210
+}

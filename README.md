@@ -44,6 +44,8 @@ personal-projects/
 
 [基于MLP的二维变分自适应网格预测](academic/mlp-mesh-prediction/)直接预测内部物理节点位移，并与传统教师及同目标精修比较。新项目与前期练手实验并列保存，源码、真实数据、模型、七页报告和离线汇报页均已归档，待本人评估。
 
+[计算坐标预测与传统方法对照](academic/mlp-mesh-prediction/experiments/round3/)保存了坐标往返诊断、Q-MLP与物理预测及传统方法的三次配对实验、七页论文和离线汇报网页。第二轮文件保留，新增实验独立归档。[完整课程项目ZIP](downloads/mesh_prediction_round3_course_project.zip)。
+
 ## 数据与许可
 
 个人数据、本机配置和运行产物保留在本地。可分发的数据和样例注明来源及许可；第三方材料遵循各自的使用条款。

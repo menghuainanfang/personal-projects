@@ -1,0 +1,16 @@
+{
+  "teacher_cycle_error": 0.060599675428722834,
+  "teacher_q_cycle_error": 0.06062262681104837,
+  "teacher_energy": 1.3491542413504514,
+  "cycle_energy": 1.3499580099087007,
+  "teacher_cycle_valid": 1.0,
+  "raw_error": 0.021947750582547,
+  "damped_error": 0.021947750582547,
+  "aligned_error": 0.06279997069703266,
+  "damping_change": 0.0,
+  "transfer_change": 0.06189016118869557,
+  "old_transfer_denominator": 0.06174887168931871,
+  "cross_term": -0.0004893338801950015,
+  "tau": 1.0,
+  "decomposition_residual": 3.968349357886397e-19
+}
