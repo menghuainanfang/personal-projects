@@ -1,0 +1,12 @@
+{
+  "test_runs": 36,
+  "converged": 36,
+  "split_instances": 39,
+  "armijo_trajectories": "passed",
+  "positive_meshes": "passed",
+  "energy_mesh_consistency": "passed",
+  "aggregate_consistency": "passed",
+  "paper_pdf": "7 pages, images and Chinese text present",
+  "browser_visual_check": "not confirmed: browser connector unavailable",
+  "offline_html": "generator build and archive verification passed"
+}

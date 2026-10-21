@@ -1,0 +1,42 @@
+{
+  "features": [
+    "log1p_gradient_norm",
+    "log_previous_alpha",
+    "log_scaled_min_area",
+    "previous_backtracks"
+  ],
+  "parameters": {
+    "bootstrap": true,
+    "ccp_alpha": 0.0,
+    "criterion": "squared_error",
+    "max_depth": 10,
+    "max_features": 1.0,
+    "max_leaf_nodes": null,
+    "max_samples": null,
+    "min_impurity_decrease": 0.0,
+    "min_samples_leaf": 5,
+    "min_samples_split": 2,
+    "min_weight_fraction_leaf": 0.0,
+    "monotonic_cst": null,
+    "n_estimators": 32,
+    "n_jobs": 1,
+    "oob_score": false,
+    "random_state": 20261020,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "train_samples": 4620,
+  "validation_samples": 1172,
+  "validation_log_mae": 0.18481189078704652,
+  "validation_log_r2": -0.5623303603048038,
+  "validation_previous_log_alpha_mae": 0.16382403499582324,
+  "train_label_log_std": 0.23866909219908622,
+  "importance": {
+    "log1p_gradient_norm": 0.18254490644076216,
+    "log_previous_alpha": 0.18500317732526547,
+    "log_scaled_min_area": 0.4591881365794234,
+    "previous_backtracks": 0.17326377965454903
+  },
+  "data_generation_seconds": 21.16843299998436,
+  "training_seconds": 0.4300255999842193
+}

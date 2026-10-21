@@ -18,7 +18,8 @@ personal-projects/
 ├── academic/        学科与学习项目
 │   ├── README.md
 │   ├── data-science-bookcamp/
-│   └── math-translation-workflow/
+│   ├── math-translation-workflow/
+│   └── ml-moving-mesh/
 ├── leisure/         兴趣与休闲项目
 │   ├── README.md
 │   ├── qzone-lab/
@@ -35,6 +36,10 @@ personal-projects/
 项目按主要用途归类。学科项目侧重概念、方法、实验和可复现成果；兴趣项目侧重个人使用与生活中的探索。各项目独立保存代码、测试和说明，当前状态以分类索引和项目文档为准。
 
 新项目可从 [项目 README 模板](docs/PROJECT_README_TEMPLATE.md) 开始，根据实际规模补充问题、数据来源、运行环境、结果与限制。
+
+## 数值优化练手实验
+
+[二维变分网格与随机森林步长预测](academic/ml-moving-mesh/)保存了三个二维算例、四种步长策略、真实数据、七页报告和离线汇报网页。实验显示森林减少能量评价但增加总耗时，按练手项目归档。
 
 ## 数据与许可
 

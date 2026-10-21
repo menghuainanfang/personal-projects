@@ -1,0 +1,41 @@
+[
+  {
+    "case": "uniform",
+    "seed": 100,
+    "center": [
+      0.5633087987910077,
+      0.49297930801257317
+    ],
+    "radius": 0.2,
+    "initial_edge_condition_mean": 2.6616463159112698,
+    "initial_center_node_count": 18,
+    "final_edge_condition_mean": 2.618033992194087,
+    "final_center_node_count": 18
+  },
+  {
+    "case": "gaussian",
+    "seed": 100,
+    "center": [
+      0.5633087987910077,
+      0.49297930801257317
+    ],
+    "radius": 0.2,
+    "initial_edge_condition_mean": 2.6616463159112698,
+    "initial_center_node_count": 18,
+    "final_edge_condition_mean": 2.9255841439343806,
+    "final_center_node_count": 39
+  },
+  {
+    "case": "anisotropic",
+    "seed": 100,
+    "center": [
+      0.5633087987910077,
+      0.49297930801257317
+    ],
+    "radius": 0.2,
+    "initial_edge_condition_mean": 2.6616463159112698,
+    "initial_center_node_count": 18,
+    "final_edge_condition_mean": 2.650692604089267,
+    "final_center_node_count": 25
+  }
+]

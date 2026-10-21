@@ -1,0 +1,16 @@
+{
+  "savings_percent": {
+    "uniform": 59.94764397905759,
+    "gaussian": 69.36257710760795,
+    "anisotropic": 73.06397306397307
+  },
+  "slowdown": {
+    "uniform": 3.3770059971846416,
+    "gaussian": 2.5971092709349115,
+    "anisotropic": 2.325078567880459
+  },
+  "rf_proposal_percent": 64.81060765534295,
+  "minimum_final_physical_area": 0.0012126312759876336,
+  "final_flipped_cells": 0,
+  "gradient_check_max_error": 6.453807905257669e-09
+}

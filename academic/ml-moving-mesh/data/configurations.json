@@ -1,0 +1,509 @@
+[
+  {
+    "subset": "train",
+    "case": "uniform",
+    "seed": 0,
+    "n": 8,
+    "strength": 6.5597422228820825,
+    "center": [
+      0.5451323358560298,
+      0.4971983093330965
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "uniform",
+    "seed": 1,
+    "n": 10,
+    "strength": 5.501045937660427,
+    "center": [
+      0.5271071968584081,
+      0.5030135170985384
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "uniform",
+    "seed": 2,
+    "n": 12,
+    "strength": 4.413168425894332,
+    "center": [
+      0.5203212145744844,
+      0.4606483433494441
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "uniform",
+    "seed": 3,
+    "n": 8,
+    "strength": 4.980749566141609,
+    "center": [
+      0.44755732617033545,
+      0.49730458026964897
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "uniform",
+    "seed": 4,
+    "n": 10,
+    "strength": 6.546415735724962,
+    "center": [
+      0.4881499811425075,
+      0.4748014934551209
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "uniform",
+    "seed": 5,
+    "n": 12,
+    "strength": 4.493312877317511,
+    "center": [
+      0.5631087223452124,
+      0.44586982500902067
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "uniform",
+    "seed": 6,
+    "n": 8,
+    "strength": 6.265624583670771,
+    "center": [
+      0.45796199506727187,
+      0.5635260287430648
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "uniform",
+    "seed": 7,
+    "n": 10,
+    "strength": 6.360675268633559,
+    "center": [
+      0.445736803808961,
+      0.5145290635443611
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "gaussian",
+    "seed": 0,
+    "n": 8,
+    "strength": 6.5597422228820825,
+    "center": [
+      0.5451323358560298,
+      0.4971983093330965
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "gaussian",
+    "seed": 1,
+    "n": 10,
+    "strength": 5.501045937660427,
+    "center": [
+      0.5271071968584081,
+      0.5030135170985384
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "gaussian",
+    "seed": 2,
+    "n": 12,
+    "strength": 4.413168425894332,
+    "center": [
+      0.5203212145744844,
+      0.4606483433494441
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "gaussian",
+    "seed": 3,
+    "n": 8,
+    "strength": 4.980749566141609,
+    "center": [
+      0.44755732617033545,
+      0.49730458026964897
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "gaussian",
+    "seed": 4,
+    "n": 10,
+    "strength": 6.546415735724962,
+    "center": [
+      0.4881499811425075,
+      0.4748014934551209
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "gaussian",
+    "seed": 5,
+    "n": 12,
+    "strength": 4.493312877317511,
+    "center": [
+      0.5631087223452124,
+      0.44586982500902067
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "gaussian",
+    "seed": 6,
+    "n": 8,
+    "strength": 6.265624583670771,
+    "center": [
+      0.45796199506727187,
+      0.5635260287430648
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "gaussian",
+    "seed": 7,
+    "n": 10,
+    "strength": 6.360675268633559,
+    "center": [
+      0.445736803808961,
+      0.5145290635443611
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "anisotropic",
+    "seed": 0,
+    "n": 8,
+    "strength": 6.5597422228820825,
+    "center": [
+      0.5451323358560298,
+      0.4971983093330965
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "anisotropic",
+    "seed": 1,
+    "n": 10,
+    "strength": 5.501045937660427,
+    "center": [
+      0.5271071968584081,
+      0.5030135170985384
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "anisotropic",
+    "seed": 2,
+    "n": 12,
+    "strength": 4.413168425894332,
+    "center": [
+      0.5203212145744844,
+      0.4606483433494441
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "anisotropic",
+    "seed": 3,
+    "n": 8,
+    "strength": 4.980749566141609,
+    "center": [
+      0.44755732617033545,
+      0.49730458026964897
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "anisotropic",
+    "seed": 4,
+    "n": 10,
+    "strength": 6.546415735724962,
+    "center": [
+      0.4881499811425075,
+      0.4748014934551209
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "anisotropic",
+    "seed": 5,
+    "n": 12,
+    "strength": 4.493312877317511,
+    "center": [
+      0.5631087223452124,
+      0.44586982500902067
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "anisotropic",
+    "seed": 6,
+    "n": 8,
+    "strength": 6.265624583670771,
+    "center": [
+      0.45796199506727187,
+      0.5635260287430648
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "train",
+    "case": "anisotropic",
+    "seed": 7,
+    "n": 10,
+    "strength": 6.360675268633559,
+    "center": [
+      0.445736803808961,
+      0.5145290635443611
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "validation",
+    "case": "uniform",
+    "seed": 80,
+    "n": 12,
+    "strength": 6.66949658955397,
+    "center": [
+      0.5581116611119348,
+      0.4556885262461353
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "validation",
+    "case": "uniform",
+    "seed": 81,
+    "n": 8,
+    "strength": 6.100250696868211,
+    "center": [
+      0.47115456150153256,
+      0.4881898974566576
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "validation",
+    "case": "gaussian",
+    "seed": 80,
+    "n": 12,
+    "strength": 6.66949658955397,
+    "center": [
+      0.5581116611119348,
+      0.4556885262461353
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "validation",
+    "case": "gaussian",
+    "seed": 81,
+    "n": 8,
+    "strength": 6.100250696868211,
+    "center": [
+      0.47115456150153256,
+      0.4881898974566576
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "validation",
+    "case": "anisotropic",
+    "seed": 80,
+    "n": 12,
+    "strength": 6.66949658955397,
+    "center": [
+      0.5581116611119348,
+      0.4556885262461353
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "validation",
+    "case": "anisotropic",
+    "seed": 81,
+    "n": 8,
+    "strength": 6.100250696868211,
+    "center": [
+      0.47115456150153256,
+      0.4881898974566576
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "test",
+    "case": "uniform",
+    "seed": 100,
+    "n": 12,
+    "strength": 6.17927407848004,
+    "center": [
+      0.5633087987910077,
+      0.49297930801257317
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "test",
+    "case": "uniform",
+    "seed": 101,
+    "n": 12,
+    "strength": 6.543220318945422,
+    "center": [
+      0.5244103788755444,
+      0.5674942275996898
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "test",
+    "case": "uniform",
+    "seed": 102,
+    "n": 12,
+    "strength": 5.557626420362757,
+    "center": [
+      0.4920672121653865,
+      0.4399549139952978
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "test",
+    "case": "gaussian",
+    "seed": 100,
+    "n": 12,
+    "strength": 6.17927407848004,
+    "center": [
+      0.5633087987910077,
+      0.49297930801257317
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "test",
+    "case": "gaussian",
+    "seed": 101,
+    "n": 12,
+    "strength": 6.543220318945422,
+    "center": [
+      0.5244103788755444,
+      0.5674942275996898
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "test",
+    "case": "gaussian",
+    "seed": 102,
+    "n": 12,
+    "strength": 5.557626420362757,
+    "center": [
+      0.4920672121653865,
+      0.4399549139952978
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "test",
+    "case": "anisotropic",
+    "seed": 100,
+    "n": 12,
+    "strength": 6.17927407848004,
+    "center": [
+      0.5633087987910077,
+      0.49297930801257317
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "test",
+    "case": "anisotropic",
+    "seed": 101,
+    "n": 12,
+    "strength": 6.543220318945422,
+    "center": [
+      0.5244103788755444,
+      0.5674942275996898
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  },
+  {
+    "subset": "test",
+    "case": "anisotropic",
+    "seed": 102,
+    "n": 12,
+    "strength": 5.557626420362757,
+    "center": [
+      0.4920672121653865,
+      0.4399549139952978
+    ],
+    "sigma": 0.17,
+    "perturbation_fraction": 0.12
+  }
+]

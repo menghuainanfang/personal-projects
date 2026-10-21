@@ -1,0 +1,28 @@
+{
+  "options": {
+    "alpha0": 1.0,
+    "fixed_alpha": 0.05,
+    "beta": 0.5,
+    "c1": 0.0001,
+    "alpha_min": 1e-12,
+    "max_backtracks": 40,
+    "max_iterations": 1800,
+    "max_energy_evals": 30000,
+    "relative_gradient_tolerance": 0.0001,
+    "absolute_gradient_tolerance": 1e-07,
+    "area_floor": 1e-12
+  },
+  "methods": [
+    "fixed",
+    "armijo",
+    "warm",
+    "rf"
+  ],
+  "python": "3.13.2",
+  "numpy": "2.3.4",
+  "sklearn": "1.9.1",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
+  "seed": 20261020,
+  "runtime_scope": "solve includes energy setup, inference, features, history, reconstruction and acceptance; excludes instance creation, file IO, training"
+}

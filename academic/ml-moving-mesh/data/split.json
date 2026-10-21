@@ -1,0 +1,47 @@
+{
+  "train": [
+    "uniform_0_n8",
+    "uniform_1_n10",
+    "uniform_2_n12",
+    "uniform_3_n8",
+    "uniform_4_n10",
+    "uniform_5_n12",
+    "uniform_6_n8",
+    "uniform_7_n10",
+    "gaussian_0_n8",
+    "gaussian_1_n10",
+    "gaussian_2_n12",
+    "gaussian_3_n8",
+    "gaussian_4_n10",
+    "gaussian_5_n12",
+    "gaussian_6_n8",
+    "gaussian_7_n10",
+    "anisotropic_0_n8",
+    "anisotropic_1_n10",
+    "anisotropic_2_n12",
+    "anisotropic_3_n8",
+    "anisotropic_4_n10",
+    "anisotropic_5_n12",
+    "anisotropic_6_n8",
+    "anisotropic_7_n10"
+  ],
+  "validation": [
+    "uniform_80_n12",
+    "uniform_81_n8",
+    "gaussian_80_n12",
+    "gaussian_81_n8",
+    "anisotropic_80_n12",
+    "anisotropic_81_n8"
+  ],
+  "test": [
+    "uniform_100_n12",
+    "uniform_101_n12",
+    "uniform_102_n12",
+    "gaussian_100_n12",
+    "gaussian_101_n12",
+    "gaussian_102_n12",
+    "anisotropic_100_n12",
+    "anisotropic_101_n12",
+    "anisotropic_102_n12"
+  ]
+}

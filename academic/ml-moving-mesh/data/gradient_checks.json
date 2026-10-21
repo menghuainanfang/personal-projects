@@ -1,0 +1,44 @@
+[
+  {
+    "case": "uniform",
+    "seed": 2026,
+    "finite_difference": -0.029278914182029322,
+    "analytic": -0.029278914155943515,
+    "relative_error": 8.909417537327373e-10
+  },
+  {
+    "case": "uniform",
+    "seed": 2027,
+    "finite_difference": 0.05659232360510912,
+    "analytic": 0.05659232361667304,
+    "relative_error": 2.0433719190203059e-10
+  },
+  {
+    "case": "gaussian",
+    "seed": 2026,
+    "finite_difference": 0.050605217349897196,
+    "analytic": 0.050605217353153376,
+    "relative_error": 6.434474977339707e-11
+  },
+  {
+    "case": "gaussian",
+    "seed": 2027,
+    "finite_difference": -0.03318896025783502,
+    "analytic": -0.03318896025332758,
+    "relative_error": 1.3581151670700734e-10
+  },
+  {
+    "case": "anisotropic",
+    "seed": 2026,
+    "finite_difference": -0.003117220370718598,
+    "analytic": -0.0031172203908365398,
+    "relative_error": 6.453807905257669e-09
+  },
+  {
+    "case": "anisotropic",
+    "seed": 2027,
+    "finite_difference": 0.039118358208245496,
+    "analytic": 0.039118358208100834,
+    "relative_error": 3.698060622562133e-12
+  }
+]
