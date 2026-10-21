@@ -1,0 +1,11 @@
+{
+  "A_states": 165,
+  "B_states": 66,
+  "A_timed_runs": 297,
+  "B_timed_runs": 198,
+  "physical_metrics_recomputed": true,
+  "full_X_gradient_checked": true,
+  "monotone_physical_energy": true,
+  "aggregate_consistent": true,
+  "failures": []
+}

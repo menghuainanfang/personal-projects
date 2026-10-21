@@ -1,0 +1,15 @@
+{
+  "pdf_pages": 6,
+  "tex_layout_warnings": [],
+  "page_text_lengths": [
+    1156,
+    1131,
+    1095,
+    502,
+    697,
+    1460
+  ],
+  "html_checks": "existing reporting generator build and resource verifier",
+  "browser_visual_check": "Not completed: local-file protocol restriction in browser tool",
+  "pdf_visual_review": "All six pages inspected: equations, tables and mesh figures are readable, without clipping or missing glyphs"
+}

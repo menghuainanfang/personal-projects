@@ -1,0 +1,137 @@
+{
+  "source_config": {
+    "title": "基于多层感知机的二维变分自适应网格预测与数值实验",
+    "seed": 20261021,
+    "mesh": {
+      "n": 12,
+      "area_epsilon": 1e-10
+    },
+    "parameter_ranges": {
+      "cx": [
+        0.3,
+        0.7
+      ],
+      "cy": [
+        0.3,
+        0.7
+      ],
+      "A": [
+        2.0,
+        8.0
+      ],
+      "sigma": [
+        0.18,
+        0.3
+      ]
+    },
+    "dataset": {
+      "smoke_samples": 24,
+      "samples": 200,
+      "train_fraction": 0.7,
+      "validation_fraction": 0.15,
+      "sampling": "independently uniform in each parameter"
+    },
+    "teacher": {
+      "alpha0": 1.0,
+      "beta": 0.5,
+      "armijo_c1": 0.0001,
+      "gradient_tolerance": 1e-05,
+      "max_iterations": 2200,
+      "max_backtracks": 40,
+      "max_energy_evaluations": 30000
+    },
+    "prediction": {
+      "max_displacement_backtracks": 20
+    },
+    "model": {
+      "hidden": [
+        64,
+        64
+      ],
+      "activation": "tanh",
+      "optimizer": "Adam",
+      "learning_rate": 0.001,
+      "weight_decay": 1e-06,
+      "batch_size": 32,
+      "max_epochs": 2600,
+      "early_stopping_patience": 200,
+      "min_delta": 1e-07,
+      "threads": 1
+    },
+    "display_cases": {
+      "center": [
+        0.5,
+        0.5,
+        5.0,
+        0.24
+      ],
+      "shifted": [
+        0.36,
+        0.64,
+        5.0,
+        0.24
+      ],
+      "strength": [
+        0.58,
+        0.43,
+        7.5,
+        0.19
+      ]
+    },
+    "timing": {
+      "online_repetitions": 3
+    }
+  },
+  "physical_options": {
+    "theta": 0.3333333333333333,
+    "p": 2.0,
+    "gradient_tolerance": 1e-05,
+    "max_iterations": 3000,
+    "max_energy_evaluations": 30000,
+    "armijo_c1": 0.0001,
+    "beta": 0.5,
+    "max_backtracks": 40,
+    "initial_step": 0.1
+  },
+  "test_ids": [
+    "mu_189",
+    "mu_053",
+    "mu_108",
+    "mu_179",
+    "mu_064",
+    "mu_116",
+    "mu_011",
+    "mu_091",
+    "mu_174",
+    "mu_041",
+    "mu_055",
+    "mu_121",
+    "mu_012",
+    "mu_096",
+    "mu_199",
+    "mu_062",
+    "mu_145",
+    "mu_071",
+    "mu_089",
+    "mu_115",
+    "mu_159",
+    "mu_105",
+    "mu_068",
+    "mu_162",
+    "mu_102",
+    "mu_097",
+    "mu_157",
+    "mu_170",
+    "mu_083",
+    "mu_134",
+    "case_center",
+    "case_shifted",
+    "case_strength"
+  ],
+  "models": [
+    "models/mlp.pt",
+    "experiments/round3/models/q_mlp_20261021.pt"
+  ],
+  "sampling": "160x160 identical midpoint points, 320x320 check on display cases",
+  "timing": "preloaded models and fixed-topology problem context; no disk IO or error evaluation"
+}
