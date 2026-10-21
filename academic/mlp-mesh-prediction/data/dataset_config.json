@@ -1,0 +1,83 @@
+{
+  "title": "基于多层感知机的二维变分自适应网格预测与数值实验",
+  "seed": 20261021,
+  "mesh": {
+    "n": 12,
+    "area_epsilon": 1e-10
+  },
+  "parameter_ranges": {
+    "cx": [
+      0.3,
+      0.7
+    ],
+    "cy": [
+      0.3,
+      0.7
+    ],
+    "A": [
+      2.0,
+      8.0
+    ],
+    "sigma": [
+      0.18,
+      0.3
+    ]
+  },
+  "dataset": {
+    "smoke_samples": 24,
+    "samples": 200,
+    "train_fraction": 0.7,
+    "validation_fraction": 0.15,
+    "sampling": "independently uniform in each parameter"
+  },
+  "teacher": {
+    "alpha0": 1.0,
+    "beta": 0.5,
+    "armijo_c1": 0.0001,
+    "gradient_tolerance": 1e-05,
+    "max_iterations": 2200,
+    "max_backtracks": 40,
+    "max_energy_evaluations": 30000
+  },
+  "prediction": {
+    "max_displacement_backtracks": 20
+  },
+  "model": {
+    "hidden": [
+      64,
+      64
+    ],
+    "activation": "tanh",
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "weight_decay": 1e-06,
+    "batch_size": 32,
+    "max_epochs": 2600,
+    "early_stopping_patience": 200,
+    "min_delta": 1e-07,
+    "threads": 1
+  },
+  "display_cases": {
+    "center": [
+      0.5,
+      0.5,
+      5.0,
+      0.24
+    ],
+    "shifted": [
+      0.36,
+      0.64,
+      5.0,
+      0.24
+    ],
+    "strength": [
+      0.58,
+      0.43,
+      7.5,
+      0.19
+    ]
+  },
+  "timing": {
+    "online_repetitions": 3
+  }
+}

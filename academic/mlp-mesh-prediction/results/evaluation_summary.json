@@ -1,0 +1,33 @@
+{
+  "test": {
+    "instances": 30,
+    "raw_legal_rate": 1.0,
+    "safe_legal_rate": 1.0,
+    "fallback_rate": 0.0,
+    "mean_backtracks": 0.0,
+    "max_transfer_relative_change": 0.07353228226872228,
+    "mean_raw_relative_error": 0.021947750582547,
+    "mean_damped_relative_error": 0.021947750582547,
+    "mean_aligned_relative_error": 0.06279997069703266
+  },
+  "all_evaluated": {
+    "instances": 33,
+    "raw_legal_rate": 1.0,
+    "safe_legal_rate": 1.0,
+    "fallback_rate": 0.0,
+    "mean_backtracks": 0.0,
+    "max_transfer_relative_change": 0.07353228226872228,
+    "mean_raw_relative_error": 0.021239387940970716,
+    "mean_damped_relative_error": 0.021239387940970716,
+    "mean_aligned_relative_error": 0.06310628516843393
+  },
+  "teacher_mean_seconds": 1.234424449999157,
+  "hybrid_mean_seconds": 0.7576877277774555,
+  "ratio_of_mean_times": 1.6291994772307126,
+  "prediction_mean_seconds": 0.02363808555334496,
+  "skipped_teachers": [],
+  "timing_repeats": 3,
+  "timing_scope": "CPU model preloaded; includes problem setup, input scaling, inference, damping, state transfer and refinement; excludes model loading, training, diagnostics and file IO",
+  "paired_order": "alternated within instance and repeat",
+  "energy_variable": "computational Q"
+}

@@ -1,0 +1,7 @@
+{
+  "test_prediction_error": 0.06279997069703266,
+  "test_refined_error": 4.2368821160918415e-05,
+  "online_speedup": 1.6291994772307126,
+  "offline_seconds": 254.0286660999991,
+  "amortization_calls": 533
+}

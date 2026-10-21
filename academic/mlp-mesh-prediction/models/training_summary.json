@@ -1,0 +1,29 @@
+{
+  "training_instances": 140,
+  "validation_instances": 30,
+  "best_epoch": 2589,
+  "epochs": 2600,
+  "best_validation_normalized_mse": 0.000370026973541826,
+  "best_validation_coordinate_mse": 9.342709961477249e-07,
+  "no_move_validation_coordinate_mse": 0.002332987763332314,
+  "parameters": 20210,
+  "training_seconds": 26.648722400015686,
+  "torch_version": "2.13.0+cu126",
+  "device": "cpu",
+  "threads": 1,
+  "input_mean": [
+    0.49374120803870586,
+    0.4907052693193828,
+    5.334786594141303,
+    0.23973195160293634
+  ],
+  "input_std": [
+    0.11611379907044908,
+    0.1194827950931805,
+    1.7403722479531423,
+    0.036433282754658
+  ],
+  "displacement_scale": 0.050248111202606034,
+  "normalization_fit": "training instances only",
+  "test_used_for_model_selection": false
+}

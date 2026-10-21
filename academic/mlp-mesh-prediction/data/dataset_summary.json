@@ -1,0 +1,10 @@
+{
+  "instances": 203,
+  "successful": 203,
+  "failed": [],
+  "teacher_solve_seconds": 227.37994369998341,
+  "current_generation_wall_seconds": 201.4097865000076,
+  "new_instances": 179,
+  "python": "3.13.2",
+  "numpy": "2.3.4"
+}

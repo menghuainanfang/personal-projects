@@ -1,0 +1,25 @@
+{
+  "id": "2c585be8-4595-42c8-83b4-1cd12f59342d",
+  "surface": "report",
+  "title": "技术数值报告",
+  "generatedAt": "2026-09-01T00:00:00Z",
+  "status": "draft",
+  "filters": [],
+  "report": {
+    "layout": {
+      "intro": "实验技术报告草稿：请填写算例数据、方法与验证结果。",
+      "blocks": [
+        {
+          "kind": "narrative",
+          "id": "report-scope",
+          "markdown": "## 研究问题与验证范围\n\n请说明算例设置、比较方法、判定标准及证据来源。本草稿尚未提供实验数据，不代表验证通过。"
+        }
+      ]
+    }
+  },
+  "queries": {},
+  "schemaVersion": 1,
+  "validation": {
+    "checks": []
+  }
+}

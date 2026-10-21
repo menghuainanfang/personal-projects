@@ -1,0 +1,8 @@
+{
+  "date": "2026-10-21",
+  "status": "not completed: local file URL rejected by browser policy",
+  "attempted_output": "presentation/index.html",
+  "reason": "Browser tool permits http and https URLs; the file protocol was refused.",
+  "completed": ["original generator build", "archive integrity verification", "embedded image and font checks"],
+  "not_completed": ["browser rendering", "keyboard navigation", "responsive layout screenshots"]
+}

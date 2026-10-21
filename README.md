@@ -19,7 +19,8 @@ personal-projects/
 │   ├── README.md
 │   ├── data-science-bookcamp/
 │   ├── math-translation-workflow/
-│   └── ml-moving-mesh/
+│   ├── ml-moving-mesh/
+│   └── mlp-mesh-prediction/
 ├── leisure/         兴趣与休闲项目
 │   ├── README.md
 │   ├── qzone-lab/
@@ -37,9 +38,11 @@ personal-projects/
 
 新项目可从 [项目 README 模板](docs/PROJECT_README_TEMPLATE.md) 开始，根据实际规模补充问题、数据来源、运行环境、结果与限制。
 
-## 数值优化练手实验
+## 网格与机器学习实验
 
 [二维变分网格与随机森林步长预测](academic/ml-moving-mesh/)保存了三个二维算例、四种步长策略、真实数据、七页报告和离线汇报网页。实验显示森林减少能量评价但增加总耗时，按练手项目归档。
+
+[基于MLP的二维变分自适应网格预测](academic/mlp-mesh-prediction/)直接预测内部物理节点位移，并与传统教师及同目标精修比较。新项目与前期练手实验并列保存，源码、真实数据、模型、七页报告和离线汇报页均已归档，待本人评估。
 
 ## 数据与许可
 

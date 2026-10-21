@@ -9,6 +9,7 @@
 | Data Science Bookcamp 独立学习专题 | 概率模拟、统计推断、异常检测、文本分析与社交网络预测 | 计划中 | [专题介绍](data-science-bookcamp/) |
 | 本地数学翻译工作流 | 数学 PDF 与 LaTeX 材料的中文翻译、编译和审校 | 本地整书翻译与精译流程已验证 | [使用与验证](math-translation-workflow/) |
 | 二维变分网格与随机森林步长预测 | 四种步长策略、三类网格度量、实例隔离训练与真实数值对比 | 练手实验完成；未获得实际加速 | [项目与报告](ml-moving-mesh/) |
+| 基于MLP的二维变分自适应网格预测 | 物理节点位移监督学习、安全处理、同目标精修与三算例对照 | 实验与报告完成；待本人评估 | [项目、论文与数据](mlp-mesh-prediction/) |
 
 ## Data Science Bookcamp 独立学习专题
 

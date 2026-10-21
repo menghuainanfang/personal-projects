@@ -1,0 +1,22 @@
+{
+  "instance_id": "case_strength",
+  "seed": 20261021,
+  "cx": 0.58,
+  "cy": 0.43,
+  "A": 7.5,
+  "sigma": 0.19,
+  "converged": true,
+  "stop_reason": "converged",
+  "iterations": 332,
+  "energy_evaluations": 1249,
+  "backtracks": 941,
+  "illegal_candidates": 25,
+  "initial_energy": 1.5169587990395543,
+  "final_energy": 1.3996921034732674,
+  "final_gradient_norm": 9.732747724996809e-06,
+  "gradient_tolerance": 1e-05,
+  "seconds": 1.6579060000076424,
+  "min_area": 0.0010178640731921108,
+  "valid": true,
+  "movement_norm": 0.85553055015121
+}

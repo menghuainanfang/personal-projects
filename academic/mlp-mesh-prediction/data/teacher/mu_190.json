@@ -1,0 +1,22 @@
+{
+  "instance_id": "mu_190",
+  "seed": 20261021,
+  "cx": 0.5207912719109198,
+  "cy": 0.3823868066013405,
+  "A": 6.952108926592666,
+  "sigma": 0.2523588162780644,
+  "converged": true,
+  "stop_reason": "converged",
+  "iterations": 395,
+  "energy_evaluations": 1430,
+  "backtracks": 1060,
+  "illegal_candidates": 26,
+  "initial_energy": 1.219692986423361,
+  "final_energy": 1.1141454976673355,
+  "final_gradient_norm": 9.348019593954825e-06,
+  "gradient_tolerance": 1e-05,
+  "seconds": 1.2291942000156268,
+  "min_area": 0.0012661196438734032,
+  "valid": true,
+  "movement_norm": 0.8907455667302291
+}

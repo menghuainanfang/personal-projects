@@ -1,0 +1,15 @@
+{
+  "teacher_labels_checked": 203,
+  "evaluated_instances": 33,
+  "mesh_states_checked": 132,
+  "split_and_training_scaler": "passed",
+  "physical_label_reconstruction": "passed",
+  "physical_to_computational_transfer": "passed",
+  "armijo_acceptance": "passed",
+  "positive_area_and_fixed_boundary": "passed",
+  "state_energy_and_error_metrics": "passed",
+  "aggregate_csv": "passed",
+  "pdf_pages": 7,
+  "offline_report": "generator built and archive verified",
+  "browser_visual_check": "not completed: local file URL rejected by browser policy"
+}

@@ -1,0 +1,9 @@
+{
+  "instances": 24,
+  "converged": 24,
+  "valid": 24,
+  "nontrivial_labels": true,
+  "maximum_between_label_distance": 1.0800753069024656,
+  "teacher_physical_not_computational": true,
+  "generated_seconds": 29.55649510002695
+}
