@@ -1,0 +1,73 @@
+{
+  "cases": 16,
+  "converged": 16,
+  "improved": 7,
+  "max_gradient_error": 2.2636165337985847e-10,
+  "max_quadrature_change": 0.00012567395481632117,
+  "summary": [
+    {
+      "kind": "single",
+      "n": 12,
+      "cases": 2,
+      "converged": 2,
+      "mean_error_ratio": 0.9478379326669102,
+      "worst_error_ratio": 0.9503811001697448
+    },
+    {
+      "kind": "single",
+      "n": 24,
+      "cases": 2,
+      "converged": 2,
+      "mean_error_ratio": 1.0191711030156339,
+      "worst_error_ratio": 1.0217060339290167
+    },
+    {
+      "kind": "double",
+      "n": 12,
+      "cases": 2,
+      "converged": 2,
+      "mean_error_ratio": 1.1656103744941428,
+      "worst_error_ratio": 1.297964601667431
+    },
+    {
+      "kind": "double",
+      "n": 24,
+      "cases": 2,
+      "converged": 2,
+      "mean_error_ratio": 1.444477667777791,
+      "worst_error_ratio": 1.679636181833957
+    },
+    {
+      "kind": "ring",
+      "n": 12,
+      "cases": 2,
+      "converged": 2,
+      "mean_error_ratio": 1.1467354476797649,
+      "worst_error_ratio": 1.3034973092962137
+    },
+    {
+      "kind": "ring",
+      "n": 24,
+      "cases": 2,
+      "converged": 2,
+      "mean_error_ratio": 1.3827389174777802,
+      "worst_error_ratio": 1.576387354558929
+    },
+    {
+      "kind": "wave",
+      "n": 12,
+      "cases": 2,
+      "converged": 2,
+      "mean_error_ratio": 0.40598844099233733,
+      "worst_error_ratio": 0.41214117377678183
+    },
+    {
+      "kind": "wave",
+      "n": 24,
+      "cases": 2,
+      "converged": 2,
+      "mean_error_ratio": 0.2494583769934457,
+      "worst_error_ratio": 0.24987443954514912
+    }
+  ]
+}

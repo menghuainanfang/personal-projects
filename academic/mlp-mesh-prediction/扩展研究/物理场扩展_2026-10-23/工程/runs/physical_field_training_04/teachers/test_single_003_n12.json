@@ -1,0 +1,16 @@
+{
+  "id": "test_single_003",
+  "split": "test",
+  "n": 12,
+  "kind": "single",
+  "converged": true,
+  "stop_reason": "converged",
+  "iterations": 71,
+  "final_energy": 2.320584286381323,
+  "initial_energy": 2.444943997622719,
+  "final_gradient_norm": 9.845225133101377e-06,
+  "seconds": 0.25580970000009984,
+  "energy_evaluations": 149,
+  "backtracks": 7,
+  "illegal_candidates": 1
+}

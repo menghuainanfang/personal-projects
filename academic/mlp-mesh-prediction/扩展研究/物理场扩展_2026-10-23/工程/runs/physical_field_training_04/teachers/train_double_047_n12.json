@@ -1,0 +1,16 @@
+{
+  "id": "train_double_047",
+  "split": "train",
+  "n": 12,
+  "kind": "double",
+  "converged": true,
+  "stop_reason": "converged",
+  "iterations": 77,
+  "final_energy": 1.691293740481947,
+  "initial_energy": 1.9073692891689378,
+  "final_gradient_norm": 9.429794152816447e-06,
+  "seconds": 0.3902834000182338,
+  "energy_evaluations": 160,
+  "backtracks": 5,
+  "illegal_candidates": 0
+}

@@ -1,0 +1,16 @@
+{
+  "id": "validation_wave_005",
+  "split": "validation",
+  "n": 12,
+  "kind": "wave",
+  "converged": true,
+  "stop_reason": "converged",
+  "iterations": 126,
+  "final_energy": 1.4625388069108785,
+  "initial_energy": 1.918019952099642,
+  "final_gradient_norm": 9.801127326210305e-06,
+  "seconds": 0.5949780999799259,
+  "energy_evaluations": 260,
+  "backtracks": 11,
+  "illegal_candidates": 4
+}

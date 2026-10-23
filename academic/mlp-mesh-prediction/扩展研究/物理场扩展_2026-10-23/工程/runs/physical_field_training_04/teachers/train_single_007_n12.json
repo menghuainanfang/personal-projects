@@ -1,0 +1,16 @@
+{
+  "id": "train_single_007",
+  "split": "train",
+  "n": 12,
+  "kind": "single",
+  "converged": true,
+  "stop_reason": "converged",
+  "iterations": 87,
+  "final_energy": 1.8173988680579265,
+  "initial_energy": 2.1214790062699596,
+  "final_gradient_norm": 8.626903738765405e-06,
+  "seconds": 0.5132690999889746,
+  "energy_evaluations": 181,
+  "backtracks": 7,
+  "illegal_candidates": 1
+}

@@ -1,0 +1,105 @@
+{
+  "physical_gradient_error": 7.986580147223421e-11,
+  "weak_teachers": [
+    {
+      "id": "45fb4797ad9d05ac0aef",
+      "max_coordinate_difference": 6.661338147750939e-16,
+      "residual": 1.9984014443252818e-15
+    },
+    {
+      "id": "027e5d4a1c45635b267e",
+      "max_coordinate_difference": 6.661338147750939e-16,
+      "residual": 1.7763568394002505e-15
+    },
+    {
+      "id": "028802622265a96e5486",
+      "max_coordinate_difference": 1.4432899320127035e-15,
+      "residual": 2.6645352591003757e-15
+    },
+    {
+      "id": "1b94b4c34f52b6969850",
+      "max_coordinate_difference": 1.1102230246251565e-15,
+      "residual": 2.3345670660689733e-15
+    },
+    {
+      "id": "a20b516aaa53d7eb042a",
+      "max_coordinate_difference": 8.881784197001252e-16,
+      "residual": 2.220446049250313e-15
+    },
+    {
+      "id": "9f6b2a597dd22ece53aa",
+      "max_coordinate_difference": 8.881784197001252e-16,
+      "residual": 1.9984014443252818e-15
+    },
+    {
+      "id": "1f557112b20d57674109",
+      "max_coordinate_difference": 1.2212453270876722e-15,
+      "residual": 1.7763568394002505e-15
+    },
+    {
+      "id": "ab042e1b815fde1f02a5",
+      "max_coordinate_difference": 1.1102230246251565e-15,
+      "residual": 2.886579864025407e-15
+    },
+    {
+      "id": "719cbbede72bc14277d0",
+      "max_coordinate_difference": 1.9984014443252818e-15,
+      "residual": 1.9984014443252818e-15
+    },
+    {
+      "id": "f506560d440d79c54d22",
+      "max_coordinate_difference": 6.661338147750939e-16,
+      "residual": 2.220446049250313e-15
+    },
+    {
+      "id": "122320e630f249abb883",
+      "max_coordinate_difference": 5.551115123125783e-16,
+      "residual": 3.9968028886505635e-15
+    },
+    {
+      "id": "e38ad9e2ade7229a51d9",
+      "max_coordinate_difference": 1.1102230246251565e-15,
+      "residual": 3.2341118038482095e-15
+    },
+    {
+      "id": "942a9e1c5a4c5d94ce13",
+      "max_coordinate_difference": 1.3322676295501878e-15,
+      "residual": 2.886579864025407e-15
+    },
+    {
+      "id": "97c9fdc6e3e06b9a852d",
+      "max_coordinate_difference": 5.551115123125783e-16,
+      "residual": 2.116648959902586e-15
+    },
+    {
+      "id": "f80962fbe2c704d8a532",
+      "max_coordinate_difference": 8.881784197001252e-16,
+      "residual": 2.220446049250313e-15
+    },
+    {
+      "id": "8ef2999cde96065c9c50",
+      "max_coordinate_difference": 8.881784197001252e-16,
+      "residual": 1.5543122344752192e-15
+    },
+    {
+      "id": "3ce5989e1d0652874d8e",
+      "max_coordinate_difference": 8.881784197001252e-16,
+      "residual": 2.220446049250313e-15
+    },
+    {
+      "id": "ff6a16091b74859cd3e4",
+      "max_coordinate_difference": 8.881784197001252e-16,
+      "residual": 2.6645352591003757e-15
+    },
+    {
+      "id": "937c16c71e12df251618",
+      "max_coordinate_difference": 6.661338147750939e-16,
+      "residual": 1.9984014443252818e-15
+    },
+    {
+      "id": "b104935375defb4a0b31",
+      "max_coordinate_difference": 7.771561172376096e-16,
+      "residual": 2.220446049250313e-15
+    }
+  ]
+}

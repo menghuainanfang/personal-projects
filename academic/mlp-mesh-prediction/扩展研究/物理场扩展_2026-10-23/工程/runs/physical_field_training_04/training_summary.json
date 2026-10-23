@@ -1,0 +1,9 @@
+{
+  "train_fields": 192,
+  "validation_fields": 48,
+  "epochs": 384,
+  "best_validation": 0.16783207654953003,
+  "seconds": 40.35108079999918,
+  "parameters": 164802,
+  "seed": 20261026
+}

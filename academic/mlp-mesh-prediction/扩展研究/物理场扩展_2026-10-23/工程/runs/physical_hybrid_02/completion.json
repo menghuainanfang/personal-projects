@@ -1,0 +1,35 @@
+{
+  "checkpoint": "D:\\MeshLearningResearch_20261023\\mesh-learning-lab\\runs\\physical_teacher_01\\models\\physical_X_seed20261023\\best_model.pt",
+  "training": "reuse completed physical teacher supervised model",
+  "cases": 20,
+  "repeats": 2,
+  "seed": 20261023,
+  "tolerance": 1e-05,
+  "max_iterations": 3000,
+  "max_energy_evaluations": 30000,
+  "pairing_relative_energy_tolerance": 1e-06,
+  "paired_results": [
+    {
+      "baseline": "regular_spectral",
+      "learned": "physical_MLP_spectral",
+      "matched": 40,
+      "total": 40,
+      "geometric_speedup": 1.859388876576146
+    },
+    {
+      "baseline": "regular_lbfgs",
+      "learned": "physical_MLP_lbfgs",
+      "matched": 40,
+      "total": 40,
+      "geometric_speedup": 1.27747146316336
+    },
+    {
+      "baseline": "regular_lbfgs",
+      "learned": "physical_MLP_spectral",
+      "matched": 40,
+      "total": 40,
+      "geometric_speedup": 0.5736755236439158
+    }
+  ],
+  "weak_max_difference": 1.9984014443252818e-15
+}

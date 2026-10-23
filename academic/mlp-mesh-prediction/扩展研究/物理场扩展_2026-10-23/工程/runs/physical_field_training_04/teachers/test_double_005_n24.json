@@ -1,0 +1,16 @@
+{
+  "id": "test_double_005",
+  "split": "test",
+  "n": 24,
+  "kind": "double",
+  "converged": true,
+  "stop_reason": "converged",
+  "iterations": 209,
+  "final_energy": 1.305985262328429,
+  "initial_energy": 1.5847831941508228,
+  "final_gradient_norm": 8.015967866956394e-06,
+  "seconds": 1.4962480999529362,
+  "energy_evaluations": 425,
+  "backtracks": 6,
+  "illegal_candidates": 0
+}

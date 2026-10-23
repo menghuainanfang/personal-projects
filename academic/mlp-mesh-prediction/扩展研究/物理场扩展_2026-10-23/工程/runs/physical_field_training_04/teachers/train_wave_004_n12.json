@@ -1,0 +1,16 @@
+{
+  "id": "train_wave_004",
+  "split": "train",
+  "n": 12,
+  "kind": "wave",
+  "converged": true,
+  "stop_reason": "converged",
+  "iterations": 101,
+  "final_energy": 1.6287941426729529,
+  "initial_energy": 1.989590640566707,
+  "final_gradient_norm": 8.23015069247232e-06,
+  "seconds": 0.6419121999642812,
+  "energy_evaluations": 210,
+  "backtracks": 10,
+  "illegal_candidates": 3
+}

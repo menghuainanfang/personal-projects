@@ -1,0 +1,16 @@
+{
+  "id": "test_ring_010",
+  "split": "test",
+  "n": 24,
+  "kind": "ring",
+  "converged": true,
+  "stop_reason": "converged",
+  "iterations": 183,
+  "final_energy": 1.6798361121196974,
+  "initial_energy": 2.031397802035549,
+  "final_gradient_norm": 9.243986469843345e-06,
+  "seconds": 1.417797399975825,
+  "energy_evaluations": 371,
+  "backtracks": 7,
+  "illegal_candidates": 3
+}

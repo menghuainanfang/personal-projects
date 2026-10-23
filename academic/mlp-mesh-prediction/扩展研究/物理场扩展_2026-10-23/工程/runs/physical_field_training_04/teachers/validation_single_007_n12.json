@@ -1,0 +1,16 @@
+{
+  "id": "validation_single_007",
+  "split": "validation",
+  "n": 12,
+  "kind": "single",
+  "converged": true,
+  "stop_reason": "converged",
+  "iterations": 81,
+  "final_energy": 1.7450766700153015,
+  "initial_energy": 2.027969753450444,
+  "final_gradient_norm": 9.848324829668258e-06,
+  "seconds": 0.4689811000134796,
+  "energy_evaluations": 163,
+  "backtracks": 1,
+  "illegal_candidates": 1
+}

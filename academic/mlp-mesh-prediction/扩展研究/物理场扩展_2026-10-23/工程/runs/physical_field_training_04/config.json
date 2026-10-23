@@ -1,0 +1,27 @@
+{
+  "seed": 20261026,
+  "train_per_kind": 48,
+  "validation_per_kind": 12,
+  "test_per_kind": 12,
+  "train_n": [
+    12
+  ],
+  "test_n": [
+    12,
+    24
+  ],
+  "workers": 4,
+  "epochs": 1200,
+  "patience": 150,
+  "steps_per_epoch": 8,
+  "batch_queries": 1024,
+  "learning_rate": 0.001,
+  "input": "32x32 log(m) and reference query coordinates",
+  "labels": "X-X0 from direct physical Huang energy optimization",
+  "boundary": "16*x*(1-x)*y*(1-y) envelope",
+  "training_loss": "training-scaled displacement MSE",
+  "refinement_subset": "first two test instances per kind, at n12 and n24",
+  "teacher_tolerance": 1e-05,
+  "device": "cpu",
+  "threads": 1
+}

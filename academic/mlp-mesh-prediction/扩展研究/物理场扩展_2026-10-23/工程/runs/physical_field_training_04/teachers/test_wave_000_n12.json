@@ -1,0 +1,16 @@
+{
+  "id": "test_wave_000",
+  "split": "test",
+  "n": 12,
+  "kind": "wave",
+  "converged": true,
+  "stop_reason": "converged",
+  "iterations": 109,
+  "final_energy": 1.7164870489666568,
+  "initial_energy": 2.0349233461779925,
+  "final_gradient_norm": 8.012088595049949e-06,
+  "seconds": 0.6338134999969043,
+  "energy_evaluations": 225,
+  "backtracks": 9,
+  "illegal_candidates": 3
+}

@@ -1,0 +1,100 @@
+{
+  "test_cases": 96,
+  "raw_valid": 96,
+  "refined_runs": 32,
+  "refined_converged": 32,
+  "matched_pairs": 16,
+  "total_pairs": 16,
+  "paired_speedup": 1.0244135483166932,
+  "selected_epoch": 234,
+  "summary": [
+    {
+      "kind": "single",
+      "n": 12,
+      "cases": 12,
+      "raw_valid": 12,
+      "repaired": 0,
+      "teacher_failures": 0,
+      "relative_teacher_error": 0.3401830401139194,
+      "prediction_ratio": 0.8732135535772715,
+      "teacher_ratio": 0.9913688430245351
+    },
+    {
+      "kind": "single",
+      "n": 24,
+      "cases": 12,
+      "raw_valid": 12,
+      "repaired": 0,
+      "teacher_failures": 0,
+      "relative_teacher_error": 0.34487862774130634,
+      "prediction_ratio": 0.868688490959368,
+      "teacher_ratio": 1.0686301523148902
+    },
+    {
+      "kind": "double",
+      "n": 12,
+      "cases": 12,
+      "raw_valid": 12,
+      "repaired": 0,
+      "teacher_failures": 0,
+      "relative_teacher_error": 0.4768550555969778,
+      "prediction_ratio": 1.1295143896378443,
+      "teacher_ratio": 1.1988221924163966
+    },
+    {
+      "kind": "double",
+      "n": 24,
+      "cases": 12,
+      "raw_valid": 12,
+      "repaired": 0,
+      "teacher_failures": 0,
+      "relative_teacher_error": 0.47440896662048876,
+      "prediction_ratio": 1.1909156409069408,
+      "teacher_ratio": 1.3764141838437987
+    },
+    {
+      "kind": "ring",
+      "n": 12,
+      "cases": 12,
+      "raw_valid": 12,
+      "repaired": 0,
+      "teacher_failures": 0,
+      "relative_teacher_error": 0.407678663533702,
+      "prediction_ratio": 1.106951359516468,
+      "teacher_ratio": 1.144118684890162
+    },
+    {
+      "kind": "ring",
+      "n": 24,
+      "cases": 12,
+      "raw_valid": 12,
+      "repaired": 0,
+      "teacher_failures": 0,
+      "relative_teacher_error": 0.4084090662368783,
+      "prediction_ratio": 1.1371604686648915,
+      "teacher_ratio": 1.325270880341223
+    },
+    {
+      "kind": "wave",
+      "n": 12,
+      "cases": 12,
+      "raw_valid": 12,
+      "repaired": 0,
+      "teacher_failures": 0,
+      "relative_teacher_error": 0.39544607950761534,
+      "prediction_ratio": 0.6927800466276689,
+      "teacher_ratio": 0.4453325031564794
+    },
+    {
+      "kind": "wave",
+      "n": 24,
+      "cases": 12,
+      "raw_valid": 12,
+      "repaired": 0,
+      "teacher_failures": 0,
+      "relative_teacher_error": 0.41522741415261094,
+      "prediction_ratio": 0.5487892892800612,
+      "teacher_ratio": 0.28107380064016424
+    }
+  ]
+}

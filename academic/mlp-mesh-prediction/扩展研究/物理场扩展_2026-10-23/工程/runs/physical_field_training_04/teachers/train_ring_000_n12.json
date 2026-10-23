@@ -1,0 +1,16 @@
+{
+  "id": "train_ring_000",
+  "split": "train",
+  "n": 12,
+  "kind": "ring",
+  "converged": true,
+  "stop_reason": "converged",
+  "iterations": 122,
+  "final_energy": 1.5737392774335763,
+  "initial_energy": 2.0454324451998986,
+  "final_gradient_norm": 8.643245202697553e-06,
+  "seconds": 0.5615775000187568,
+  "energy_evaluations": 252,
+  "backtracks": 9,
+  "illegal_candidates": 2
+}
