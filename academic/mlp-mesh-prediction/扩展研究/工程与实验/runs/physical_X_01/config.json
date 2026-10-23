@@ -1,0 +1,37 @@
+{
+  "data": "D:\\MeshLearningResearch_20261023\\mesh-learning-lab\\runs\\scale_study_01\\data\\gaussian_1200",
+  "train": 1200,
+  "validation": 400,
+  "test": 400,
+  "n": 12,
+  "width": 128,
+  "seeds": [
+    20261023,
+    20261024,
+    20261025
+  ],
+  "epochs": 2000,
+  "batch": 128,
+  "patience": 200,
+  "min_delta": 1e-07,
+  "learning_rate": 0.001,
+  "weight_decay": 1e-06,
+  "device": "cpu",
+  "threads": 1,
+  "physical_cases_per_group": 5,
+  "physical_timing_repeats": 2,
+  "physical_model_seed": 20261023,
+  "physical_options": {
+    "theta": 0.3333333333333333,
+    "p": 2.0,
+    "gradient_tolerance": 1e-05,
+    "max_iterations": 3000,
+    "max_energy_evaluations": 30000,
+    "armijo_c1": 0.0001,
+    "beta": 0.5,
+    "max_backtracks": 40,
+    "initial_step": 0.1
+  },
+  "physical_subset": "First five manifest test records in each of four groups; fixed before evaluation",
+  "target": "X reconstructed from the existing frozen-Q teachers; not physical-energy minimizers"
+}

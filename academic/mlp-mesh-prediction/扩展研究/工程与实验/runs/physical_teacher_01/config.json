@@ -1,0 +1,31 @@
+{
+  "train_requested": 1200,
+  "validation_requested": 400,
+  "test_requested": 400,
+  "label": "nonlinear physical energy minimizer from regular X",
+  "options": {
+    "theta": 0.3333333333333333,
+    "p": 2.0,
+    "gradient_tolerance": 1e-05,
+    "max_iterations": 3000,
+    "max_energy_evaluations": 30000,
+    "armijo_c1": 0.0001,
+    "beta": 0.5,
+    "max_backtracks": 40,
+    "initial_step": 0.1
+  },
+  "retry_iterations": 10000,
+  "retry_evaluations": 100000,
+  "seeds": [
+    20261023,
+    20261024,
+    20261025
+  ],
+  "width": 128,
+  "epochs": 2000,
+  "batch": 128,
+  "lr": 0.001,
+  "patience": 200,
+  "workers": 6,
+  "online_threads": 1
+}

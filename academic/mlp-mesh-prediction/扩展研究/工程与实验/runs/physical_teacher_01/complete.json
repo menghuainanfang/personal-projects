@@ -1,0 +1,10 @@
+{
+  "split_sizes": {
+    "train": 1200,
+    "validation": 400,
+    "test": 400
+  },
+  "failed_teachers": 0,
+  "prediction_rows": 3600,
+  "refinement_rows": 160
+}

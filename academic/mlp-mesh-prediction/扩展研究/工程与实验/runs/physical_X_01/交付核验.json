@@ -1,0 +1,8 @@
+{
+  "prediction_rows": 2400,
+  "physical_rows": 160,
+  "verified_physical_states": 80,
+  "labels_target": "physical_X_displacement",
+  "maximum_saved_energy_difference": 0.0,
+  "minimum_refined_signed_area": 0.000804992671278246
+}

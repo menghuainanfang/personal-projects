@@ -1,0 +1,64 @@
+{
+  "teacher_checks": [
+    {
+      "split": "train",
+      "group": "ID",
+      "energy_difference": 0.0
+    },
+    {
+      "split": "train",
+      "group": "center",
+      "energy_difference": 0.0
+    },
+    {
+      "split": "train",
+      "group": "narrow",
+      "energy_difference": 0.0
+    },
+    {
+      "split": "train",
+      "group": "broad",
+      "energy_difference": 0.0
+    },
+    {
+      "split": "validation",
+      "group": "ID",
+      "energy_difference": 0.0
+    },
+    {
+      "split": "validation",
+      "group": "center",
+      "energy_difference": 0.0
+    },
+    {
+      "split": "validation",
+      "group": "narrow",
+      "energy_difference": 0.0
+    },
+    {
+      "split": "validation",
+      "group": "broad",
+      "energy_difference": 0.0
+    },
+    {
+      "split": "test",
+      "group": "ID",
+      "energy_difference": 0.0
+    },
+    {
+      "split": "test",
+      "group": "center",
+      "energy_difference": 0.0
+    },
+    {
+      "split": "test",
+      "group": "narrow",
+      "energy_difference": 0.0
+    },
+    {
+      "split": "test",
+      "group": "broad",
+      "energy_difference": 0.0
+    }
+  ]
+}

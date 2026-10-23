@@ -1,0 +1,95 @@
+{
+  "prediction": [
+    {
+      "group": "ALL",
+      "method": "physical_X",
+      "n": 400,
+      "error_relative": 0.02150214180805339,
+      "seed_std": 0.0001585024291414402,
+      "raw_legal_rate": 1.0,
+      "interpolation_rmse": 0.00955454779739458,
+      "teacher_rmse": 0.009666603904839881,
+      "regular_rmse": 0.011172421563548552,
+      "energy": 1.9201685909619266,
+      "prediction_ms": 0.4222418335848488
+    },
+    {
+      "group": "ALL",
+      "method": "Q_teacher_X",
+      "n": 400,
+      "error_relative": 0.1677709576486545,
+      "seed_std": 0.000829327674514426,
+      "raw_legal_rate": 1.0,
+      "interpolation_rmse": 0.01017007736842029,
+      "teacher_rmse": 0.009666603904839881,
+      "regular_rmse": 0.011172421563548552,
+      "energy": 1.9273474909557438,
+      "prediction_ms": 0.3933755006679955
+    },
+    {
+      "group": "ALL",
+      "method": "Q_MLP",
+      "n": 400,
+      "error_relative": 0.1696291332995269,
+      "seed_std": 0.000381188062223964,
+      "raw_legal_rate": 1.0,
+      "interpolation_rmse": 0.010159959452488971,
+      "teacher_rmse": 0.009666603904839881,
+      "regular_rmse": 0.011172421563548552,
+      "energy": 1.9277846877726026,
+      "prediction_ms": 2.572035833388024
+    }
+  ],
+  "refinement": [
+    {
+      "method": "regular",
+      "n": 20,
+      "converged_runs": 40,
+      "mean_seconds": 0.9921173249997082,
+      "iterations": 206.8,
+      "final_energy": 1.8784418432610621,
+      "matched_runs": 40,
+      "matched_speedup": 1.0
+    },
+    {
+      "method": "physical_X",
+      "n": 20,
+      "converged_runs": 40,
+      "mean_seconds": 0.49933000750024803,
+      "iterations": 112.05,
+      "final_energy": 1.8784418432629688,
+      "matched_runs": 40,
+      "matched_speedup": 1.961490839474051
+    },
+    {
+      "method": "Q_teacher_X",
+      "n": 20,
+      "converged_runs": 40,
+      "mean_seconds": 0.7969755575017189,
+      "iterations": 168.45,
+      "final_energy": 1.8784418432588752,
+      "matched_runs": 40,
+      "matched_speedup": 1.272630038512818
+    },
+    {
+      "method": "Q_MLP",
+      "n": 20,
+      "converged_runs": 40,
+      "mean_seconds": 0.7639015899942023,
+      "iterations": 166.6,
+      "final_energy": 1.8784418432635193,
+      "matched_runs": 40,
+      "matched_speedup": 1.302082174434967
+    }
+  ],
+  "complete": {
+    "split_sizes": {
+      "train": 1200,
+      "validation": 400,
+      "test": 400
+    },
+    "failed_teachers": 0,
+    "prediction_rows": 3600,
+    "refinement_rows": 160
+  }
+}
