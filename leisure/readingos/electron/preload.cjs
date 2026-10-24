@@ -11,6 +11,7 @@ contextBridge.exposeInMainWorld("readingos", {
   preferences: (bookId, settings) => call('preferences',bookId,settings),
   goal: (period, target) => call("goal", period, target),
   plan: (bookId, month, enabled) => call("plan", bookId, month, enabled),
+  batchPlans: (payload) => call('batchPlans', payload),
   importBook: (bookId) => call("import", bookId),
   readAsset: (id) => call("readAsset", id),
   cover: () => call("cover"),

@@ -48,11 +48,12 @@ export type Snapshot = {
   actions: Row[];
   feedback: Row[];
   goals: Row[];
-  plans: Row[];
+  plans: {book_id: string; month: string}[];
   bookmarks: Row[];
   reader_preferences: Row[];
 };
 export interface DesktopAPI {
+  batchPlans(payload: {rows: BatchPlanRow[]; limit?: number}): Promise<BatchPlanResult>;
   snapshot(): Promise<Snapshot>;
   save(table: string, data: Partial<Row>): Promise<string>;
   remove(table: string, id: string): Promise<void>;
@@ -72,6 +73,8 @@ export interface DesktopAPI {
   exportMarkdown(id: string): Promise<string | null>;
   info(): Promise<{ version: string; dataPath: string; packaged: boolean }>;
 }
+export type BatchPlanRow = {title: string; author: string; month: string; mode: 'auto'|'link'|'create'|'skip'|'invalid'; bookId?: string};
+export type BatchPlanResult = {created: number; linked: number; scheduled: number; skipped: number; duplicates: number; failed: number};
 declare global {
   interface Window {
     readingos: DesktopAPI;

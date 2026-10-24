@@ -34,6 +34,7 @@ jobs:
       - run: npm run build
       - run: npm run test:desktop
       - run: npm run test:v02
+      - run: npm run test:micro002
       - run: npm run package
       - name: Test packaged application
         shell: pwsh
@@ -41,6 +42,7 @@ jobs:
           $env:READINGOS_EXECUTABLE = "$pwd\release\win-unpacked\ReadingOS.exe"
           npm run test:desktop
           npm run test:v02
+          npm run test:micro002
       - uses: actions/upload-artifact@v4
         with:
           name: ReadingOS-Windows-x64

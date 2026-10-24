@@ -31,6 +31,7 @@ import {
 import { RecordDialog, type Dialog } from "./RecordDialog";
 import { Editor } from "./Editor";
 import { Reader } from "./reader/Reader";
+import { BooklistDialog } from './BooklistDialog';
 import DOMPurify from "dompurify";
 function Plain({ html }: { html: string }) {
   return (
@@ -85,6 +86,7 @@ export function App() {
     [month, setMonth] = useState(today().slice(0, 7)),
     [logQuery, setLogQuery] = useState(""),
     [revision, setRevision] = useState(false);
+  const [booklistOpen, setBooklistOpen] = useState(false);
   const notify = (s: string) => setToast(s);
   const reload = async () => {
     setData(await api.snapshot());
@@ -872,15 +874,16 @@ export function App() {
                 <h1>阅读计划</h1>
                 <p className="muted">计划提供方向，完成日期记录事实。</p>
               </div>
-              <input
+              <div className="row wrap"><button className="primary" onClick={() => setBooklistOpen(true)}>导入与安排书单</button><input
                 aria-label="计划月份"
                 type="month"
                 value={month}
                 onChange={(e) =>
                   setMonth(e.target.value || today().slice(0, 7))
                 }
-              />
+              /></div>
             </header>
+            {booklistOpen && <BooklistDialog data={data} month={month} close={() => setBooklistOpen(false)} reload={reload} />}
             <div className="goal-grid">
               {[month.slice(0, 4), month].map((period) => {
                 const count = data.books.filter(

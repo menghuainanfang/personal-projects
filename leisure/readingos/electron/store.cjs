@@ -6,6 +6,7 @@ const JSZip = require("jszip");
 const { PDFDocument } = require("pdf-lib");
 const TurndownService = require("turndown");
 const { DOMParser } = require("@xmldom/xmldom");
+const { MAX_ROWS, MAX_BYTES, normalize, bookKey, identifyBook, rowError, validMonth } = require('../shared/booklist.mjs');
 
 const schema = `
 CREATE TABLE books(id TEXT PRIMARY KEY,title TEXT NOT NULL,author TEXT NOT NULL DEFAULT '',tags TEXT NOT NULL DEFAULT '',category TEXT NOT NULL DEFAULT '',cover TEXT NOT NULL DEFAULT '',status TEXT NOT NULL DEFAULT 'want',started TEXT NOT NULL DEFAULT '',completed TEXT NOT NULL DEFAULT '',created TEXT NOT NULL,updated TEXT NOT NULL);
@@ -254,6 +255,48 @@ class Store {
           : "DELETE FROM plans WHERE book_id=? AND month=?",
       )
       .run(bookId, month);
+  }
+  batchPlans(payload) {
+    if (!payload || !Array.isArray(payload.rows) || !payload.rows.length || payload.rows.length > MAX_ROWS)
+      throw Error('每批应包含 1–500 条书目');
+    if (Buffer.byteLength(JSON.stringify(payload), 'utf8') > MAX_BYTES) throw Error('书单不能超过 2 MiB');
+    const limit = payload.limit;
+    if (limit !== undefined && (!Number.isInteger(limit) || limit < 1 || limit > MAX_ROWS)) throw Error('每月新增上限无效');
+    return this.transaction(() => {
+      const books = this.db.prepare('SELECT * FROM books').all();
+      const result = { created: 0, linked: 0, scheduled: 0, skipped: 0, duplicates: 0, failed: 0 };
+      const seen = new Set(), identities = new Set(), added = {};
+      const hasPlan = this.db.prepare('SELECT 1 FROM plans WHERE book_id=? AND month=?');
+      const addPlan = this.db.prepare('INSERT INTO plans(book_id,month) VALUES(?,?) ON CONFLICT(book_id,month) DO NOTHING');
+      for (const input of payload.rows) {
+        if (!input || !['auto', 'link', 'create', 'skip', 'invalid'].includes(input.mode)) throw Error('书目确认状态无效，请重新预览');
+        if (input.mode === 'invalid') { result.failed++; continue; }
+        if (input.mode === 'skip') { result.skipped++; if (!rowError(input) && identities.has(bookKey(input))) result.duplicates++; continue; }
+        const error = rowError(input);
+        if (error || !validMonth(input.month)) throw Error(error || '目标月份无效');
+        const row = { title: input.title.trim(), author: input.author.trim() };
+        identities.add(bookKey(row));
+        let book;
+        if (input.mode === 'link') {
+          book = books.find(b => b.id === input.bookId);
+          if (!book || normalize(book.title) !== normalize(row.title)) throw Error('关联书目已变化，请重新检查预览');
+        } else {
+          const match = identifyBook(row, books);
+          if (match.status === 'existing') book = books.find(b => b.id === match.bookId);
+          else if (match.status === 'possible' && input.mode !== 'create') throw Error('存在可能重复的书目，请确认关联或新建');
+        }
+        if (!book) {
+          const id = this.save('books', { ...row, status: 'want' });
+          book = { ...row, id }; books.push(book); result.created++;
+        } else result.linked++;
+        const key = book.id + '\0' + input.month;
+        if (seen.has(key) || hasPlan.get(book.id, input.month)) { result.skipped++; result.duplicates++; continue; }
+        added[input.month] = (added[input.month] || 0) + 1;
+        if (limit !== undefined && added[input.month] > limit) throw Error(input.month + ' 超过本次新增上限，请调整月份');
+        addPlan.run(book.id, input.month); seen.add(key); result.scheduled++;
+      }
+      return result;
+    });
   }
   async importFile(source, bookId) {
     const format = path.extname(source).slice(1).toLowerCase();
