@@ -8,7 +8,7 @@
 | --- | --- | --- | --- |
 | Data Science Bookcamp 独立学习专题 | 概率模拟、统计推断、异常检测、文本分析与社交网络预测 | 计划中 | [专题介绍](data-science-bookcamp/) |
 | 本地数学翻译工作流 | 数学 PDF 与 LaTeX 材料的中文翻译、编译和审校 | 本地整书翻译与精译流程已验证 | [使用与验证](math-translation-workflow/) |
-| 机器学习辅助二维变分网格 | 课程设计、X/Q比较、泛化与理论；独立扩展到物理教师监督训练 | 课程成果保留；新物理模型在20例同目标精修中配对加速约1.96倍 | [带图探索总览](mlp-mesh-prediction/探索总览/) · [全部成果](mlp-mesh-prediction/) |
+| 机器学习与二维变分网格学习实践 | 课程设计、坐标诊断、教师与传统基线、泛化及规模测试 | 追加训练暂停；正负结果归档，转向原理与文献学习 | [实践归档](mlp-mesh-prediction/扩展研究/学习实践归档_2026-10-24/) · [全部成果](mlp-mesh-prediction/) |
 
 ## Data Science Bookcamp 独立学习专题
 

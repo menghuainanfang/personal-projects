@@ -1,0 +1,27 @@
+{
+  "n": [
+    12,
+    24,
+    48,
+    96
+  ],
+  "repeats": 2,
+  "seed": null,
+  "training": "none; frozen physical_field_training_04 model",
+  "cases": [
+    {
+      "kind": "wave",
+      "phase": 0.0,
+      "strength": 8.0
+    },
+    {
+      "kind": "five_ring"
+    }
+  ],
+  "source": "MMPDElab examples/ex2d_1.m cases 3 and 5",
+  "changes": "custom scalar M=mI; fixed whole boundary; L-BFGS, not ode15s; manufactured Dirichlet Poisson",
+  "tolerance": 1e-05,
+  "max_iterations": 3000,
+  "max_evaluations": 30000,
+  "threads": 1
+}

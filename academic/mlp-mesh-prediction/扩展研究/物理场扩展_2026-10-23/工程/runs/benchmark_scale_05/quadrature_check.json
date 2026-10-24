@@ -1,0 +1,23 @@
+[
+  {
+    "n": 12,
+    "method": "X0",
+    "order24_error": 0.2109637682977819,
+    "order32_error": 0.21096384209248123,
+    "relative_change": 3.497978544166761e-07
+  },
+  {
+    "n": 12,
+    "method": "regular",
+    "order24_error": 0.21339871821599476,
+    "order32_error": 0.21339817303376357,
+    "relative_change": 2.5547652233497994e-06
+  },
+  {
+    "n": 12,
+    "method": "network",
+    "order24_error": 0.1645486823861233,
+    "order32_error": 0.16454867719385927,
+    "relative_change": 3.1554577793868925e-08
+  }
+]
