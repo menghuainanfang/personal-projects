@@ -1,6 +1,6 @@
 # 环境审计
 
-检查日期：2026-10-11。桌面仓库为 `D:\桌面\ReadingOS`，应用独立位于 `projects/readingos/`，远程为 `menghuainanfang/personal-projects`。
+检查日期：2026-10-11。桌面仓库为 `D:\桌面\ReadingOS`，应用独立位于 `leisure/readingos/`，远程为 `menghuainanfang/personal-projects`。
 
 | 项目              | 实际结果                                  | 决策                                           |
 | ----------------- | ----------------------------------------- | ---------------------------------------------- |

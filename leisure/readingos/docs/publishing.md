@@ -1,13 +1,13 @@
 # GitHub 与朋友测试发布
 
-源码仓库：[menghuainanfang/personal-projects](https://github.com/menghuainanfang/personal-projects)。ReadingOS 独立位于 `projects/readingos/`，桌面工作副本位于 `D:\桌面\ReadingOS`。在此仓库根目录使用 Git，同一仓库的其他项目保持各自目录。
+源码仓库：[menghuainanfang/personal-projects](https://github.com/menghuainanfang/personal-projects)。ReadingOS 独立位于 `leisure/readingos/`，桌面工作副本位于 `D:\桌面\ReadingOS`。在此仓库根目录使用 Git，同一仓库的其他项目保持各自目录。
 
 ## 维护和同步
 
-在修改前执行 `git pull --ff-only`，在 `projects/readingos/` 编辑应用、运行相关测试并构建。随后在仓库根目录执行：
+在修改前执行 `git pull --ff-only`，在 `leisure/readingos/` 编辑应用、运行相关测试并构建。随后在仓库根目录执行：
 
 ```powershell
- git add projects/readingos .github/workflows/readingos-windows.yml
+ git add leisure/readingos .github/workflows/readingos-windows.yml
  git diff --cached --stat
  git commit -m "Update ReadingOS"
  git push origin main
@@ -19,7 +19,7 @@
 
 首版标签为 `readingos-v0.1.0`，安装包位于 [GitHub Releases](https://github.com/menghuainanfang/personal-projects/releases/tag/readingos-v0.1.0)。多个项目共用仓库，因此 ReadingOS 的发布标签以 `readingos-` 开头。
 
-v0.2 已于 2026-10-20 按用户授权发布。公开源码目录为 `leisure/readingos/`，main 提交 `fe3f82a`，发布标签 `readingos-v0.2.0`；本机工作目录为 `projects/readingos/`。
+v0.2 发布标签为 `readingos-v0.2.0`，安装包见对应 GitHub Release。公开源码与安装包包含原创示例，不包含个人书库。
 
 后续朋友测试发布步骤：
 
