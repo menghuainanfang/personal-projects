@@ -286,3 +286,26 @@ small { font-size: 12px; line-height: 1.6; }
   .tiptap { padding: 20px; }
 }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+.import-sources { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
+.import-input { border-block: 1px solid var(--line); padding: 12px 0; margin-top: 16px; }
+.import-input > summary { font-size: 13px; color: var(--accent); }
+.import-mapping,.import-schedule { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; margin-top: 16px; }
+.import-mapping label,.import-schedule label,.import-row-controls label { display: flex; flex-direction: column; gap: 8px; min-width: 0; font-size: 13px; }
+.import-mapping .checkbox-label { flex-direction: row; align-items: center; }
+.import-library { max-height: 200px; overflow: auto; border-block: 1px solid var(--line); padding: 0 8px; }
+.import-library span,.import-title { overflow-wrap: anywhere; min-width: 0; }
+.import-library .checkbox-label { align-items: flex-start; }
+.import-hint { color: var(--muted); font-size: 12px; margin: 12px 0 20px; }
+.import-error { color: var(--danger); line-height: 1.8; font-size: 13px; overflow-wrap: anywhere; }
+.import-preview { border-top: 1px solid var(--line); padding-top: 20px; }
+.import-list { padding: 0; margin: 0; list-style: none; max-height: 360px; overflow: auto; }
+.import-row { display: grid; grid-template-columns: minmax(0,1fr) 180px; gap: 4px 16px; padding: 16px 8px; border-top: 1px solid var(--line); }
+.import-row-heading { display: flex; align-items: flex-start; gap: 12px; justify-content: space-between; }
+.import-row-heading .checkbox-label { margin: 0; align-items: flex-start; min-width: 0; }
+.import-row-heading .status { flex: 0 0 auto; }
+.import-row > p { grid-column: 1; font-size: 12px; margin: 8px 0 0 24px; }
+.import-row-controls { grid-column: 2; grid-row: 1 / span 2; display: flex; align-items: end; flex-wrap: wrap; gap: 8px; }
+.import-row-controls label { flex: 1 1 180px; }
+.import-row-controls button { margin-bottom: 1px; }
+.import-result { padding: 12px 0; color: var(--accent); border-top: 1px solid var(--line); margin-top: 20px; }
+@media (max-width:560px) { .import-mapping,.import-schedule { grid-template-columns: 1fr; gap: 12px; } .import-row { display: block; } .import-row-controls { margin-top: 12px; } }

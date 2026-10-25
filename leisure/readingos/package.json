@@ -1,6 +1,6 @@
 {
   "name": "readingos",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "Local-first reading, reflection and practice",
   "author": "ReadingOS contributors",
@@ -13,7 +13,8 @@
     "dev": "vite --host 127.0.0.1",
     "desktop": "electron .",
     "build": "tsc --noEmit && vite build && node scripts/copy-pdf-assets.cjs",
-    "test": "node --test tests/store.test.cjs",
+    "test": "node --test tests/store.test.cjs tests/booklist.test.cjs",
+    "test:micro002": "node tests/micro002-desktop.cjs",
     "test:desktop": "node tests/desktop.cjs",
     "test:v02": "node tests/v02-desktop.cjs",
     "screenshots": "node tests/visual.cjs after",
@@ -30,6 +31,7 @@
     "epubjs": "0.3.93",
     "jszip": "^3.10.1",
     "lucide-react": "^0.468.0",
+    "papaparse": "5.7.0",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "5.4.624",
     "react": "^19.2.0",
@@ -37,6 +39,7 @@
     "turndown": "^7.2.0"
   },
   "devDependencies": {
+    "@types/papaparse": "5.5.2",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^5.0.0",
@@ -56,6 +59,7 @@
     "files": [
       "dist/**/*",
       "electron/**/*",
+      "shared/**/*",
       "package.json"
     ],
     "extraResources": [

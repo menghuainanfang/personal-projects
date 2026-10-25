@@ -2,14 +2,18 @@
 
 ## 当前版本与位置
 
-- 桌面仓库：`D:\桌面\ReadingOS`，本地分支 `readingos-v0.2`。
+- 桌面仓库：`D:\桌面\ReadingOS`，当前功能分支 `readingos-micro-002`。
 - 应用：`D:\桌面\ReadingOS\projects\readingos`。
-- 远程：`https://github.com/menghuainanfang/personal-projects.git`；公开版本为 v0.2.0，远程源码位于 `leisure/readingos`。
-- 新版安装包：`release/ReadingOS-0.2.0-win-x64-setup.exe`。
-- 已验证安装程序：`test-results/installed-v02/ReadingOS.exe`。
+- 远程：`https://github.com/menghuainanfang/personal-projects.git`；公开版本为 v0.2.0，远程目录 `leisure/readingos`。
+- 本机候选安装包：`release/ReadingOS-0.2.1-win-x64-setup.exe`。
+- 已验证安装程序：`test-results/installed-micro002/ReadingOS.exe`。
 - 启动：`npm run build` 后 `npm run desktop`，或使用安装后的快捷方式。
 
 v0.2 完成统一书房视觉、主读后感优先、批注引用日志、精确来源跳转、按书保存阅读偏好及键盘对话框。安装版 12 项原有流程、6 项新版专项通过；数据测试 10 项通过。完整证据和边界见 `V02_ACCEPTANCE.md`。
+
+v0.2.1 本机候选版增加阅读计划中的批量书单导入与排期，保留 schema v2。PapaParse 5.7.0 精确固定；研究在工程外 `D:\ReadingOS-research\PapaParse`。私人数据库一致性快照在 `D:\ReadingOS-private-backups`，未参与功能测试。新增 `shared/booklist.mjs`、`BooklistDialog.tsx` 和固定 `batchPlans` IPC；全部业务写入由 Store 一个事务完成。
+
+本轮 21 项数据/算法测试、新功能源码及安装版各 9 项通过；最终安装版原有 12+6 项回归通过。`npm run test:micro002` 使用新建隔离目录与原创 CSV/TSV File，不碰个人书库。详细研究、算法规则、截图和验收见 `micro-iterations/002-papaparse.md` 与 `002-acceptance.md`。v0.2.1 尚未公开发布；下一步可由用户本机试用，再确认源码同步或 Release。
 
 ## 关键代码
 
@@ -41,4 +45,4 @@ Electron 44.7 / React 19 / TypeScript / Vite / Node SQLite，schema v2。PDF.js 
 
 v1 打开时先保存 `before-v2.sqlite`，再新增阅读设置。升级前仍应保存完整 `.readingos` 备份。回退到 v0.1 要先退出应用，再恢复升级前数据库及对应原书目录；旧版不能直接读取 v2。用 v0.2 恢复旧备份会再次升级到 v2，不能作为直接降级操作。回退会舍弃备份之后的新记录，操作前保存当前完整备份。
 
-本地提交：`1c8865a`（基线和选择）、`5954c81`（界面和主要工作流）、`808ae1f`（阅读器内来源请求）；最终交付文档提交见本地 Git 历史。v0.2 发布标签为 `readingos-v0.2.0`。后续阅读能力见 `roadmap.md`，实际限制见 `known_issues.md`。
+本地提交：`1c8865a`（基线和选择）、`5954c81`（界面和主要工作流）、`808ae1f`（阅读器内来源请求）；最终交付文档提交见本地 Git 历史。v0.2 已于 2026-10-20 发布，main 提交 `fe3f82a`，标签 `readingos-v0.2.0`。后续阅读能力见 `roadmap.md`，实际限制见 `known_issues.md`。
