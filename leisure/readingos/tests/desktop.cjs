@@ -425,7 +425,7 @@ async function selectEpub() {
     async () => {
       await page.getByRole("button", { name: "阅读计划" }).click();
       const month = await page
-        .getByLabel("计划月份")
+        .getByLabel("计划月份",{exact:true})
         .inputValue()
         .catch(() => new Date().toLocaleDateString("sv-SE").slice(0, 7));
       await page
@@ -535,3 +535,4 @@ async function selectEpub() {
   await app?.close().catch(() => {});
   process.exitCode = 1;
 });
+

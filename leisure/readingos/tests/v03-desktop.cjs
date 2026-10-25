@@ -1,0 +1,56 @@
+const {_electron:electron}=require('playwright');const{expect}=require('playwright/test');
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {Store}=require('../electron/store.cjs');const{ensureBaseline}=require('./legacy-fixture.cjs');
+fs.mkdirSync('test-results',{recursive:true});const root=fs.mkdtempSync(path.resolve('test-results/v03-'+(process.env.READINGOS_EXECUTABLE?'installed':'source')+'-'));
+let app,page;const passed=[],errors=[];const started=Date.now();
+async function state(){return page.evaluate(()=>window.readingos.snapshot());}
+async function step(name,fn){await fn();passed.push(name);console.log('PASS '+name);}
+async function launch(){const options={args:[path.resolve('.')],env:{...process.env,READINGOS_TEST_DATA:path.join(root,'data'),READINGOS_TEST_HEADLESS:'1'}};if(process.env.READINGOS_EXECUTABLE){options.executablePath=path.resolve(process.env.READINGOS_EXECUTABLE);options.args=[];}app=await electron.launch(options);page=await app.firstWindow();page.on('pageerror',e=>errors.push(e.message));await app.evaluate(({BrowserWindow})=>{const w=BrowserWindow.getAllWindows()[0];w.setSize(1366,768);w.webContents.setBackgroundThrottling(false);});await expect(page.getByRole('heading',{name:'我的书库'})).toBeVisible();await page.context().setOffline(true);}
+async function find(title){await page.getByRole('button',{name:'寻找书籍',exact:true}).click();await page.getByLabel('全局寻找书籍',{exact:true}).fill(title);await page.getByRole('dialog').getByRole('button',{name:new RegExp(title)}).click();await expect(page.getByRole('heading',{name:title,exact:true}).first()).toBeVisible();}
+(async()=>{
+ await ensureBaseline();const s=new Store(path.join(root,'data'));await s.restore(path.resolve('test-results/v02-visual-before/baseline.readingos'));s.close();await launch();const startupMs=Date.now()-started;
+ await step('Mantine AppShell and four real views share navigation and context toolbar',async()=>{
+  await expect(page.locator('.mantine-AppShell-root')).toHaveCount(1);await expect(page.locator('.mantine-NavLink-root')).toHaveCount(4);
+  for(const [name,heading]of [['洞见与实践','洞见与实践'],['阅读计划','阅读计划'],['资料与设置','备份与恢复'],['书库','我的书库']]){await page.getByRole('button',{name,exact:true}).click();await expect(page.getByRole('heading',{name:heading})).toBeVisible();}
+  await page.getByRole('button',{name:'收起导航',exact:true}).click();await expect(page.getByRole('button',{name:'展开导航',exact:true})).toBeVisible();await page.getByRole('button',{name:'展开导航',exact:true}).click();await find('慢读与实践');
+ });
+ await step('Book context uses real records, resizes with keyboard and opens linked journal',async()=>{
+  await page.getByRole('button',{name:'显示书籍上下文'}).click();const panel=page.getByRole('complementary',{name:'书籍上下文'});await expect(panel).toBeVisible();
+  const snapshot=await state();const book=snapshot.books.find(b=>b.title==='慢读与实践');const journal=snapshot.journals.find(j=>j.book_id===book.id);
+  await expect(panel).toContainText(journal.title);const before=(await panel.boundingBox()).width;const handle=page.getByRole('separator',{name:'调整书籍上下文宽度'});await handle.focus();await page.keyboard.press('ArrowLeft');await expect.poll(async()=>(await panel.boundingBox()).width).not.toBe(before);
+  await panel.getByRole('button').filter({hasText:journal.title}).click();await expect(page.getByRole('textbox',{name:'日志标题'})).toHaveValue(journal.title);await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).toHaveCount(0);
+ });
+ await step('Independent reader preserves focus mode and returns to the current book',async()=>{
+  await find('The Art of Slow Reading');await page.getByRole('button',{name:/继续阅读 · PDF/}).click();await expect(page.locator('.textLayer span').first()).toBeVisible();await expect(page.locator('.mantine-AppShell-root')).toHaveCount(0);await page.getByRole('button',{name:'专注模式',exact:true}).click();await expect(page.locator('.reader-left,.reader-right')).toHaveCount(0);await page.getByRole('button',{name:'← 书籍主页',exact:true}).click();await expect(page.getByRole('heading',{name:'The Art of Slow Reading',exact:true})).toBeVisible();
+ });
+ await step('DayPicker Chinese Monday grid, leap day, invalid input, keyboard and nested Escape',async()=>{
+  await find('慢读与实践');await page.getByRole('button',{name:'编辑资料',exact:true}).click();
+  await page.getByLabel('开始日期',{exact:true}).fill('2027-02-29');await expect(page.getByRole('alert')).toContainText('有效日期');
+  await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('dialog')).toHaveCount(1);
+  await page.getByLabel('开始日期',{exact:true}).fill('2028-02-29');const trigger=page.getByRole('button',{name:'打开开始日期日历'});await trigger.click();
+  await expect(page.locator('.rdp-weekday').first()).toContainText('一');await expect(page.getByLabel('选择年份',{exact:true})).toHaveValue('2028');await expect(page.getByLabel('选择月份',{exact:true})).toHaveValue('1');
+  await page.getByRole('button',{name:'选择 2028-02-29',exact:true}).focus();await page.keyboard.press('ArrowRight');await expect(page.getByRole('button',{name:'选择 2028-03-01',exact:true})).toBeFocused();await page.keyboard.press('Enter');
+  await expect(page.getByLabel('开始日期',{exact:true})).toHaveValue('2028-03-01');await expect(trigger).toBeFocused();await trigger.click();
+  for(let n=0;n<14;n++){await page.keyboard.press('Tab');assert.ok(await page.evaluate(()=>!!document.activeElement.closest('[data-reading-calendar-open]')));}
+  await page.keyboard.press('Escape');await expect(page.locator('[data-reading-calendar-open]')).toHaveCount(0);await expect(page.getByRole('dialog')).toHaveCount(1);await expect(trigger).toBeFocused();
+  await page.getByLabel('开始日期',{exact:true}).fill('2028-02-29');await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('dialog')).toHaveCount(0);
+  await page.getByRole('button',{name:'编辑资料',exact:true}).click();await expect(page.getByLabel('开始日期',{exact:true})).toHaveValue('2028-02-29');await page.getByLabel('阅读状态',{exact:true}).selectOption('completed');await page.getByLabel('完成日期',{exact:true}).fill('2028-03-01');await page.getByRole('button',{name:'打开完成日期日历'}).click();await page.getByRole('button',{name:'选择 2028-03-02',exact:true}).click();await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('dialog')).toHaveCount(0);await page.getByRole('button',{name:'编辑资料',exact:true}).click();await expect(page.getByLabel('完成日期',{exact:true})).toHaveValue('2028-03-02');await page.keyboard.press('Escape');
+ });
+ await step('Journal and action/feedback date fields persist without changing existing records',async()=>{
+  await page.getByRole('button',{name:'写一篇日志'}).click();await page.getByLabel('日志标题',{exact:true}).fill('日历验收日志');await page.getByLabel('日志日期',{exact:true}).fill('2025-12-31');await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('dialog')).toHaveCount(0);
+  assert.equal((await state()).journals.find(j=>j.title==='日历验收日志').date,'2025-12-31');await page.locator('.journal-card').filter({hasText:'日历验收日志'}).getByRole('button',{name:'编辑',exact:true}).click();await expect(page.getByLabel('日志日期',{exact:true})).toHaveValue('2025-12-31');await page.keyboard.press('Escape');
+  await page.getByRole('button',{name:'添加行动',exact:true}).click();await page.getByLabel('行动描述',{exact:true}).fill('日历验收行动');await page.getByLabel('计划日期',{exact:true}).fill('2029-01-01');await page.getByRole('button',{name:'打开计划日期日历'}).click();await page.getByRole('button',{name:'清空',exact:true}).click();await expect(page.getByLabel('计划日期',{exact:true})).toHaveValue('');await page.getByLabel('计划日期',{exact:true}).fill('2029-01-01');await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('dialog')).toHaveCount(0);
+  const action=page.locator('.action-card').filter({hasText:'日历验收行动'});await action.getByRole('button',{name:'记录实践反馈'}).click();await page.getByLabel('反馈日期',{exact:true}).fill('2029-01-02');await page.getByRole('textbox',{name:'实践反馈',exact:true}).fill('日期已保存');await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('dialog')).toHaveCount(0);
+  const snapshot=await state(),a=snapshot.actions.find(a=>a.description==='日历验收行动');assert.equal(a.planned,'2029-01-01');assert.equal(snapshot.feedback.find(f=>f.action_id===a.id).date,'2029-01-02');await action.getByRole('button',{name:'编辑行动'}).click();await expect(page.getByLabel('计划日期',{exact:true})).toHaveValue('2029-01-01');await page.keyboard.press('Escape');await action.locator('.feedback').getByRole('button',{name:'编辑',exact:true}).click();await expect(page.getByLabel('反馈日期',{exact:true})).toHaveValue('2029-01-02');await page.keyboard.press('Escape');
+ });
+ await step('Month browsing is read-only; cross-year range confirms into real import scheduling',async()=>{
+  await page.getByRole('button',{name:'阅读计划',exact:true}).click();const before=await state();await page.getByRole('button',{name:'打开计划月份选择器'}).click();await page.getByLabel('计划月份年份',{exact:true}).fill('2027');await page.getByRole('button',{name:'计划月份 2027-01',exact:true}).click();await expect(page.getByLabel('计划月份',{exact:true})).toHaveValue('2027-01');assert.deepEqual(await state(),before);
+  await page.getByRole('button',{name:'导入与安排书单'}).click();await page.getByLabel('粘贴书单',{exact:true}).fill('冬日读书计划\n新年的思考');await page.getByRole('button',{name:'选择排期月份范围'}).click();await page.getByLabel('起始月份年份',{exact:true}).fill('2026');await page.getByRole('button',{name:'起始月份 2026-12',exact:true}).click();await page.getByLabel('结束月份年份',{exact:true}).fill('2026');await page.getByRole('button',{name:'结束月份 2026-01',exact:true}).click();await expect(page.getByRole('button',{name:'应用月份范围'})).toBeDisabled();await page.getByLabel('结束月份年份',{exact:true}).fill('2027');await page.getByRole('button',{name:'结束月份 2027-01',exact:true}).click();await page.getByRole('button',{name:'应用月份范围'}).click();await expect(page.getByLabel('排期开始月份',{exact:true})).toHaveValue('2026-12');await expect(page.getByLabel('排期结束月份',{exact:true})).toHaveValue('2027-01');
+  await page.getByRole('button',{name:'生成预览'}).click();await expect(page.locator('.import-row')).toHaveCount(2);await page.getByRole('button',{name:'确认保存'}).click();await expect(page.getByRole('button',{name:'完成',exact:true})).toBeVisible();await page.getByRole('button',{name:'完成',exact:true}).click();const after=await state();for(const title of ['冬日读书计划','新年的思考']){const b=after.books.find(b=>b.title===title);assert.ok(after.plans.some(p=>p.book_id===b.id&&['2026-12','2027-01'].includes(p.month)));}
+ });
+ assert.deepEqual(errors,[]);fs.writeFileSync(path.join(root,'results.json'),JSON.stringify({passed,errors,startupMs,metrics:await app.evaluate(({app})=>app.getAppMetrics().map(p=>({type:p.type,memory:p.memory}))),info:await page.evaluate(()=>window.readingos.info())},null,2));await app.close();console.log('v0.3 desktop passed: '+passed.length);
+})().catch(async e=>{console.error(e);await app?.close().catch(()=>{});process.exitCode=1;});
+
+
+
+

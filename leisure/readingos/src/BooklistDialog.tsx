@@ -1,5 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
 import { Modal } from './Modal';
+import { ReadingMonthPicker } from './components/calendar/ReadingMonthPicker';
+import { ReadingMonthRangePicker } from './components/calendar/ReadingMonthRangePicker';
 import { api, type Snapshot, type BatchPlanRow, type BatchPlanResult } from './domain';
 import { MAX_BYTES, MAX_ROWS, normalize, parseText, parseDelimited, mapColumns, guessMapping, bookKey, identifyBook, arrangeBooks, type InputBook, type ParsedTable, type Mapping } from '../shared/booklist.mjs';
 
@@ -126,8 +128,7 @@ export function BooklistDialog({ data, month, close, reload }: {
     </>}
     </details>
     <div className="import-schedule">
-      <label>开始月份<input aria-label="排期开始月份" type="month" value={start} onChange={e => { setStart(e.target.value); changeSchedule(); }} /></label>
-      <label>结束月份<input aria-label="排期结束月份" type="month" value={end} onChange={e => { setEnd(e.target.value); changeSchedule(); }} /></label>
+      <ReadingMonthRangePicker start={start} end={end} onChange={(start,end)=>{setStart(start);setEnd(end);changeSchedule();}}/>
       <label>每月最多新安排<input aria-label="每月新增上限" type="number" min="1" max="500" placeholder="不限" value={capacity} onChange={e => { setCapacity(e.target.value); changeSchedule(); }} /></label>
     </div>
     <p className="import-hint">顺序均匀安排：已有计划计入均衡权重；上限只限制本次新增。文件月份与手动月份优先，已安排书目默认沿用范围内的原月份。</p>
@@ -145,7 +146,7 @@ export function BooklistDialog({ data, month, close, reload }: {
           <p className="muted">{row.author || '未提供作者'}{duplicateOf.has(i) && ` · 与第${duplicateOf.get(i)! + 1}条相同，默认排除`}{row.sourceMonth && ` · 文件月份 ${row.sourceMonth}`}{!included && ' · 暂时排除'}{exists && ' · 此月已有计划，将跳过重复关系'}</p>
           {row.error ? <p className="import-error">{row.error}</p> : <div className="import-row-controls">
             {row.match.status === 'possible' && !rows[i].bookId && <label>确认书目<select aria-label={`第${i + 1}条匹配方式`} value={choices[i] || ''} onChange={e => { changeSchedule(); setChoices({ ...choices, [i]: e.target.value }); }}><option value="">请选择关联或新建</option>{row.match.candidates.map(b => <option key={b.id} value={'link:' + b.id}>关联：{b.title} · {b.author || '未署名'}</option>)}<option value="create">确认新建独立书目</option></select></label>}
-            <label>目标月份<input aria-label={`第${i + 1}条目标月份`} type="month" disabled={!row.active} value={schedule.assigned[i] || ''} onChange={e => { changeSchedule(); setManual({ ...manual, [i]: e.target.value }); }} /></label>
+            <ReadingMonthPicker label={`第${i + 1}条目标月份`} disabled={!row.active} value={schedule.assigned[i] || ''} onChange={value=>{changeSchedule();setManual({...manual,[i]:value});}}/>
             {manual[i] !== undefined && <button type="button" onClick={() => { changeSchedule(); setManual({ ...manual, [i]: '' }); }}>自动安排</button>}
           </div>}
         </li>;
