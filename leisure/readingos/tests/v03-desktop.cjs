@@ -8,7 +8,7 @@ async function step(name,fn){if(process.argv.includes('--layout-only')&&!name.st
 async function launch(){const options={args:[path.resolve('.')],env:{...process.env,READINGOS_TEST_DATA:path.join(root,'data'),READINGOS_TEST_HEADLESS:'1'}};if(process.env.READINGOS_EXECUTABLE){options.executablePath=path.resolve(process.env.READINGOS_EXECUTABLE);options.args=[];}app=await electron.launch(options);page=await app.firstWindow();page.on('pageerror',e=>errors.push(e.message));await app.evaluate(({BrowserWindow})=>{const w=BrowserWindow.getAllWindows()[0];w.setSize(1366,768);w.webContents.setBackgroundThrottling(false);});await expect(page.getByRole('heading',{name:'我的书库'})).toBeVisible();await page.context().setOffline(true);}
 async function find(title){await page.getByRole('button',{name:'寻找书籍',exact:true}).click();await page.getByLabel('全局寻找书籍',{exact:true}).fill(title);await page.getByRole('dialog').getByRole('button',{name:new RegExp(title)}).click();await expect(page.getByRole('heading',{name:title,exact:true}).first()).toBeVisible();}
 (async()=>{
- await ensureBaseline();const s=new Store(path.join(root,'data'));await s.restore(path.resolve('test-results/v02-visual-before/baseline.readingos'));s.close();await launch();const startupMs=Date.now()-started;
+ const baseline=path.join(root,'baseline');await ensureBaseline(baseline);const s=new Store(path.join(root,'data'));await s.restore(path.join(baseline,'baseline.readingos'));const contextBook=s.snapshot().books.find(b=>b.title==='慢读与实践');s.save('journals',{book_id:contextBook.id,title:'工作台上下文日志',date:'2026-10-11',content:'<p>阅读后的一个实际想法。</p>'});s.close();await launch();const startupMs=Date.now()-started;
  await step('Mantine AppShell and four real views share navigation and context toolbar',async()=>{
   await expect(page.locator('.mantine-AppShell-root')).toHaveCount(1);await expect(page.locator('.mantine-NavLink-root')).toHaveCount(4);
   for(const [name,heading]of [['洞见与实践','洞见与实践'],['阅读计划','阅读计划'],['资料与设置','备份与恢复'],['书库','我的书库']]){await page.getByRole('button',{name,exact:true}).click();await expect(page.getByRole('heading',{name:heading})).toBeVisible();}
@@ -16,7 +16,7 @@ async function find(title){await page.getByRole('button',{name:'寻找书籍',ex
  });
  await step('Book context uses real records, resizes with keyboard and opens linked journal',async()=>{
   await page.getByRole('button',{name:'显示书籍上下文'}).click();const panel=page.getByRole('complementary',{name:'书籍上下文'});await expect(panel).toBeVisible();
-  const snapshot=await state();const book=snapshot.books.find(b=>b.title==='慢读与实践');const journal=snapshot.journals.find(j=>j.book_id===book.id);
+  const snapshot=await state();const book=snapshot.books.find(b=>b.title==='慢读与实践');const journal=snapshot.journals.find(j=>j.book_id===book.id&&j.title==='工作台上下文日志');
   await expect(panel).toContainText(journal.title);const before=(await panel.boundingBox()).width;const handle=page.getByRole('separator',{name:'调整书籍上下文宽度'});await handle.focus();await page.keyboard.press('ArrowLeft');await expect.poll(async()=>(await panel.boundingBox()).width).not.toBe(before);
   await panel.getByRole('button').filter({hasText:journal.title}).click();await expect(page.getByRole('textbox',{name:'日志标题'})).toHaveValue(journal.title);await page.keyboard.press('Escape');await expect(page.getByRole('dialog')).toHaveCount(0);
  });

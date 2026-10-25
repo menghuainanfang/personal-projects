@@ -468,7 +468,7 @@
       "packaged": true
     },
     "v03": {
-      "report": "test-results/v03-installed-K4UbLQ/results.json",
+      "report": "test-results/v03-installed-uvhqd8/results.json",
       "passed": [
         "Mantine AppShell and four real views share navigation and context toolbar",
         "Book context uses real records, resizes with keyboard and opens linked journal",
