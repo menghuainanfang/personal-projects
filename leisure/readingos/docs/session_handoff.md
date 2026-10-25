@@ -2,20 +2,26 @@
 
 ## 当前版本与位置
 
-- 桌面仓库：`D:\桌面\ReadingOS`，当前功能分支 `readingos-micro-002`。
+- 桌面仓库：`D:\桌面\ReadingOS`，当前功能分支 `readingos-v03-workspace-calendar`。
 - 应用：`D:\桌面\ReadingOS\projects\readingos`。
 - 远程：`https://github.com/menghuainanfang/personal-projects.git`；公开版本为 v0.2.0，远程目录 `leisure/readingos`。
-- 本机候选安装包：`release/ReadingOS-0.2.1-win-x64-setup.exe`。
-- 已验证安装程序：`test-results/installed-micro002/ReadingOS.exe`。
+- 本机候选安装包：`release/ReadingOS-0.3.0-win-x64-setup.exe`。
+- 本轮安装验证程序：`test-results/installed-v03/ReadingOS.exe`，验收结果以 `iterations/003-acceptance.md` 为准。
 - 启动：`npm run build` 后 `npm run desktop`，或使用安装后的快捷方式。
 
 v0.2 完成统一书房视觉、主读后感优先、批注引用日志、精确来源跳转、按书保存阅读偏好及键盘对话框。安装版 12 项原有流程、6 项新版专项通过；数据测试 10 项通过。完整证据和边界见 `V02_ACCEPTANCE.md`。
 
 v0.2.1 本机候选版增加阅读计划中的批量书单导入与排期，保留 schema v2。PapaParse 5.7.0 精确固定；研究在工程外 `D:\ReadingOS-research\PapaParse`。私人数据库一致性快照在 `D:\ReadingOS-private-backups`，未参与功能测试。新增 `shared/booklist.mjs`、`BooklistDialog.tsx` 和固定 `batchPlans` IPC；全部业务写入由 Store 一个事务完成。
 
-本轮 21 项数据/算法测试、新功能源码及安装版各 9 项通过；最终安装版原有 12+6 项回归通过。`npm run test:micro002` 使用新建隔离目录与原创 CSV/TSV File，不碰个人书库。详细研究、算法规则、截图和验收见 `micro-iterations/002-papaparse.md` 与 `002-acceptance.md`。v0.2.1 尚未公开发布；下一步可由用户本机试用，再确认源码同步或 Release。
+本轮 21 项数据/算法测试、新功能源码及安装版各 9 项通过；最终安装版原有 12+6 项回归通过。`npm run test:micro002` 使用新建隔离目录与原创 CSV/TSV File，不碰个人书库。详细研究、算法规则、截图和验收见 `micro-iterations/002-papaparse.md` 与 `002-acceptance.md`。v0.2.1 源码已提交 PR #1，正式 Release 尚未发布；v0.3 在此基础上继续开发。
 
 ## 关键代码
+
+v0.3 研究和基线在 `docs/iterations/003-*`。Mantine core/hooks 9.7.3，DayPicker 10.0.2，DOMPurify 3.4.17；第三方版权在 THIRD_PARTY_NOTICES。`components/shell` 提供真实 AppShell 工作台与书籍上下文，`components/calendar` 提供日期/月份/范围；`shared/dates.mjs` 用本地年月日，非法草稿不进入数据层。工作台与独立阅读器分支明确，既有来源跳转保持不变。SQLite 仍为 v2，原 userData 位置不变。
+
+最终 v0.3 安装版通过 12 项基础流程、6 项 v0.2、9 项导入与 8 项工作台/日历验收；数据/算法测试 25 项通过。完整命令、实际结果、资源和截图见 `iterations/003-acceptance.md`、`003-evidence.json`。本机安装包 133,510,655 字节；候选版尚未合并 main 或发布 Release。
+
+开发前的真实完整备份为仓库外 `D:\ReadingOS-private-backups\before-v03-2026-10-25T03-17-56-101Z\ReadingOS-before-v03.readingos`；数据库完整性、外键及全部原书引用已检查。测试只能使用 `READINGOS_TEST_DATA` 隔离目录。日期测试 `npm run test:v03`，截图 `npm run screenshots:v03`；构建设置 `$env:ELECTRON_BUILDER_COMPRESSION_LEVEL='5'` 后执行 `npm run package`。
 
 Electron 44.7 / React 19 / TypeScript / Vite / Node SQLite，schema v2。PDF.js 5.4.624、epub.js 0.3.93 与 Tiptap 保留；新增 Radix Dialog 1.2.0，许可见 THIRD_PARTY_NOTICES。
 

@@ -4,7 +4,7 @@ const {Store}=require('../electron/store.cjs');const{ensureBaseline}=require('./
 fs.mkdirSync('test-results',{recursive:true});const root=fs.mkdtempSync(path.resolve('test-results/v03-'+(process.env.READINGOS_EXECUTABLE?'installed':'source')+'-'));
 let app,page;const passed=[],errors=[];const started=Date.now();
 async function state(){return page.evaluate(()=>window.readingos.snapshot());}
-async function step(name,fn){await fn();passed.push(name);console.log('PASS '+name);}
+async function step(name,fn){if(process.argv.includes('--layout-only')&&!name.startsWith('Calendar stays'))return;await fn();passed.push(name);console.log('PASS '+name);}
 async function launch(){const options={args:[path.resolve('.')],env:{...process.env,READINGOS_TEST_DATA:path.join(root,'data'),READINGOS_TEST_HEADLESS:'1'}};if(process.env.READINGOS_EXECUTABLE){options.executablePath=path.resolve(process.env.READINGOS_EXECUTABLE);options.args=[];}app=await electron.launch(options);page=await app.firstWindow();page.on('pageerror',e=>errors.push(e.message));await app.evaluate(({BrowserWindow})=>{const w=BrowserWindow.getAllWindows()[0];w.setSize(1366,768);w.webContents.setBackgroundThrottling(false);});await expect(page.getByRole('heading',{name:'我的书库'})).toBeVisible();await page.context().setOffline(true);}
 async function find(title){await page.getByRole('button',{name:'寻找书籍',exact:true}).click();await page.getByLabel('全局寻找书籍',{exact:true}).fill(title);await page.getByRole('dialog').getByRole('button',{name:new RegExp(title)}).click();await expect(page.getByRole('heading',{name:title,exact:true}).first()).toBeVisible();}
 (async()=>{
@@ -26,15 +26,15 @@ async function find(title){await page.getByRole('button',{name:'寻找书籍',ex
  await step('DayPicker Chinese Monday grid, leap day, invalid input, keyboard and nested Escape',async()=>{
   await find('慢读与实践');await page.getByRole('button',{name:'编辑资料',exact:true}).click();
   await page.getByLabel('开始日期',{exact:true}).fill('2027-02-29');await expect(page.getByRole('alert')).toContainText('有效日期');
-  await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('dialog')).toHaveCount(1);
+  await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('dialog')).toHaveCount(1);await expect(page.getByLabel('开始日期',{exact:true})).toBeFocused();
   await page.getByLabel('开始日期',{exact:true}).fill('2028-02-29');const trigger=page.getByRole('button',{name:'打开开始日期日历'});await trigger.click();
   await expect(page.locator('.rdp-weekday').first()).toContainText('一');await expect(page.getByLabel('选择年份',{exact:true})).toHaveValue('2028');await expect(page.getByLabel('选择月份',{exact:true})).toHaveValue('1');
   await page.getByRole('button',{name:'选择 2028-02-29',exact:true}).focus();await page.keyboard.press('ArrowRight');await expect(page.getByRole('button',{name:'选择 2028-03-01',exact:true})).toBeFocused();await page.keyboard.press('Enter');
-  await expect(page.getByLabel('开始日期',{exact:true})).toHaveValue('2028-03-01');await expect(trigger).toBeFocused();await trigger.click();
+  await expect(page.getByLabel('开始日期',{exact:true})).toHaveValue('2028-03-01');await expect(trigger).toBeFocused();await trigger.click();await page.getByRole('button',{name:'今天',exact:true}).click();await expect(page.getByLabel('开始日期',{exact:true})).toHaveValue(new Date().toLocaleDateString('sv-SE'));await trigger.click();
   for(let n=0;n<14;n++){await page.keyboard.press('Tab');assert.ok(await page.evaluate(()=>!!document.activeElement.closest('[data-reading-calendar-open]')));}
   await page.keyboard.press('Escape');await expect(page.locator('[data-reading-calendar-open]')).toHaveCount(0);await expect(page.getByRole('dialog')).toHaveCount(1);await expect(trigger).toBeFocused();
   await page.getByLabel('开始日期',{exact:true}).fill('2028-02-29');await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('dialog')).toHaveCount(0);
-  await page.getByRole('button',{name:'编辑资料',exact:true}).click();await expect(page.getByLabel('开始日期',{exact:true})).toHaveValue('2028-02-29');await page.getByLabel('阅读状态',{exact:true}).selectOption('completed');await page.getByLabel('完成日期',{exact:true}).fill('2028-03-01');await page.getByRole('button',{name:'打开完成日期日历'}).click();await page.getByRole('button',{name:'选择 2028-03-02',exact:true}).click();await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('dialog')).toHaveCount(0);await page.getByRole('button',{name:'编辑资料',exact:true}).click();await expect(page.getByLabel('完成日期',{exact:true})).toHaveValue('2028-03-02');await page.keyboard.press('Escape');
+  await page.getByRole('button',{name:'编辑资料',exact:true}).click();await expect(page.getByLabel('开始日期',{exact:true})).toHaveValue('2028-02-29');await page.getByRole('combobox',{name:/阅读状态/}).selectOption('completed');await page.getByLabel('完成日期',{exact:true}).fill('2028-03-01');await page.getByRole('button',{name:'打开完成日期日历'}).click();await page.getByRole('button',{name:'选择 2028-03-02',exact:true}).click();await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('dialog')).toHaveCount(0);await page.getByRole('button',{name:'编辑资料',exact:true}).click();await expect(page.getByLabel('完成日期',{exact:true})).toHaveValue('2028-03-02');await page.keyboard.press('Escape');
  });
  await step('Journal and action/feedback date fields persist without changing existing records',async()=>{
   await page.getByRole('button',{name:'写一篇日志'}).click();await page.getByLabel('日志标题',{exact:true}).fill('日历验收日志');await page.getByLabel('日志日期',{exact:true}).fill('2025-12-31');await page.getByRole('button',{name:'保存',exact:true}).click();await expect(page.getByRole('dialog')).toHaveCount(0);
@@ -48,9 +48,13 @@ async function find(title){await page.getByRole('button',{name:'寻找书籍',ex
   await page.getByRole('button',{name:'导入与安排书单'}).click();await page.getByLabel('粘贴书单',{exact:true}).fill('冬日读书计划\n新年的思考');await page.getByRole('button',{name:'选择排期月份范围'}).click();await page.getByLabel('起始月份年份',{exact:true}).fill('2026');await page.getByRole('button',{name:'起始月份 2026-12',exact:true}).click();await page.getByLabel('结束月份年份',{exact:true}).fill('2026');await page.getByRole('button',{name:'结束月份 2026-01',exact:true}).click();await expect(page.getByRole('button',{name:'应用月份范围'})).toBeDisabled();await page.getByLabel('结束月份年份',{exact:true}).fill('2027');await page.getByRole('button',{name:'结束月份 2027-01',exact:true}).click();await page.getByRole('button',{name:'应用月份范围'}).click();await expect(page.getByLabel('排期开始月份',{exact:true})).toHaveValue('2026-12');await expect(page.getByLabel('排期结束月份',{exact:true})).toHaveValue('2027-01');
   await page.getByRole('button',{name:'生成预览'}).click();await expect(page.locator('.import-row')).toHaveCount(2);await page.getByRole('button',{name:'确认保存'}).click();await expect(page.getByRole('button',{name:'完成',exact:true})).toBeVisible();await page.getByRole('button',{name:'完成',exact:true}).click();const after=await state();for(const title of ['冬日读书计划','新年的思考']){const b=after.books.find(b=>b.title===title);assert.ok(after.plans.some(p=>p.book_id===b.id&&['2026-12','2027-01'].includes(p.month)));}
  });
+ await step('Calendar stays in the window at representative desktop sizes and zoom levels',async()=>{
+  for(const [width,height,zoom]of [[1280,720,1.5],[1366,768,1.25],[1920,1080,1]]){
+   await app.evaluate(({BrowserWindow},{width,height,zoom})=>{const w=BrowserWindow.getAllWindows()[0];w.setSize(width,height);w.webContents.setZoomFactor(zoom);w.showInactive();},{width,height,zoom});
+   await find('慢读与实践');await page.getByRole('button',{name:'编辑资料',exact:true}).click();await page.getByRole('button',{name:'打开开始日期日历'}).click();await expect.poll(async()=>{const b=await page.locator('[data-reading-calendar-open]').boundingBox(),v=await page.evaluate(()=>({width:innerWidth,height:innerHeight}));return b.x>=0&&b.y>=0&&b.x+b.width<=v.width+1&&b.y+b.height<=v.height+1;}).toBe(true);
+   const png=await app.evaluate(async({BrowserWindow})=>{const w=BrowserWindow.getAllWindows()[0];await new Promise(resolve=>setTimeout(resolve,250));const image=await w.webContents.capturePage();w.hide();return image.toPNG().toString('base64');});fs.writeFileSync(path.join(root,`calendar-${width}x${height}-${zoom}.png`),Buffer.from(png,'base64'));await page.keyboard.press('Escape');await page.keyboard.press('Escape');
+  }
+ });
+ const finalSnapshot=await state();await app.close();await launch();assert.deepEqual(await state(),finalSnapshot);passed.push('All date records and month plans survive Electron restart');
  assert.deepEqual(errors,[]);fs.writeFileSync(path.join(root,'results.json'),JSON.stringify({passed,errors,startupMs,metrics:await app.evaluate(({app})=>app.getAppMetrics().map(p=>({type:p.type,memory:p.memory}))),info:await page.evaluate(()=>window.readingos.info())},null,2));await app.close();console.log('v0.3 desktop passed: '+passed.length);
 })().catch(async e=>{console.error(e);await app?.close().catch(()=>{});process.exitCode=1;});
-
-
-
-

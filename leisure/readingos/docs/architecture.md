@@ -41,6 +41,12 @@ EPUB 保存 `{cfi}` 与完整选文；selected 事件中的 DOM Range 先将元�
 
 阅读设置按逻辑书保存，部分更新合并已有 JSON，不影响其他书。进度仍按 asset 保存。日志引用保存原批注 ID，打开来源必须找到对应 asset，再用原始 PDF 页/EPUB CFI；不会使用另一版本的最近进度代替。阅读器位置、偏好和批注写入同一异步队列，退出等待已发出的保存任务。
 
+## 工作台与日期边界
+
+`ReadingThemeProvider` 将原书房主题接入 MantineProvider。`components/shell` 运行官方 AppShell、NavLink、Section、ScrollArea 与可调整 Aside，负责页面导航和真实书籍上下文。阅读器保持独立分支，不重复挂载工作台。`workspace.css` 局部覆盖布局和颜色，旧阅读样式继续有效。
+
+`components/calendar` 中具体日期运行 DayPicker，月份和范围使用自主轻量网格；Popover 位于 Radix 对话框 DOM 内。`shared/dates.mjs` 负责严格本地日期字符串，界面草稿无效时不进入业务数据。所有字段保持 YYYY-MM-DD / YYYY-MM，不新增 IPC 或 schema。
+
 ## 保存与备份
 
 批量书单使用 `shared/booklist.mjs` 统一解析限制、身份规范化和确定性排期；PapaParse 只解析 CSV/TSV 字符语法。React 展示预览与用户选择，调用固定 `batchPlans` IPC。主进程再次检查条数、长度、月份、关联 ID 和不确定匹配，在一个 `BEGIN IMMEDIATE` 事务内查重并插入 books/plans；已有 books 行不更新，复用 plans 联合主键。单条 SQL 错误使新书和关系一起回滚。该功能没有 schema 变更。
