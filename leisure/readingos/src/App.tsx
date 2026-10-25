@@ -31,6 +31,9 @@ import {
 import { RecordDialog, type Dialog } from "./RecordDialog";
 import { Editor } from "./Editor";
 import { Reader } from "./reader/Reader";
+import { ReadingAppShell } from './components/shell/ReadingAppShell';
+import { useReadingTheme } from './components/shell/ReadingThemeProvider';
+
 import { BooklistDialog } from './BooklistDialog';
 import DOMPurify from "dompurify";
 function Plain({ html }: { html: string }) {
@@ -70,10 +73,8 @@ export function App() {
     [asset, setAsset] = useState<Asset | null>(null),
     [readerLocation, setReaderLocation] = useState<{value:string} | undefined>(),
     [dialog, setDialog] = useState<Dialog | null>(null),
-    [toast, setToast] = useState(""),
-    [theme, setTheme] = useState(
-      localStorage.getItem("readingos.theme") || "light",
-    );
+    [toast, setToast] = useState("");
+  const {theme,setTheme}=useReadingTheme();
   const [query, setQuery] = useState(""),
     [filter, setFilter] = useState("all"),
     [sort, setSort] = useState("updated"),
@@ -100,10 +101,7 @@ export function App() {
     reload().catch((e) => notify(e.message));
     api.info().then(setInfo);
   }, []);
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    localStorage.setItem("readingos.theme", theme);
-  }, [theme]);
+
   const run = async (fn: () => Promise<unknown>, message?: string) => {
     try {
       await fn();
@@ -356,67 +354,10 @@ export function App() {
   const yearTarget =
     data.goals.find((g) => g.period === month.slice(0, 4))?.target || 0;
   return (
-    <div className="app-shell">
-      <aside className="sidebar">
-        <div className="brand">
-          <div className="brand-mark">
-            <BookOpen size={24} />
-          </div>
-          <div className="brand-copy">
-            ReadingOS<small>为阅读留一处空间</small>
-          </div>
-        </div>
-        <span className="nav-caption">我的阅读</span>
-        {[
-          ["library", "书库", Library],
-          ["insights", "洞见与实践", Lightbulb],
-          ["goals", "阅读计划", Target],
-        ].map(([v, label, Icon]: any) => (
-          <button
-            key={v}
-            aria-label={label}
-            title={label}
-            className={
-              "nav-item " +
-              (view === v || (v === "library" && view === "book")
-                ? "selected"
-                : "")
-            }
-            onClick={() => {
-              setView(v);
-              setBookId(null);
-            }}
-          >
-            <Icon size={19} />
-            <span className="nav-label">{label}</span>
-            {v === "library" && <span className="nav-count">{data.books.length}</span>}
-          </button>
-        ))}
-        <div className="grow" />
-        <button
-          aria-label="资料与设置"
-          title="资料与设置"
-          className={"nav-item " + (view === "settings" ? "selected" : "")}
-          onClick={() => setView("settings")}
-        >
-          <Settings size={19} />
-          <span className="nav-label">资料与设置</span>
-        </button>
-        <button
-          className="nav-item"
-          aria-label={theme === "light" ? "深色主题" : "浅色主题"}
-          title={theme === "light" ? "深色主题" : "浅色主题"}
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-        >
-          {theme === "light" ? <Moon size={19} /> : <Sun size={19} />}{" "}
-          <span className="nav-label">{theme === "light" ? "深色主题" : "浅色主题"}</span>
-        </button>
-        <div className="offline">
-          <span />
-          <span className="offline-text">本地书库 · 离线可用</span>
-        </div>
-      </aside>
-      <main className={'main-area '+(view==='book'?'book-home':'')}>
+    <><ReadingAppShell view={view} data={data} book={view==='book'?book:undefined} theme={theme} setTheme={setTheme}
+      navigate={value=>{setView(value);setBookId(null);}} openBook={id=>void openBook(id)}
+      resume={()=>{const files=book?data.assets.filter(a=>a.book_id===book.id):data.assets;const latest=[...files].sort((a,b)=>(data.progress.find(p=>p.asset_id===b.id)?.updated||'').localeCompare(data.progress.find(p=>p.asset_id===a.id)?.updated||''))[0];if(latest)startReading(latest);}}
+      journal={id=>{const row=data.journals.find(j=>j.id===id);if(row)setDialog({kind:'journal',row});}} source={openSource}>
         {view === "library" && (
           <>
             <header className="page-heading">
@@ -874,14 +815,7 @@ export function App() {
                 <h1>阅读计划</h1>
                 <p className="muted">计划提供方向，完成日期记录事实。</p>
               </div>
-              <div className="row wrap"><button className="primary" onClick={() => setBooklistOpen(true)}>导入与安排书单</button><input
-                aria-label="计划月份"
-                type="month"
-                value={month}
-                onChange={(e) =>
-                  setMonth(e.target.value || today().slice(0, 7))
-                }
-              /></div>
+              <div className="row wrap"><button className="primary" onClick={() => setBooklistOpen(true)}>导入与安排书单</button><input aria-label="计划月份" type="month" value={month} onChange={e=>setMonth(e.target.value)}/></div>
             </header>
             {booklistOpen && <BooklistDialog data={data} month={month} close={() => setBooklistOpen(false)} reload={reload} />}
             <div className="goal-grid">
@@ -1010,7 +944,7 @@ export function App() {
             </section>
           </>
         )}
-      </main>
+      </ReadingAppShell>
       {dialog && (
         <RecordDialog
           key={dialog.row?.id || dialog.kind}
@@ -1030,7 +964,7 @@ export function App() {
         />
       )}
       <Toast message={toast} close={() => setToast("")} />
-    </div>
+    </>
   );
 }
 function Toast({ message, close }: { message: string; close: () => void }) {

@@ -1,0 +1,59 @@
+:root { font-size: 16px; }
+body { font-size: 14px; overflow: hidden; background: var(--bg); color: var(--ink); }
+:root[data-mantine-color-scheme][data-theme] { --mantine-color-body: var(--bg); --mantine-color-text: var(--ink); --mantine-color-default: var(--panel); --mantine-color-default-border: var(--line); --mantine-color-dimmed: var(--muted); }
+.workspace-root { height: 100dvh; --app-shell-border-color: var(--line); }
+.workspace-root .mantine-AppShell-header { background: var(--panel); border-color: var(--line); }
+.workspace-navigation { background: var(--side); }
+.workspace-brand { display: flex; gap: 12px; align-items: center; padding: 16px 4px 28px; color: var(--ink); font-size: 18px; font-weight: 600; }
+.workspace-brand svg { color: var(--accent); flex-shrink: 0; }
+.workspace-brand small { display: block; font-size: 11px; font-weight: 400; color: var(--muted); margin-top: 4px; }
+.reading-navigation .mantine-NavLink-root { color: var(--ink); border-radius: 6px; padding: 12px; text-align: left; }
+.reading-navigation .mantine-NavLink-root[data-active] { background: var(--accent-soft); color: var(--accent); }
+.reading-navigation .mantine-NavLink-root:hover { background: var(--accent-soft); }
+.workspace-offline { color: var(--muted); font-size: 11px; border-top: 1px solid var(--line); padding: 16px 4px 0; margin-bottom: 0; }
+.workspace-location { max-width: min(40vw,500px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; color: var(--muted); }
+.workspace-main { height: 100dvh; overflow: auto; }
+.workspace-main .main-area { margin-left: 0; max-width: 1560px; margin-inline: auto; padding: 28px 36px 56px; }
+.workspace-main .main-area.book-home { max-width: 1120px; }
+.workspace-context { background: var(--panel); }
+.book-context h2 { font-family: var(--font-reading); overflow-wrap: anywhere; }
+.book-context section { border-top: 1px solid var(--line); padding-top: 16px; }
+.book-context h3 { font-size: 13px; }
+.book-context button,.workspace-search-results button { display: block; width: 100%; text-align: left; margin: 6px 0; background: transparent; border: 0; overflow-wrap: anywhere; white-space: normal; }
+.book-context button small,.workspace-search-results button small { display: block; color: var(--muted); }
+.workspace-search-results { max-height: 380px; overflow: auto; }
+.workspace-root .mantine-ActionIcon-root { color: var(--ink); }
+@media (max-width:960px) { .workspace-navigation { max-width: 260px; } .workspace-main .main-area { padding: 24px; } }
+@media (max-width:1200px) { .workspace-context { max-width: 340px; inset-inline-start: auto; inset-inline-end: 0; } }
+@media (prefers-reduced-motion:reduce) { .workspace-root { --app-shell-transition-duration: 0ms !important; } }
+.modal { transform: none; inset: 16px 0; margin: auto; height: max-content; }
+.calendar-field { display: flex; flex-direction: column; gap: 8px; min-width: 0; flex: 1; margin-bottom: 16px; font-size: 13px; }
+.calendar-input-row { display: flex; gap: 6px; min-width: 0; }
+.calendar-input-row > input { flex: 1; width: 100%; min-width: 0; }
+.calendar-trigger { flex: 0 0 36px; min-width: 36px; padding: 6px; }
+.date-error { color: var(--danger); }
+.month-field { display: flex; align-items: start; gap: 6px; min-width: 0; }
+.month-field > .calendar-trigger { margin-top: 27px; }
+.page-heading .month-field { width: 215px; }
+.month-range { display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; grid-column: span 2; align-items: start; }
+.month-range > .calendar-trigger { margin-top: 27px; }
+.reading-calendar { padding: 12px; border-color: var(--line); background: var(--panel); color: var(--ink); max-width: calc(100vw - 24px); max-height: calc(100dvh - 24px); overflow: auto; }
+.reading-calendar .rdp-root { --rdp-accent-color: var(--accent); --rdp-accent-background-color: var(--accent-soft); --rdp-day-height: 36px; --rdp-day-width: 36px; --rdp-day_button-height: 34px; --rdp-day_button-width: 34px; --rdp-selected-border: 2px solid var(--accent); --rdp-today-color: var(--accent); font-size: 13px; }
+.reading-calendar .rdp-dropdown { padding: 0; }
+.reading-calendar .rdp-caption_label { font-size: 14px; }
+.reading-calendar .rdp-day_button { color: var(--ink); }
+.reading-calendar .rdp-selected .rdp-day_button { background: var(--accent-soft); color: var(--accent); }
+.calendar-shortcuts { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 12px; margin-top: 12px; }
+.month-panel { min-width: 245px; }
+.month-year { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+.month-year label { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.month-year input { width: 84px; }
+.month-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 12px; }
+.month-grid button { flex-direction: column; min-height: 40px; }
+.month-grid button[data-in-range] { background: var(--accent-soft); }
+.month-grid button[aria-pressed=true] { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+.month-range-panels { display: flex; flex-wrap: wrap; gap: 20px; }
+.import-row-controls .month-field { width: 100%; }
+.import-row-controls .calendar-field { margin-bottom: 0; }
+@media(max-width:650px) { .month-range { grid-column: 1/-1; } .month-range-panels { flex-direction: column; } }
+

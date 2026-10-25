@@ -30,14 +30,14 @@
 body { margin: 0; }
 button, input, select, textarea, summary { font: inherit; }
 button, summary { cursor: pointer; }
-button {
+button:where(:not([class*="mantine-"]):not([class*="rdp-"])) {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   min-height: 34px; padding: 7px 12px; background: var(--panel); color: var(--ink);
   border: 1px solid var(--line); border-radius: 6px; font-size: 13px; line-height: 1.5;
   transition: background-color 120ms;
 }
-button:hover { background: var(--accent-soft); }
-button:disabled { opacity: .55; cursor: default; }
+button:where(:not([class*="mantine-"]):not([class*="rdp-"])):hover { background: var(--accent-soft); }
+button:where(:not([class*="mantine-"]):not([class*="rdp-"])):disabled { opacity: .55; cursor: default; }
 :where(button,input,select,textarea,summary,a,[contenteditable]):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 input, select, textarea {
   min-width: 0; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px;
@@ -61,20 +61,6 @@ small { font-size: 12px; line-height: 1.6; }
 .primary:hover { background: var(--accent); filter: brightness(.95); }
 .danger { color: var(--danger); margin: 32px 0; }
 .prewrap { white-space: pre-wrap; overflow-wrap: anywhere; }
-.app-shell { display: flex; min-height: 100vh; background: var(--bg); }
-.sidebar {
-  position: fixed; inset: 0 auto 0 0; width: 200px; padding: 32px 16px 20px;
-  display: flex; flex-direction: column; background: var(--side); border-right: 1px solid var(--line);
-}
-.brand { display: flex; gap: 10px; align-items: center; margin: 0 4px 40px; font-size: 19px; font-weight: 600; }
-.brand small { display: block; font-size: 11px; font-weight: 400; color: var(--muted); margin-top: 4px; }
-.brand-mark { color: var(--accent); display: grid; place-items: center; width: 34px; flex: 0 0 34px; }
-.nav-caption { font-size: 12px; color: var(--muted); margin: 0 12px 12px; }
-.nav-item { width: 100%; justify-content: flex-start; background: transparent; border: 0; padding: 12px; margin-bottom: 4px; }
-.nav-item.selected { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
-.nav-count { margin-left: auto; font-size: 12px; }
-.offline { display: flex; align-items: center; gap: 8px; border-top: 1px solid var(--line); padding: 20px 8px 0; margin-top: 16px; font-size: 11px; color: var(--muted); }
-.offline > span:first-child { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex: 0 0 5px; }
 .main-area { flex: 1; min-width: 0; margin-left: 200px; padding: 32px 40px 64px; max-width: 1700px; }
 .page-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 24px; }
 .page-heading h1 span { font: 12px var(--font-ui); color: var(--muted); vertical-align: middle; margin-left: 16px; }
@@ -84,10 +70,10 @@ small { font-size: 12px; line-height: 1.6; }
 .search-field input { flex: 1; width: 100%; border: 0; background: transparent; padding: 10px; }
 .library-toolbar > select { margin-left: auto; }
 .view-toggle { display: flex; gap: 4px; }
-.view-toggle button { padding: 8px; }
+.view-toggle button:where(:not([class*="mantine-"]):not([class*="rdp-"])) { padding: 8px; }
 .active { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
 .tabs { display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: 28px; border-bottom: 1px solid var(--line); }
-.tabs button { background: transparent; border: 0; border-radius: 0; padding: 12px 0; color: var(--muted); position: relative; }
+.tabs button:where(:not([class*="mantine-"]):not([class*="rdp-"])) { background: transparent; border: 0; border-radius: 0; padding: 12px 0; color: var(--muted); position: relative; }
 .tabs button.active { color: var(--accent); font-weight: 600; }
 .tabs button.active:after { content: ''; position: absolute; height: 2px; background: var(--accent); bottom: -1px; left: 0; right: 0; }
 .tabs small { font-size: 11px; }
@@ -129,7 +115,7 @@ small { font-size: 12px; line-height: 1.6; }
 .empty svg { color: var(--accent); margin-bottom: 16px; }
 .empty h2 { color: var(--ink); font-family: var(--font-reading); }
 .empty p { font-size: 13px; margin-bottom: 24px; }
-.empty button { margin: 4px; }
+.empty button:where(:not([class*="mantine-"]):not([class*="rdp-"])) { margin: 4px; }
 .back { border: 0; background: transparent; color: var(--muted); padding-left: 0; margin-bottom: 20px; }
 .book-home { max-width: 1300px; }
 .book-heading { display: flex; gap: 24px; align-items: center; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
@@ -138,19 +124,19 @@ small { font-size: 12px; line-height: 1.6; }
 .book-heading h1 { font-size: 28px; overflow-wrap: anywhere; }
 .book-heading p { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
 .book-heading small { display: block; margin-top: 12px; }
-.book-heading button { font-size: 12px; }
+.book-heading button:where(:not([class*="mantine-"]):not([class*="rdp-"])) { font-size: 12px; }
 .asset-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 .asset-row small { max-width: 160px; display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .main-area section { margin-top: 32px; }
 .section-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
 .section-heading h2 { margin: 0; }
-.section-heading button { font-size: 12px; }
+.section-heading button:where(:not([class*="mantine-"]):not([class*="rdp-"])) { font-size: 12px; }
 .reflection-section { padding: 0 0 32px; border-bottom: 1px solid var(--line); }
 .reflection-section h2 { font: 600 24px/1.5 var(--font-reading); color: var(--ink); margin: 4px 0 0; }
 .reflection-section > .muted { font-size: 13px; margin-bottom: 16px; }
 .rich-editor { border: 1px solid var(--line); border-radius: 6px; background: var(--panel); overflow: hidden; }
 .format-bar { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--line); }
-.format-bar button { font-size: 12px; border: 0; background: transparent; padding: 4px 8px; min-height: 28px; }
+.format-bar button:where(:not([class*="mantine-"]):not([class*="rdp-"])) { font-size: 12px; border: 0; background: transparent; padding: 4px 8px; min-height: 28px; }
 .format-bar button:hover,.format-bar button.active { background: var(--accent-soft); }
 .format-bar span { color: var(--muted); font-size: 12px; margin-left: auto; }
 .tiptap { min-height: 240px; outline: 0; padding: 24px 28px; font: 400 16px/1.9 var(--font-ui); overflow-wrap: anywhere; }
@@ -167,11 +153,11 @@ small { font-size: 12px; line-height: 1.6; }
 .insight-card { margin: 0; }
 .insight-card > .row { margin-bottom: 12px; color: var(--accent); }
 .insight-card p { font-size: 14px; }
-.insight-card button,.journal-card button,.action-card button { font-size: 12px; padding: 4px 8px; min-height: 28px; }
+.insight-card button,.journal-card button,.action-card button:where(:not([class*="mantine-"]):not([class*="rdp-"])) { font-size: 12px; padding: 4px 8px; min-height: 28px; }
 .insight-card > .row,.journal-card > .row,.action-card > .row { flex-wrap: wrap; }
 .source { max-width: 100%; background: var(--accent-soft); border: 0; color: var(--accent); font-size: 12px; text-align: left; }
 .source-note { display: block; color: var(--muted); margin-top: 12px; }
-.text-button { color: var(--accent); border: 0; background: transparent; padding-left: 0 !important; margin-top: 16px; }
+.text-button:where(:not([class*="mantine-"]):not([class*="rdp-"])) { color: var(--accent); border: 0; background: transparent; padding-left: 0 !important; margin-top: 16px; }
 .log-search { width: 100%; margin-bottom: 12px; }
 .journal-card h3,.action-card h3 { margin-top: 16px; }
 .action-card select { margin-right: 12px; }
@@ -208,34 +194,34 @@ small { font-size: 12px; line-height: 1.6; }
 .checkbox-label input { width: auto; }
 .cover-preview { width: 48px; height: 64px; object-fit: contain; }
 .toast { position: fixed; bottom: 24px; right: 24px; z-index: 200; max-width: min(540px,calc(100vw - 48px)); padding: 12px 16px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); display: flex; gap: 16px; align-items: center; font-size: 13px; white-space: pre-wrap; box-shadow: 0 4px 20px #0002; }
-.toast button { border: 0; padding: 2px 4px; background: transparent; font-size: 20px; }
+.toast button:where(:not([class*="mantine-"]):not([class*="rdp-"])) { border: 0; padding: 2px 4px; background: transparent; font-size: 20px; }
 .reader-shell { height: 100vh; display: flex; flex-direction: column; background: var(--bg); }
 .reader-header { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); background: var(--panel); }
 .reader-header strong { flex: 1; min-width: 100px; max-width: 380px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; }
 .reader-header span,.reader-header small { font-size: 12px; color: var(--muted); }
-.reader-header button { font-size: 12px; }
+.reader-header button:where(:not([class*="mantine-"]):not([class*="rdp-"])) { font-size: 12px; }
 .reader-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 8px 12px; border-bottom: 1px solid var(--line); background: var(--panel); }
-.reader-tools button { font-size: 12px; padding: 5px 8px; min-height: 30px; }
+.reader-tools button:where(:not([class*="mantine-"]):not([class*="rdp-"])) { font-size: 12px; padding: 5px 8px; min-height: 30px; }
 .reader-tools label { display: flex; align-items: center; gap: 6px; margin: 0 4px; font-size: 12px; }
 .reader-tools select,.reader-tools input { padding: 4px; width: 64px; font-size: 12px; }
 .reader-tools input[type="color"] { width: 28px; padding: 2px; }
 .swatches { display: flex; gap: 8px; margin: 0 8px; }
-.swatches button { width: 20px; height: 20px; min-height: 20px; padding: 0; border-radius: 50%; border: 1px solid #0003; }
+.swatches button:where(:not([class*="mantine-"]):not([class*="rdp-"])) { width: 20px; height: 20px; min-height: 20px; padding: 0; border-radius: 50%; border: 1px solid #0003; }
 .swatches .chosen { outline: 2px solid var(--ink); outline-offset: 2px; }
 .reader-body { display: flex; flex: 1; min-height: 0; position: relative; }
 .reader-left,.reader-right { overflow: auto; padding: 20px 16px; background: var(--panel); }
 .reader-left { width: 184px; min-width: 160px; flex: 0 0 184px; border-right: 1px solid var(--line); }
 .reader-right { width: 284px; min-width: 240px; flex: 0 0 284px; border-left: 1px solid var(--line); }
 .reader-left h3,.reader-right h3 { font-size: 14px; margin-bottom: 16px; }
-.reader-left > button { display: block; width: 100%; padding: 8px 0; border: 0; background: transparent; text-align: left; font-size: 13px; }
+.reader-left > button:where(:not([class*="mantine-"]):not([class*="rdp-"])) { display: block; width: 100%; padding: 8px 0; border: 0; background: transparent; text-align: left; font-size: 13px; }
 .reader-left h3:not(:first-child) { margin-top: 24px; }
 .reader-left > div { display: flex; gap: 4px; align-items: center; }
-.reader-left > div button { font-size: 12px; }
+.reader-left > div button:where(:not([class*="mantine-"]):not([class*="rdp-"])) { font-size: 12px; }
 .reader-right > .muted { font-size: 13px; }
 .reader-content { flex: 1; min-width: 0; overflow: hidden; background: var(--reading-background,var(--side)); }
 .pdf-reader,.epub-reader { display: flex; flex-direction: column; height: 100%; }
 .page-nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; padding: 8px 12px; background: var(--side); border-bottom: 1px solid var(--line); font-size: 12px; }
-.page-nav button { font-size: 12px; padding: 4px 10px; min-height: 28px; }
+.page-nav button:where(:not([class*="mantine-"]):not([class*="rdp-"])) { font-size: 12px; padding: 4px 10px; min-height: 28px; }
 .page-nav input { width: 52px; padding: 3px; margin-left: 8px; }
 .pdf-scroll { flex: 1; min-height: 0; overflow: auto; padding: 24px; }
 .pdf-page { position: relative; margin: 0 auto; background: white; box-shadow: 0 2px 12px #0001; }
@@ -247,7 +233,7 @@ small { font-size: 12px; line-height: 1.6; }
 .annotation-jump { display: block; padding: 0; border: 0; background: transparent; width: 100%; text-align: left; line-height: 1.8; font-size: 13px; margin-bottom: 12px; }
 .annotation-card textarea { width: 100%; min-height: 72px; font-size: 13px; margin-bottom: 12px; }
 .annotation-card .row { gap: 6px; flex-wrap: wrap; }
-.annotation-card button { font-size: 12px; padding: 4px 6px; min-height: 28px; }
+.annotation-card button:where(:not([class*="mantine-"]):not([class*="rdp-"])) { font-size: 12px; padding: 4px 6px; min-height: 28px; }
 .annotation-card input:not([type="color"]) { width: 100%; margin-bottom: 12px; }
 .reader-progress { height: 3px; background: var(--line); }
 .reader-progress span { display: block; height: 100%; background: var(--accent); }
@@ -306,6 +292,6 @@ small { font-size: 12px; line-height: 1.6; }
 .import-row > p { grid-column: 1; font-size: 12px; margin: 8px 0 0 24px; }
 .import-row-controls { grid-column: 2; grid-row: 1 / span 2; display: flex; align-items: end; flex-wrap: wrap; gap: 8px; }
 .import-row-controls label { flex: 1 1 180px; }
-.import-row-controls button { margin-bottom: 1px; }
+.import-row-controls button:where(:not([class*="mantine-"]):not([class*="rdp-"])) { margin-bottom: 1px; }
 .import-result { padding: 12px 0; color: var(--accent); border-top: 1px solid var(--line); margin-top: 20px; }
 @media (max-width:560px) { .import-mapping,.import-schedule { grid-template-columns: 1fr; gap: 12px; } .import-row { display: block; } .import-row-controls { margin-top: 12px; } }
