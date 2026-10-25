@@ -1,0 +1,598 @@
+{
+  "date": "2026-10-25",
+  "version": "0.3.0",
+  "schema": 2,
+  "build": {
+    "production": true,
+    "nsis": true,
+    "installer": "release/ReadingOS-0.3.0-win-x64-setup.exe",
+    "installerBytes": 133510655,
+    "mainJsBytes": 1812243,
+    "mainCssBytes": 557781
+  },
+  "installation": {
+    "directory": "test-results/installed-v03",
+    "exitCode": 0
+  },
+  "tests": {
+    "unit": {
+      "passed": 25
+    },
+    "desktop": {
+      "report": "test-results/desktop-packaged/results.json",
+      "passed": [
+        "First launch: empty local library and isolated renderer",
+        "Physical book, editable metadata and rich reflection autosave",
+        "Journal autosave, insight promotion and practical feedback",
+        "Native-dialog PDF and EPUB import, duplicate and malformed handling",
+        "PDF canvas, selectable text, highlight and persisted mouse ink",
+        "PDF shapes, textbox, eraser and annotation comments",
+        "PDF coordinates remain aligned after zoom and window resize",
+        "EPUB selection, CFI highlight, typography/reflow restoration",
+        "Goals and month plans persist independently of actual completion",
+        "Application restart restores long-form notes, PDF page and annotations",
+        "EPUB highlights restored after application restart",
+        "Native backup and restore preserve the full library"
+      ],
+      "errors": [],
+      "version": "0.3.0",
+      "packaged": true
+    },
+    "v02": {
+      "report": "test-results/v02-installed/results.json",
+      "passed": [
+        "v1 backup opens with every original record and original file",
+        "Shelf opens PDF in one click; selection comment and journal preserve source",
+        "PDF preferences save and remain independent from EPUB",
+        "Library, home, journal and reader fit nine viewport/zoom combinations each",
+        "Light/dark normal text meets AA; reduced motion removes transitions",
+        "Deleted annotation source stays explicit and never opens another location"
+      ],
+      "errors": [],
+      "version": "0.3.0",
+      "packaged": true,
+      "dimensions": [
+        {
+          "scene": "shelf",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1,
+          "width": 1267,
+          "height": 658,
+          "dpr": 1.25
+        },
+        {
+          "scene": "shelf",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1014,
+          "height": 526,
+          "dpr": 1.5625
+        },
+        {
+          "scene": "shelf",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1.5,
+          "width": 845,
+          "height": 438,
+          "dpr": 1.875
+        },
+        {
+          "scene": "shelf",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1,
+          "width": 1352,
+          "height": 706,
+          "dpr": 1.25
+        },
+        {
+          "scene": "shelf",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1081,
+          "height": 564,
+          "dpr": 1.5625
+        },
+        {
+          "scene": "shelf",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1.5,
+          "width": 901,
+          "height": 470,
+          "dpr": 1.875
+        },
+        {
+          "scene": "shelf",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1,
+          "width": 1907,
+          "height": 1018,
+          "dpr": 1.25
+        },
+        {
+          "scene": "shelf",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1526,
+          "height": 814,
+          "dpr": 1.5625
+        },
+        {
+          "scene": "shelf",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1.5,
+          "width": 1271,
+          "height": 678,
+          "dpr": 1.875
+        },
+        {
+          "scene": "home",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1,
+          "width": 1267,
+          "height": 658,
+          "dpr": 1.25
+        },
+        {
+          "scene": "home",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1014,
+          "height": 526,
+          "dpr": 1.5625
+        },
+        {
+          "scene": "home",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1.5,
+          "width": 845,
+          "height": 438,
+          "dpr": 1.875
+        },
+        {
+          "scene": "home",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1,
+          "width": 1352,
+          "height": 706,
+          "dpr": 1.25
+        },
+        {
+          "scene": "home",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1081,
+          "height": 564,
+          "dpr": 1.5625
+        },
+        {
+          "scene": "home",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1.5,
+          "width": 901,
+          "height": 470,
+          "dpr": 1.875
+        },
+        {
+          "scene": "home",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1,
+          "width": 1907,
+          "height": 1018,
+          "dpr": 1.25
+        },
+        {
+          "scene": "home",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1526,
+          "height": 814,
+          "dpr": 1.5625
+        },
+        {
+          "scene": "home",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1.5,
+          "width": 1271,
+          "height": 678,
+          "dpr": 1.875
+        },
+        {
+          "scene": "journal",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1,
+          "width": 1267,
+          "height": 658,
+          "dpr": 1.25
+        },
+        {
+          "scene": "journal",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1014,
+          "height": 526,
+          "dpr": 1.5625
+        },
+        {
+          "scene": "journal",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1.5,
+          "width": 845,
+          "height": 438,
+          "dpr": 1.875
+        },
+        {
+          "scene": "journal",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1,
+          "width": 1352,
+          "height": 706,
+          "dpr": 1.25
+        },
+        {
+          "scene": "journal",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1081,
+          "height": 564,
+          "dpr": 1.5625
+        },
+        {
+          "scene": "journal",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1.5,
+          "width": 901,
+          "height": 470,
+          "dpr": 1.875
+        },
+        {
+          "scene": "journal",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1,
+          "width": 1907,
+          "height": 1018,
+          "dpr": 1.25
+        },
+        {
+          "scene": "journal",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1526,
+          "height": 814,
+          "dpr": 1.5625
+        },
+        {
+          "scene": "journal",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1.5,
+          "width": 1271,
+          "height": 678,
+          "dpr": 1.875
+        },
+        {
+          "scene": "reader",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1,
+          "width": 1267,
+          "height": 658,
+          "dpr": 1.25
+        },
+        {
+          "scene": "reader",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1014,
+          "height": 526,
+          "dpr": 1.5625
+        },
+        {
+          "scene": "reader",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1.5,
+          "width": 845,
+          "height": 438,
+          "dpr": 1.875
+        },
+        {
+          "scene": "reader",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1,
+          "width": 1352,
+          "height": 706,
+          "dpr": 1.25
+        },
+        {
+          "scene": "reader",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1081,
+          "height": 564,
+          "dpr": 1.5625
+        },
+        {
+          "scene": "reader",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1.5,
+          "width": 901,
+          "height": 470,
+          "dpr": 1.875
+        },
+        {
+          "scene": "reader",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1,
+          "width": 1907,
+          "height": 1018,
+          "dpr": 1.25
+        },
+        {
+          "scene": "reader",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1526,
+          "height": 814,
+          "dpr": 1.5625
+        },
+        {
+          "scene": "reader",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1.5,
+          "width": 1271,
+          "height": 678,
+          "dpr": 1.875
+        }
+      ]
+    },
+    "micro002": {
+      "report": "test-results/micro002-installed-cIuYFv/results.json",
+      "passed": [
+        "Ten pasted books preview without writes; four known books retain their IDs",
+        "Repeated import creates neither books nor plans",
+        "Missing authors require explicit matching; keyboard focus and Esc return correctly",
+        "Within-file duplicates are visible and share one book and month after confirmation",
+        "CSV File mapping preserves commas, quotes, long titles and explicit months; invalid rows are skipped",
+        "TSV files and selecting existing library books use the same preview/save flow",
+        "Oversized, malformed and invalid-encoding imports never write data",
+        "A real database error rolls back the entire Electron IPC batch",
+        "Books, month assignments, goals and prior records survive application restart"
+      ],
+      "errors": [],
+      "version": "0.3.0",
+      "packaged": true
+    },
+    "v03": {
+      "report": "test-results/v03-installed-uvhqd8/results.json",
+      "passed": [
+        "Mantine AppShell and four real views share navigation and context toolbar",
+        "Book context uses real records, resizes with keyboard and opens linked journal",
+        "Independent reader preserves focus mode and returns to the current book",
+        "DayPicker Chinese Monday grid, leap day, invalid input, keyboard and nested Escape",
+        "Journal and action/feedback date fields persist without changing existing records",
+        "Month browsing is read-only; cross-year range confirms into real import scheduling",
+        "Calendar stays in the window at representative desktop sizes and zoom levels",
+        "All date records and month plans survive Electron restart"
+      ],
+      "errors": [],
+      "version": "0.3.0",
+      "packaged": true
+    }
+  },
+  "performance": {
+    "method": "Single observation: process launch to visible library; Electron app metrics workingSetSize in KiB. Cache and concurrent processes affect these values.",
+    "before": {
+      "report": "test-results/v03-screens-before-Q3Jjim/results.json",
+      "version": "0.2.1",
+      "packaged": true,
+      "startupMs": 2677,
+      "processes": [
+        {
+          "type": "Browser",
+          "memory": {
+            "workingSetSize": 144896,
+            "peakWorkingSetSize": 145092,
+            "privateBytes": 76496
+          }
+        },
+        {
+          "type": "GPU",
+          "memory": {
+            "workingSetSize": 109736,
+            "peakWorkingSetSize": 116632,
+            "privateBytes": 75800
+          }
+        },
+        {
+          "type": "Utility",
+          "memory": {
+            "workingSetSize": 53104,
+            "peakWorkingSetSize": 53104,
+            "privateBytes": 11896
+          }
+        },
+        {
+          "type": "Tab",
+          "memory": {
+            "workingSetSize": 106672,
+            "peakWorkingSetSize": 106672,
+            "privateBytes": 45420
+          }
+        }
+      ],
+      "totalWorkingSetMiB": 404.7,
+      "viewport": {
+        "width": 1352,
+        "height": 706,
+        "dpr": 1.25
+      }
+    },
+    "after": {
+      "report": "test-results/v03-screens-after-HgY0VW/results.json",
+      "version": "0.3.0",
+      "packaged": true,
+      "startupMs": 756,
+      "processes": [
+        {
+          "type": "Browser",
+          "memory": {
+            "workingSetSize": 162208,
+            "peakWorkingSetSize": 162208,
+            "privateBytes": 94136
+          }
+        },
+        {
+          "type": "GPU",
+          "memory": {
+            "workingSetSize": 135972,
+            "peakWorkingSetSize": 138212,
+            "privateBytes": 103836
+          }
+        },
+        {
+          "type": "Utility",
+          "memory": {
+            "workingSetSize": 53104,
+            "peakWorkingSetSize": 53104,
+            "privateBytes": 12056
+          }
+        },
+        {
+          "type": "Tab",
+          "memory": {
+            "workingSetSize": 111524,
+            "peakWorkingSetSize": 111524,
+            "privateBytes": 48352
+          }
+        }
+      ],
+      "totalWorkingSetMiB": 452,
+      "viewport": {
+        "width": 1352,
+        "height": 706,
+        "dpr": 1.25
+      }
+    }
+  },
+  "audit": {
+    "productionNpm": 0,
+    "fullNpm": {
+      "high": 2,
+      "moderate": 1,
+      "packages": [
+        "electron",
+        "fast-uri",
+        "undici"
+      ]
+    }
+  },
+  "data": {
+    "personalBackup": "Outside repository; verified database, foreign keys and referenced originals",
+    "testWrites": "Isolated READINGOS_TEST_DATA directories"
+  }
+}

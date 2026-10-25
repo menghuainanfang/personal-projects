@@ -9,6 +9,7 @@ import {
 } from "./domain";
 import { Editor } from "./Editor";
 import { Modal } from './Modal';
+import { ReadingDatePicker } from './components/calendar/ReadingDatePicker';
 export type Dialog = {
   kind: string;
   row?: Partial<Row>;
@@ -53,7 +54,7 @@ export function RecordDialog({
     action: "实践行动",
     feedback: "实践反馈",
   };
-  const field = (k: string, label: string, type = "text", required = false) => (
+  const field = (k: string, label: string, type = "text", required = false) => type === 'date' ? <ReadingDatePicker label={label} value={row[k] || ''} onChange={value=>set(k,value)} required={required || (k==='completed'&&row.status==='completed') || (k==='started'&&row.status==='reading')} disabled={k==='completed'&&row.status!=='completed'}/> : (
     <label>
       {label}
       <input
@@ -126,7 +127,7 @@ export function RecordDialog({
               阅读状态
               <select
                 value={row.status || "want"}
-                onChange={(e) => set("status", e.target.value)}
+                onChange={(e) => {const status=e.target.value;setRow(current=>({...current,status,started:status==='reading'?(current.started||today()):current.started,completed:status==='completed'?(current.completed||today()):''}));}}
               >
                 {Object.entries(statuses).map(([v, l]) => (
                   <option value={v} key={v}>

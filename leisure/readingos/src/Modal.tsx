@@ -7,7 +7,7 @@ export function Modal({title,children,onClose,onSubmit,wide=false}: {
   const previous=useRef(document.activeElement as HTMLElement|null);
   return <Dialog.Root open onOpenChange={open=>{if(!open)onClose();}}>
     <Dialog.Portal><Dialog.Overlay className="modal-backdrop" />
-      <Dialog.Content asChild aria-describedby={undefined} onCloseAutoFocus={event=>{event.preventDefault();previous.current?.focus();}}>
+      <Dialog.Content asChild aria-describedby={undefined} onEscapeKeyDown={event=>{if(document.querySelector('[data-reading-calendar-open]'))event.preventDefault();}} onCloseAutoFocus={event=>{event.preventDefault();previous.current?.focus();}}>
         <form className={'modal '+(wide?'wide':'')} onSubmit={onSubmit}>
           <div className="section-heading"><Dialog.Title asChild><h2>{title}</h2></Dialog.Title>
             <Dialog.Close asChild><button type="button" aria-label="关闭对话框" title="关闭（Esc）">×</button></Dialog.Close>
