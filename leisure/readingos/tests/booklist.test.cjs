@@ -75,7 +75,7 @@ test('Batch creates only missing books, preserves all existing rows and is idemp
     const result=s.batchPlans(payload);assert.equal(result.created,1);assert.equal(result.scheduled,2);assert.equal(result.duplicates,1);assert.equal(result.failed,1);assert.equal(result.skipped,2);
     const after=s.snapshot();assert.equal(after.books.length,2);assert.deepEqual(after.books.find(b=>b.id===old),before.books[0]);
     for(const key of Object.keys(before).filter(k=>!['books','plans'].includes(k)))assert.deepEqual(after[key],before[key]);
-    const added=after.books.find(b=>b.id!==old);assert.equal(added.status,'want');assert.equal(added.completed,'');assert.equal(s.db.prepare('PRAGMA user_version').get().user_version,2);
+    const added=after.books.find(b=>b.id!==old);assert.equal(added.status,'want');assert.equal(added.completed,'');assert.equal(s.db.prepare('PRAGMA user_version').get().user_version,3);
     const second=s.batchPlans(payload);assert.equal(second.created,0);assert.equal(second.scheduled,0);assert.equal(second.duplicates,3);assert.deepEqual(s.snapshot(),after);
     s.close();const reopened=new Store(path.join(root,'batch'));assert.deepEqual(reopened.snapshot(),after);reopened.close();
   }finally{if(s.db.isOpen)s.close();}

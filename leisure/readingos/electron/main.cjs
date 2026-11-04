@@ -25,6 +25,7 @@ app.whenReady().then(() => {
     "annotations",
     "preferences",
     "batchPlans",
+    "library",
   ])
     on(name, (...args) => store[name](...args));
   on("info", () => ({

@@ -29,7 +29,7 @@ async function ensureBaseline(root=path.resolve('test-results/v02-visual-before'
       s.goal('2026',12);s.goal('2026-10',2);s.plan(paper,'2026-10',true);
     }
     const state=s.snapshot();delete state.reader_preferences;
-    s.db.exec('DROP TABLE reader_preferences; PRAGMA user_version=1');
+    s.db.exec('DROP TABLE book_subjects; DROP TABLE subject_categories; DROP TABLE reader_preferences; PRAGMA user_version=1');
     fs.mkdirSync(root,{recursive:true});await s.backup(backup);
     fs.writeFileSync(snapshot,JSON.stringify(state,null,2));
   }finally{s.close();}

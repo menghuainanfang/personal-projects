@@ -35,7 +35,12 @@ export function annotationLocation(asset: Asset, annotation: Annotation): string
   if (asset.format === 'epub' && typeof anchor.cfi === 'string' && anchor.cfi.startsWith('epubcfi(')) return anchor.cfi;
   throw Error('批注位置已不可用');
 }
+export type SubjectCategory={id:string;parent_id:string|null;name:string;sort_order:number;created:string;updated:string};
+export type BookSubject={book_id:string;category_id:string;is_primary:number;created:string};
+export type LibraryRequest={action:'save';id?:string;name:string;parentId?:string|null;sortOrder?:number}|{action:'delete';id:string}|{action:'assign';bookIds:string[];categoryIds:string[];mode:'add'|'remove'|'replace';primary?:string};
 export type Snapshot = {
+  subject_categories: SubjectCategory[];
+  book_subjects:BookSubject[];
   books: Book[];
   assets: Asset[];
   annotations: Annotation[];
@@ -53,6 +58,7 @@ export type Snapshot = {
   reader_preferences: Row[];
 };
 export interface DesktopAPI {
+  library(request:LibraryRequest):Promise<any>;
   batchPlans(payload: {rows: BatchPlanRow[]; limit?: number}): Promise<BatchPlanResult>;
   snapshot(): Promise<Snapshot>;
   save(table: string, data: Partial<Row>): Promise<string>;
@@ -85,6 +91,7 @@ export const statuses: Record<string, string> = zhCN.bookStatus;
 export const actionStatuses: Record<string, string> = zhCN.actionStatus;
 export const today = () => new Date().toLocaleDateString("sv-SE");
 export const empty: Snapshot = {
+  subject_categories:[],book_subjects:[],
   books: [],
   assets: [],
   annotations: [],
