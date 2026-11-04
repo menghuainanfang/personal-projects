@@ -12,9 +12,9 @@ SQLite 当前为 schema v3：subject_categories / book_subjects。旧 category �
 
 真实完整备份和一致快照位于仓库外 `D:\ReadingOS-private-backups\before-v04-2026-11-04T03-05-59-251Z`，归档 6,022,313 字节；已核对数据库、外键及全部原书引用。个人资料没有被测试升级。全部测试使用隔离 READINGOS_TEST_DATA。
 
-候选安装包 `release/ReadingOS-0.4.0-win-x64-setup.exe`，133,616,566 字节；实际隔离安装位置 `test-results/installed-v04/ReadingOS.exe`，NSIS 退出码 0。设置 ELECTRON_BUILDER_COMPRESSION_LEVEL=5 后 `npm run package` 可重新构建。
+候选安装包 `release/ReadingOS-0.4.0-win-x64-setup.exe`，133,615,949 字节；实际隔离安装位置 `test-results/installed-v04/ReadingOS.exe`，NSIS 退出码 0。设置 ELECTRON_BUILDER_COMPRESSION_LEVEL=5 后 `npm run package` 可重新构建。
 
-34 项数据/算法、安装版 12 项基础、6 项 v0.2、9 项导入、8 项日期/工作台、7 项新书架均通过；实际结果数组见 `iterations/004-evidence.json`。`npm run test:v04` 使用全新原创 20 本资料；`tests/legacy-fixture.cjs` 生成真正的 v1 表集合，不能把新表写入旧快照定义。截图对照见 `iterations/004-visual-review.md`。
+34 项数据/算法、安装版 12 项基础、6 项 v0.2、9 项导入、8 项日期/工作台、8 项新书架均通过；实际结果数组见 `iterations/004-evidence.json`。`npm run test:v04` 使用全新原创 20 本资料；`tests/legacy-fixture.cjs` 生成真正的 v1 表集合，不能把新表写入旧快照定义。截图对照见 `iterations/004-visual-review.md`。
 
 ## 关键代码
 

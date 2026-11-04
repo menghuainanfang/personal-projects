@@ -15,7 +15,7 @@
     "production": true,
     "nsis": true,
     "installer": "release/ReadingOS-0.4.0-win-x64-setup.exe",
-    "installerBytes": 133616566,
+    "installerBytes": 133615949,
     "installed": "test-results/installed-v04/ReadingOS.exe",
     "installerExitCode": 0
   },
@@ -496,8 +496,9 @@
       "packaged": true
     },
     "v04": {
-      "report": "test-results/v04-installed-61cXeG/results.json",
+      "report": "test-results/v04-installed-sCHxnF/results.json",
       "passed": [
+        "Packaged Electron migrates a twenty-book v2 library with a complete recovery archive",
         "Time shelves keep four date meanings, undated books and unique planned-month membership",
         "Headless Tree expands, selects, keyboard navigates, searches paths and deduplicates parent results",
         "Category CRUD and cycle rejection run through the fixed IPC business interface",

@@ -31,6 +31,7 @@ for (const [key, entry] of Object.entries(lock.packages).sort()) {
   const files = fs
     .readdirSync(key)
     .filter((n) => /^(licen[sc]e|copying|notice)(\.|$)/i.test(n));
+  if (pkg.name.startsWith('@headless-tree/') && files.length === 0) out += '\nUpstream MIT license\n' + fs.readFileSync('licenses/HeadlessTree-LICENSE.txt','utf8') + '\n';
   for (const file of files)
     if (fs.statSync(path.join(key, file)).isFile())
       out +=
