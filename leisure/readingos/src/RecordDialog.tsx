@@ -121,7 +121,7 @@ export function RecordDialog({
             {field("author", "作者")}
             <div className="row">
               {field("tags", "标签（逗号分隔）")}
-              {field("category", "分类")}
+              <small className="muted">学科归属可在书籍主页管理；标签保留自由关键词。</small>
             </div>
             <label>
               阅读状态
