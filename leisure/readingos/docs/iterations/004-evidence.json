@@ -1,0 +1,547 @@
+{
+  "date": "2026-11-04",
+  "version": "0.4.0",
+  "schema": {
+    "from": 2,
+    "to": 3,
+    "backupContainer": 1,
+    "legacyRestore": [
+      1,
+      2,
+      3
+    ]
+  },
+  "build": {
+    "production": true,
+    "nsis": true,
+    "installer": "release/ReadingOS-0.4.0-win-x64-setup.exe",
+    "installerBytes": 133616566,
+    "installed": "test-results/installed-v04/ReadingOS.exe",
+    "installerExitCode": 0
+  },
+  "unitTests": {
+    "passed": 34,
+    "libraryTests": 9,
+    "files": [
+      "tests/store.test.cjs",
+      "tests/booklist.test.cjs",
+      "tests/dates.test.cjs",
+      "tests/library.test.cjs"
+    ]
+  },
+  "tests": {
+    "desktop": {
+      "report": "test-results/desktop-packaged/results.json",
+      "passed": [
+        "First launch: empty local library and isolated renderer",
+        "Physical book, editable metadata and rich reflection autosave",
+        "Journal autosave, insight promotion and practical feedback",
+        "Native-dialog PDF and EPUB import, duplicate and malformed handling",
+        "PDF canvas, selectable text, highlight and persisted mouse ink",
+        "PDF shapes, textbox, eraser and annotation comments",
+        "PDF coordinates remain aligned after zoom and window resize",
+        "EPUB selection, CFI highlight, typography/reflow restoration",
+        "Goals and month plans persist independently of actual completion",
+        "Application restart restores long-form notes, PDF page and annotations",
+        "EPUB highlights restored after application restart",
+        "Native backup and restore preserve the full library"
+      ],
+      "errors": [],
+      "version": "0.4.0",
+      "packaged": true
+    },
+    "v02": {
+      "report": "test-results/v02-installed/results.json",
+      "passed": [
+        "v1 backup opens with every original record and original file",
+        "Shelf opens PDF in one click; selection comment and journal preserve source",
+        "PDF preferences save and remain independent from EPUB",
+        "Library, home, journal and reader fit nine viewport/zoom combinations each",
+        "Light/dark normal text meets AA; reduced motion removes transitions",
+        "Deleted annotation source stays explicit and never opens another location"
+      ],
+      "errors": [],
+      "version": "0.4.0",
+      "packaged": true,
+      "dimensions": [
+        {
+          "scene": "shelf",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1,
+          "width": 1267,
+          "height": 659,
+          "dpr": 2
+        },
+        {
+          "scene": "shelf",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1013,
+          "height": 527,
+          "dpr": 2.5
+        },
+        {
+          "scene": "shelf",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1.5,
+          "width": 844,
+          "height": 439,
+          "dpr": 3
+        },
+        {
+          "scene": "shelf",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1,
+          "width": 1353,
+          "height": 707,
+          "dpr": 2
+        },
+        {
+          "scene": "shelf",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1082,
+          "height": 565,
+          "dpr": 2.5
+        },
+        {
+          "scene": "shelf",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1.5,
+          "width": 902,
+          "height": 471,
+          "dpr": 3
+        },
+        {
+          "scene": "shelf",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1,
+          "width": 1907,
+          "height": 1019,
+          "dpr": 2
+        },
+        {
+          "scene": "shelf",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1525,
+          "height": 815,
+          "dpr": 2.5
+        },
+        {
+          "scene": "shelf",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1.5,
+          "width": 1271,
+          "height": 679,
+          "dpr": 3
+        },
+        {
+          "scene": "home",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1,
+          "width": 1267,
+          "height": 659,
+          "dpr": 2
+        },
+        {
+          "scene": "home",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1013,
+          "height": 527,
+          "dpr": 2.5
+        },
+        {
+          "scene": "home",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1.5,
+          "width": 844,
+          "height": 439,
+          "dpr": 3
+        },
+        {
+          "scene": "home",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1,
+          "width": 1353,
+          "height": 707,
+          "dpr": 2
+        },
+        {
+          "scene": "home",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1082,
+          "height": 565,
+          "dpr": 2.5
+        },
+        {
+          "scene": "home",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1.5,
+          "width": 902,
+          "height": 471,
+          "dpr": 3
+        },
+        {
+          "scene": "home",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1,
+          "width": 1907,
+          "height": 1019,
+          "dpr": 2
+        },
+        {
+          "scene": "home",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1525,
+          "height": 815,
+          "dpr": 2.5
+        },
+        {
+          "scene": "home",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1.5,
+          "width": 1271,
+          "height": 679,
+          "dpr": 3
+        },
+        {
+          "scene": "journal",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1,
+          "width": 1267,
+          "height": 659,
+          "dpr": 2
+        },
+        {
+          "scene": "journal",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1013,
+          "height": 527,
+          "dpr": 2.5
+        },
+        {
+          "scene": "journal",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1.5,
+          "width": 844,
+          "height": 439,
+          "dpr": 3
+        },
+        {
+          "scene": "journal",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1,
+          "width": 1353,
+          "height": 707,
+          "dpr": 2
+        },
+        {
+          "scene": "journal",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1082,
+          "height": 565,
+          "dpr": 2.5
+        },
+        {
+          "scene": "journal",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1.5,
+          "width": 902,
+          "height": 471,
+          "dpr": 3
+        },
+        {
+          "scene": "journal",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1,
+          "width": 1907,
+          "height": 1019,
+          "dpr": 2
+        },
+        {
+          "scene": "journal",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1525,
+          "height": 815,
+          "dpr": 2.5
+        },
+        {
+          "scene": "journal",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1.5,
+          "width": 1271,
+          "height": 679,
+          "dpr": 3
+        },
+        {
+          "scene": "reader",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1,
+          "width": 1267,
+          "height": 659,
+          "dpr": 2
+        },
+        {
+          "scene": "reader",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1013,
+          "height": 527,
+          "dpr": 2.5
+        },
+        {
+          "scene": "reader",
+          "window": [
+            1280,
+            720
+          ],
+          "chromiumZoom": 1.5,
+          "width": 844,
+          "height": 439,
+          "dpr": 3
+        },
+        {
+          "scene": "reader",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1,
+          "width": 1353,
+          "height": 707,
+          "dpr": 2
+        },
+        {
+          "scene": "reader",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1082,
+          "height": 565,
+          "dpr": 2.5
+        },
+        {
+          "scene": "reader",
+          "window": [
+            1366,
+            768
+          ],
+          "chromiumZoom": 1.5,
+          "width": 902,
+          "height": 471,
+          "dpr": 3
+        },
+        {
+          "scene": "reader",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1,
+          "width": 1907,
+          "height": 1019,
+          "dpr": 2
+        },
+        {
+          "scene": "reader",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1.25,
+          "width": 1525,
+          "height": 815,
+          "dpr": 2.5
+        },
+        {
+          "scene": "reader",
+          "window": [
+            1920,
+            1080
+          ],
+          "chromiumZoom": 1.5,
+          "width": 1271,
+          "height": 679,
+          "dpr": 3
+        }
+      ]
+    },
+    "micro002": {
+      "report": "test-results/micro002-installed-kQ2GnM/results.json",
+      "passed": [
+        "Ten pasted books preview without writes; four known books retain their IDs",
+        "Repeated import creates neither books nor plans",
+        "Missing authors require explicit matching; keyboard focus and Esc return correctly",
+        "Within-file duplicates are visible and share one book and month after confirmation",
+        "CSV File mapping preserves commas, quotes, long titles and explicit months; invalid rows are skipped",
+        "TSV files and selecting existing library books use the same preview/save flow",
+        "Oversized, malformed and invalid-encoding imports never write data",
+        "A real database error rolls back the entire Electron IPC batch",
+        "Books, month assignments, goals and prior records survive application restart"
+      ],
+      "errors": [],
+      "version": "0.4.0",
+      "packaged": true
+    },
+    "v03": {
+      "report": "test-results/v03-installed-guppjL/results.json",
+      "passed": [
+        "Mantine AppShell and four real views share navigation and context toolbar",
+        "Book context uses real records, resizes with keyboard and opens linked journal",
+        "Independent reader preserves focus mode and returns to the current book",
+        "DayPicker Chinese Monday grid, leap day, invalid input, keyboard and nested Escape",
+        "Journal and action/feedback date fields persist without changing existing records",
+        "Month browsing is read-only; cross-year range confirms into real import scheduling",
+        "Calendar stays in the window at representative desktop sizes and zoom levels",
+        "All date records and month plans survive Electron restart"
+      ],
+      "errors": [],
+      "version": "0.4.0",
+      "packaged": true
+    },
+    "v04": {
+      "report": "test-results/v04-installed-61cXeG/results.json",
+      "passed": [
+        "Time shelves keep four date meanings, undated books and unique planned-month membership",
+        "Headless Tree expands, selects, keyboard navigates, searches paths and deduplicates parent results",
+        "Category CRUD and cycle rejection run through the fixed IPC business interface",
+        "Batch adds and removes eighteen memberships, retains IDs and supports AND search",
+        "Book detail shares the original record, links back to a subject, and opens PDF",
+        "Dark theme and representative window zoom combinations keep main content reachable",
+        "Restart preserves every subject, membership, book and reading record"
+      ],
+      "errors": [],
+      "version": "0.4.0",
+      "packaged": true
+    }
+  },
+  "opensource": {
+    "headlessTree": {
+      "core": "1.8.0",
+      "react": "1.8.0",
+      "commit": "8a96358a139c4793f8e572201fd714d1a2d26e83",
+      "license": "MIT"
+    },
+    "fflate": "0.8.3"
+  },
+  "audit": {
+    "production": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "full": {
+      "info": 0,
+      "low": 0,
+      "moderate": 16,
+      "high": 2,
+      "critical": 0,
+      "total": 18
+    }
+  },
+  "privateData": {
+    "backup": "Outside repository: D:/ReadingOS-private-backups/before-v04-2026-11-04T03-05-59-251Z",
+    "archiveBytes": 6022313,
+    "verified": true,
+    "testWrites": "Isolated original fixtures; personal library not migrated by tests"
+  }
+}

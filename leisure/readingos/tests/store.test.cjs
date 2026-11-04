@@ -185,7 +185,7 @@ test("Incomplete backup does not replace the live library", async () => {
     s.close();
   }
 });
-test("Version 2 reopen preserves data and newer database is rejected", () => {
+test("Current schema reopen preserves data and newer database is rejected", () => {
   const dir = path.join(root, "migration");
   let s = new Store(dir);
   const id = s.save("books", { title: "升级保留" });
