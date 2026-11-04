@@ -28,8 +28,8 @@ async function ensureBaseline(root=path.resolve('test-results/v02-visual-before'
       for(const title of ['纸上思考','观察的练习','日常的秩序'])s.save('books',{title,author:'ReadingOS 原创示例',status:'want'});
       s.goal('2026',12);s.goal('2026-10',2);s.plan(paper,'2026-10',true);
     }
-    const state=s.snapshot();delete state.reader_preferences;
-    s.db.exec('DROP TABLE reader_preferences; PRAGMA user_version=1');
+    const state=s.snapshot();delete state.reader_preferences;delete state.subject_categories;delete state.book_subjects;
+    s.db.exec('DROP TABLE book_subjects; DROP TABLE subject_categories; DROP TABLE reader_preferences; PRAGMA user_version=1');
     fs.mkdirSync(root,{recursive:true});await s.backup(backup);
     fs.writeFileSync(snapshot,JSON.stringify(state,null,2));
   }finally{s.close();}

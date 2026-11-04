@@ -1,3 +1,6 @@
+import { LibraryBrowser } from './components/library/LibraryBrowser';
+import { BookSubjects } from './components/library/Subjects';
+import { subjectPath } from '../shared/library.mjs';
 import { useEffect, useState } from "react";
 import {
   BookOpen,
@@ -57,7 +60,7 @@ function Cover({ book, small = false }: { book: Book; small?: boolean }) {
         <img src={book.cover} alt={book.title + " 封面"} />
       ) : (
         <>
-          <span className="cover-line">{book.category || '读书档案'}</span>
+          <span className="cover-line">读书档案</span>
           <strong>{book.title}</strong>
           <span>{book.author || "未署名"}</span>
         </>
@@ -88,6 +91,7 @@ export function App() {
     [logQuery, setLogQuery] = useState(""),
     [revision, setRevision] = useState(false);
   const [booklistOpen, setBooklistOpen] = useState(false);
+  const [librarySubject,setLibrarySubject]=useState('');
   const notify = (s: string) => setToast(s);
   const reload = async () => {
     setData(await api.snapshot());
@@ -337,10 +341,10 @@ export function App() {
     .filter(
       (b) =>
         (filter === "all" || b.status === filter) &&
-        [b.title, b.author, b.tags, b.category]
+        [b.title,b.author,b.tags,statuses[b.status],...data.book_subjects.filter(l=>l.book_id===b.id).map(l=>subjectPath(data.subject_categories,l.category_id))]
           .join(" ")
           .toLowerCase()
-          .includes(query.toLowerCase()),
+          .split('\n').some(text=>query.toLowerCase().trim().split(/\s+/).every(term=>text.includes(term))),
     )
     .sort((a, b) =>
       sort === "title"
@@ -439,9 +443,8 @@ export function App() {
                 ),
               )}
             </div>
-            {!loaded ? (
-              <div className="empty">正在打开书库…</div>
-            ) : visible.length === 0 ? (
+            {!loaded ? <p>正在打开书库…</p> : <>
+{data.books.length===0&&(
               <div className="empty">
                 <BookOpen size={48} />
                 <h2>
@@ -460,10 +463,10 @@ export function App() {
                 >
                   添加纸质书
                 </button>
-              </div>
-            ) : (
+              </div>)}
+              <LibraryBrowser data={data} books={visible} reload={reload} subject={librarySubject} onSubject={setLibrarySubject} renderBooks={(shelfBooks,shelfLabel)=>(
               <div className={layout === "grid" ? "book-grid" : "book-list"}>
-                {visible.map((b) => (
+                {shelfBooks.map((b) => (
                   <article className="book-entry" key={b.id}>
                   <button
                     className="book-card"
@@ -471,7 +474,7 @@ export function App() {
                     onClick={() => openBook(b.id)}
                   >
                     <Cover book={b} small={layout === "list"} />
-                    <div className="book-card-info">
+                    <div className="book-card-info">{shelfLabel&&<small className="muted">{shelfLabel}</small>}
                       <div className="row">
                         <span className={"status " + b.status}>
                           {statuses[b.status]}
@@ -496,7 +499,8 @@ export function App() {
                   </article>
                 ))}
               </div>
-            )}
+              )}/>
+</>}
           </>
         )}
         {view === "book" && book && (
@@ -512,7 +516,7 @@ export function App() {
                 <h1>{book.title}</h1>
                 <p>
                   {book.author || "作者未填写"}{" "}
-                  {book.category && " · " + book.category}
+                  
                 </p>
                 <div className="row wrap">
                   <span className="status">{statuses[book.status]}</span>
@@ -557,6 +561,7 @@ export function App() {
                   </button>
                 ))}
             </div>
+            <BookSubjects data={data} bookId={book.id} reload={reload} jump={id=>{setLibrarySubject(id);setView('library');}}/>
             <section className="reflection-section">
               <div className="section-heading">
                 <div>

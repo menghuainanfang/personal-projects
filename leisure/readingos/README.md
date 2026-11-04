@@ -1,14 +1,14 @@
-# ReadingOS v0.3.0 本机候选版
+# ReadingOS v0.4.0 本机候选版
 
 面向 Windows 的本地阅读应用。把 PDF、EPUB 和纸质书放进同一个书库，以自己的主读后感为中心，连接日志、洞见和实践行动。
 
 ## 使用
 
-本机候选版本：v0.3.0。真实采用 Mantine AppShell、导航与可调书籍上下文，DayPicker 中文日期网格，以及统一月份/范围选择。保留批量书单、预览去重与自动排期。当前正式 Release 为 v0.2.0；远程源码目录 `leisure/readingos/`，本机工作副本 `projects/readingos/`，开发分支 `readingos-v03-workspace-calendar`。本轮 [验收记录](docs/iterations/003-acceptance.md)、[Mantine 源码研究](docs/iterations/003-mantine-source-study.md)、[DayPicker 源码研究](docs/iterations/003-daypicker-source-study.md) 与 [工作台设计](docs/iterations/003-workspace-design.md) 可供维护审查。
+本机候选版本：v0.4.0。加入年/月时间书架、Headless Tree 多层学科、多重归属与批量归类、完整路径检索；同一 Book 共用阅读资料。实际工作目录为 `projects/readingos/`，公开目录为 `leisure/readingos/`，独立分支 `readingos-v04-library-knowledge`。详见 [使用说明](docs/library_guide_zh.md)、[迁移与回退](docs/iterations/004-data-migration.md)、[本轮验收](docs/iterations/004-acceptance.md) 和 [开源研究](docs/iterations/004-headless-tree-study.md)。
 
 [下载 v0.2 安装包](https://github.com/menghuainanfang/personal-projects/releases/tag/readingos-v0.2.0)。
 
-本机候选安装包：`release/ReadingOS-0.3.0-win-x64-setup.exe`。支持 Windows x64，为当前用户安装。应用自带运行环境，使用时无需 Node、Rust 或网络。v0.3 继续使用 SQLite v2，无数据库迁移。
+本机候选安装包：`release/ReadingOS-0.4.0-win-x64-setup.exe`。支持 Windows x64，为当前用户安装。应用自带运行环境，使用时无需 Node、Rust 或网络。v0.4 使用 SQLite schema v3，首次升级前自动保存完整备份；旧备份可顺序迁移。
 
 1. 导入无 DRM PDF / EPUB，或添加纸质书。
 2. 在阅读器中高亮、评论、绘图和记录书签。
@@ -33,6 +33,7 @@ npm run test:desktop
 npm run test:v02
 npm run test:micro002
 npm run test:v03
+npm run test:v04
 npm run desktop
 ```
 
@@ -49,6 +50,7 @@ npm run test:desktop
 npm run test:v02
 npm run test:micro002
 npm run test:v03
+npm run test:v04
 Remove-Item Env:READINGOS_EXECUTABLE
 ```
 
@@ -85,7 +87,7 @@ SQLite 数据库和导入文件副本位于 Electron userData（实际路径在�
 
 ```powershell
 cd D:\桌面\ReadingOS
-git switch readingos-v03-workspace-calendar
+git switch readingos-v04-library-knowledge
 git add projects/readingos .github/workflows/readingos-windows.yml
 git commit -m "Update ReadingOS"
 ```

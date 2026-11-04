@@ -1,3 +1,4 @@
+const library = require('./library.cjs');
 const { DatabaseSync } = require("node:sqlite");
 const fs = require("node:fs");
 const path = require("node:path");
@@ -64,17 +65,20 @@ class Store {
       "PRAGMA foreign_keys=ON; PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL;",
     );
     const version = this.db.prepare("PRAGMA user_version").get().user_version;
-    if (version > 2) {
+    if (version > 3) {
       this.db.close();
       throw new Error("数据库来自较新版本，请使用相应版本 ReadingOS。");
     }
-    if (version === 0) this.transaction(() => this.db.exec(schema + preferencesSchema));
+    if (version === 0) this.transaction(() => {this.db.exec(schema + preferencesSchema);library.migrate(this.db);});
     if (version === 1) {
       const backup = path.join(this.root, 'before-v2.sqlite');
       if (!fs.existsSync(backup)) this.db.exec(`VACUUM INTO '${backup.replace(/'/g, "''")}'`);
       this.transaction(() => this.db.exec(preferencesSchema));
     }
+    if (this.db.prepare('PRAGMA user_version').get().user_version===2) {try{this.migrateLibrary();}catch(e){this.db.close();throw e;}}
   }
+  migrateLibrary() { library.backupBeforeMigration(this.db,this.root); this.transaction(()=>library.migrate(this.db)); }
+  library(request) { return library.operate(this,request); }
   transaction(fn) {
     this.db.exec("BEGIN IMMEDIATE");
     try {
@@ -104,6 +108,8 @@ class Store {
       "plans",
       "bookmarks",
       "reader_preferences",
+      "subject_categories",
+      "book_subjects",
     ])
       result[table] = this.db.prepare(`SELECT * FROM ${table}`).all();
     return result;
@@ -447,13 +453,14 @@ class Store {
       candidate = new DatabaseSync(path.join(stage, "library.sqlite"));
       const version = candidate.prepare('PRAGMA user_version').get().user_version;
       if (
-        ![1,2].includes(version) ||
+        ![1,2,3].includes(version) ||
         candidate.prepare("PRAGMA integrity_check").get().integrity_check !==
           "ok" ||
         candidate.prepare("PRAGMA foreign_key_check").all().length
       )
         throw new Error("备份数据库无效");
       if (version === 1) candidate.exec('BEGIN IMMEDIATE;'+preferencesSchema+'COMMIT;');
+      if(candidate.prepare('PRAGMA user_version').get().user_version===2){candidate.exec('BEGIN IMMEDIATE');try{library.migrate(candidate);candidate.exec('COMMIT');}catch(e){candidate.exec('ROLLBACK');throw e;}}
       for (const table of Object.keys(this.snapshot()))
         candidate.prepare(`SELECT * FROM ${table} LIMIT 0`).all();
       for (const { id, format, file } of candidate

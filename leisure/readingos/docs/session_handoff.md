@@ -1,54 +1,32 @@
 # ReadingOS 维护交接
 
-## 当前版本与位置
+2026-11-04。当前本机候选版 v0.4.0，开发分支 `readingos-v04-library-knowledge`。实际仓库 `D:\桌面\ReadingOS`，应用 `projects/readingos`；远程 `menghuainanfang/personal-projects` 的应用目录为 `leisure/readingos`。实施基线 cf202b5 / 远程 main 90c292a（v0.3）；本轮不合并 main、不发布 Release，正式 Release 仍为 v0.2.0。
 
-- 桌面仓库：`D:\桌面\ReadingOS`，当前功能分支 `readingos-v03-workspace-calendar`。
-- 应用：`D:\桌面\ReadingOS\projects\readingos`。
-- 远程：`https://github.com/menghuainanfang/personal-projects.git`；正式 Release 为 v0.2.0，main 源码为 v0.3.0，远程目录 `leisure/readingos`。
-- 本机候选安装包：`release/ReadingOS-0.3.0-win-x64-setup.exe`。
-- 本轮安装验证程序：`test-results/installed-v03/ReadingOS.exe`，验收结果以 `iterations/003-acceptance.md` 为准。
-- 启动：`npm run build` 后 `npm run desktop`，或使用安装后的快捷方式。
+## 当前能力
 
-v0.2 完成统一书房视觉、主读后感优先、批注引用日志、精确来源跳转、按书保存阅读偏好及键盘对话框。安装版 12 项原有流程、6 项新版专项通过；数据测试 10 项通过。完整证据和边界见 `V02_ACCEPTANCE.md`。
+时间书架区分加入/开始/完成/计划，保留未记录区域；Headless Tree 1.8.0 提供真实多层目录、展开、路径查找和键盘；同书多学科、主分类、父类去重、批量添加/移除/替换。目录事务防环/同名/超六层，只删除空类。搜索与状态和目录是 AND，空格词全部匹配。书籍主页路径可跳转，主心得仍置顶。
 
-v0.2.1 本机候选版增加阅读计划中的批量书单导入与排期，保留 schema v2。PapaParse 5.7.0 精确固定；研究在工程外 `D:\ReadingOS-research\PapaParse`。私人数据库一致性快照在 `D:\ReadingOS-private-backups`，未参与功能测试。新增 `shared/booklist.mjs`、`BooklistDialog.tsx` 和固定 `batchPlans` IPC；全部业务写入由 Store 一个事务完成。
+SQLite 当前为 schema v3：subject_categories / book_subjects。旧 category 不拆分，迁入“旧分类/待整理”；旧书、UUID、资产、日期和阅读表不改写。升级前同步生成 before-v3-时间戳.sqlite 与完整 .readingos。v1/v2 staging restore 顺序升级，v3 恢复保留分类 ID。容器 format 仍为 1。降级不能删表，执行 `iterations/004-data-migration.md` 的旧完整备份恢复步骤。
 
-本轮 21 项数据/算法测试、新功能源码及安装版各 9 项通过；最终安装版原有 12+6 项回归通过。`npm run test:micro002` 使用新建隔离目录与原创 CSV/TSV File，不碰个人书库。详细研究、算法规则、截图和验收见 `micro-iterations/002-papaparse.md` 与 `002-acceptance.md`。v0.2.1 源码 PR #1 已合并，v0.3 工作台与日历在此基础上通过 PR #2 同步；正式 Release 尚未发布。
+## 资料与运行
+
+真实完整备份和一致快照位于仓库外 `D:\ReadingOS-private-backups\before-v04-2026-11-04T03-05-59-251Z`，归档 6,022,313 字节；已核对数据库、外键及全部原书引用。个人资料没有被测试升级。全部测试使用隔离 READINGOS_TEST_DATA。
+
+候选安装包 `release/ReadingOS-0.4.0-win-x64-setup.exe`，133,615,949 字节；实际隔离安装位置 `test-results/installed-v04/ReadingOS.exe`，NSIS 退出码 0。设置 ELECTRON_BUILDER_COMPRESSION_LEVEL=5 后 `npm run package` 可重新构建。
+
+34 项数据/算法、安装版 12 项基础、6 项 v0.2、9 项导入、8 项日期/工作台、8 项新书架均通过；实际结果数组见 `iterations/004-evidence.json`。`npm run test:v04` 使用全新原创 20 本资料；`tests/legacy-fixture.cjs` 生成真正的 v1 表集合，不能把新表写入旧快照定义。截图对照见 `iterations/004-visual-review.md`。
 
 ## 关键代码
 
-v0.3 研究和基线在 `docs/iterations/003-*`。Mantine core/hooks 9.7.3，DayPicker 10.0.2，DOMPurify 3.4.17；第三方版权在 THIRD_PARTY_NOTICES。`components/shell` 提供真实 AppShell 工作台与书籍上下文，`components/calendar` 提供日期/月份/范围；`shared/dates.mjs` 用本地年月日，非法草稿不进入数据层。工作台与独立阅读器分支明确，既有来源跳转保持不变。SQLite 仍为 v2，原 userData 位置不变。
+- electron/store.cjs / library.cjs：迁移、完整归档、分类事务、备份恢复。
+- electron/main.cjs / preload.cjs：固定 library IPC，沿用主窗口 sender 检查。
+- src/domain.ts：SubjectCategory、BookSubject、LibraryRequest 与 snapshot。
+- components/library：时间/学科书架、官方 useTree 节点、目录编辑及批量归属。
+- shared/library.mjs / .d.mts：本地月份、后代并集、路径和 typed 知识投影。
+- 原 PDF/EPUB、主心得、来源、DayPicker、PapaParse 工作流保留；原有文档及验收资料继续可用。
 
-最终 v0.3 安装版通过 12 项基础流程、6 项 v0.2、9 项导入与 8 项工作台/日历验收；数据/算法测试 25 项通过。完整命令、实际结果、资源和截图见 `iterations/003-acceptance.md`、`003-evidence.json`。本机安装包 133,510,655 字节；源码同步到 main；正式 Release 尚未发布。
+## 依赖与后续
 
-开发前的真实完整备份为仓库外 `D:\ReadingOS-private-backups\before-v03-2026-10-25T03-17-56-101Z\ReadingOS-before-v03.readingos`；数据库完整性、外键及全部原书引用已检查。测试只能使用 `READINGOS_TEST_DATA` 隔离目录。日期测试 `npm run test:v03`，截图 `npm run screenshots:v03`；构建设置 `$env:ELECTRON_BUILDER_COMPRESSION_LEVEL='5'` 后执行 `npm run package`。
+Headless Tree core/react 1.8.0 对应 release commit 8a96358a139c4793f8e572201fd714d1a2d26e83，研究仓库在 `D:\ReadingOS-research\headless-tree`；MIT 声明随 THIRD_PARTY_NOTICES 分发。fflate 0.8.3 用于同步完整迁移归档。 npm 生产依赖审计 0，全依赖审计 18 项，详情见 known_issues。
 
-Electron 44.7 / React 19 / TypeScript / Vite / Node SQLite，schema v2。PDF.js 5.4.624、epub.js 0.3.93 与 Tiptap 保留；新增 Radix Dialog 1.2.0，许可见 THIRD_PARTY_NOTICES。
-
-| 文件 | 职责 |
-| --- | --- |
-| electron/store.cjs | SQLite、v1 升级、原书管理、部分偏好合并、备份/恢复/导出 |
-| electron/main.cjs、preload.cjs | 本机生命周期、文件选择和固定业务 IPC |
-| src/domain.ts | 实体与偏好接口、版本对应的批注位置解析 |
-| src/App.tsx | 页面、继续阅读、引用日志、来源跳转 |
-| src/reader/Reader.tsx | 保存队列、工具、侧栏、阅读设置与来源请求 |
-| src/reader/PdfReader.tsx | PDF 文字层、归一化 SVG、固定页与滚动 |
-| src/reader/EpubReader.tsx | CFI、高亮、重排、正文配色 |
-| src/Editor.tsx、RecordDialog.tsx、Modal.tsx | 正文编辑、记录表单、Radix 键盘焦点 |
-| src/style.css | 深浅色、字体、版式、视口与减少动态效果 |
-
-阅读进度按 asset 保存；排版按逻辑书保存。同书来源请求每次传入新的位置对象，阅读器接收请求后跳转。
-
-## 测试与资料
-
-`npm test` 检查数据与迁移；`npm run test:desktop` 检查完整基础流程；`npm run test:v02` 检查引用、独立偏好、重启、离线模拟、36 组视口、键盘、主题与来源删除。安装程序通过 `READINGOS_EXECUTABLE` 指定，数据通过 `READINGOS_TEST_DATA` 隔离。`npm run screenshots` 保存新版图；`node tests/v02-desktop.cjs --layout-only` 仅复测新版布局与主题。
-
-真实基线位于 `screenshots/before/` 与本机 `test-results/v02-visual-before/`；新版截图保存在 after。新克隆的测试由 legacy-fixture 自动生成原创 v1 结构资料。本机实际 v1 全流程备份为 `test-results/v02-v1-workflow.readingos`，可通过 verify-v1-backup 检查全部旧表与文件。
-
-用户资料目录在应用「资料与设置」显示，源码中没有个人书库。依赖、构建、安装包、测试数据库、原书和备份都在 Git 忽略路径。仓库的其他项目独立维护。
-
-## 升级与回退
-
-v1 打开时先保存 `before-v2.sqlite`，再新增阅读设置。升级前仍应保存完整 `.readingos` 备份。回退到 v0.1 要先退出应用，再恢复升级前数据库及对应原书目录；旧版不能直接读取 v2。用 v0.2 恢复旧备份会再次升级到 v2，不能作为直接降级操作。回退会舍弃备份之后的新记录，操作前保存当前完整备份。
-
-本地提交：`1c8865a`（基线和选择）、`5954c81`（界面和主要工作流）、`808ae1f`（阅读器内来源请求）；最终交付文档提交见本地 Git 历史。v0.2 已于 2026-10-20 发布，main 提交 `fe3f82a`，标签 `readingos-v0.2.0`。后续阅读能力见 `roadmap.md`，实际限制见 `known_issues.md`。
+未实现拖拽分类、手工跨书语义关系和力导向图谱；知识投影只输出真实分类/洞见关系，related_to 预留。未充分验证屏幕阅读器、多设备系统 DPI、大规模书库和多 GB 归档性能。下一步先采集真实书库反馈，再决定局部知识网络或渲染性能优化。未来发布前重新核对分支、数据库版本和现有个人完整备份。

@@ -8,9 +8,9 @@
 
 未来模块可以增加自己的领域实体和页面，复用窗口与 persistence 边界。本版没有云服务、账户、插件框架或后台遥测。
 
-## SQLite v2
+## SQLite v3
 
-数据库在 Electron userData 目录的 `library.sqlite`，原书在 `assets/<UUID>.pdf|epub`。foreign_keys 开启，WAL 日志和 FULL 同步用于可靠提交。`PRAGMA user_version=2` 标识本版结构。首次建表和版本写入在同一事务中。打开 v1 时先用 `VACUUM INTO` 保存 `before-v2.sqlite`，再事务新增阅读设置表；原有 14 张表不改写。数据库版本高于支持范围时拒绝打开。v1 备份在 staging 完成同一迁移，检查后再交换资料。
+数据库在 Electron userData 的 library.sqlite，原书在 assets/UUID.pdf|epub。foreign_keys、WAL 与 FULL 同步保持开启；当前 user_version=3。v1 保留 before-v2.sqlite 后新增阅读设置；v2 升级前保存一致快照和包含原书的完整归档，事务新增学科与多对多归属，旧 category 迁入待整理目录。旧业务行和 UUID 不改写，新建库直接创建 v3；更高版本拒绝打开。staging restore 接受 1/2/3 并按链式升级，具体操作见 iterations/004-data-migration.md。
 
 | 表                 | 作用和关系                                                                       |
 | ------------------ | -------------------------------------------------------------------------------- |
@@ -56,3 +56,7 @@ EPUB 保存 `{cfi}` 与完整选文；selected 事件中的 DOM Range 先将元�
 备份通过 SQLite `VACUUM INTO` 创建一致快照，将数据库及引用的 assets 压缩为 `.readingos`。恢复先解压到应用目录下的 staging，检查版本、数据库完整性、外键、必须表和原书是否完整；验证失败不替换当前数据库。验证通过后先备份当前资料，再交换文件并重开资料库。恢复前备份留在数据目录。用户可选择 Markdown 导出一本书的主读后感和日志。
 
 资料库升级与卸载不删除 userData。源码 Git 忽略数据文件、运行时目录、书籍样本输出和备份；安装包只包含应用资源。
+
+## v0.4 书库组织
+
+当前 schema 为 v3。subject_categories 与 book_subjects 提供单父层级及 Book 多重归属；library IPC 执行固定事务业务。具体结构、迁移和旧版回退以 iterations/004-data-migration.md 为准。components/library 将组织方式与原 Book 卡片分离；shared/library.mjs 提供本地时间分组、父级去重和真实知识关系投影。Headless Tree 负责节点实例、键盘与 ARIA。

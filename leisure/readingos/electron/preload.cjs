@@ -2,6 +2,7 @@ const { contextBridge, ipcRenderer } = require("electron");
 const call = (name, ...args) =>
   ipcRenderer.invoke("readingos:" + name, ...args);
 contextBridge.exposeInMainWorld("readingos", {
+  library: (request) => call("library",request),
   snapshot: () => call("snapshot"),
   save: (table, data) => call("save", table, data),
   remove: (table, id) => call("remove", table, id),

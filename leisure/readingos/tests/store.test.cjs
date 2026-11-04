@@ -185,14 +185,14 @@ test("Incomplete backup does not replace the live library", async () => {
     s.close();
   }
 });
-test("Version 2 reopen preserves data and newer database is rejected", () => {
+test("Current schema reopen preserves data and newer database is rejected", () => {
   const dir = path.join(root, "migration");
   let s = new Store(dir);
   const id = s.save("books", { title: "升级保留" });
   s.close();
   s = new Store(dir);
   assert.equal(s.snapshot().books[0].id, id);
-  s.db.exec("PRAGMA user_version=3");
+  s.db.exec("PRAGMA user_version=4");
   s.close();
   assert.throws(() => new Store(dir), /较新版本/);
 });
@@ -212,11 +212,11 @@ test('Version 1 migration preserves the complete reading workflow and keeps a ro
   s.save('bookmarks',{asset_id:asset,location:JSON.stringify({page:2}),label:'旧版书签'});
   s.progress(asset,JSON.stringify({page:2}));s.goal('2026',12);s.plan(book,'2026-10',true);
   const before=s.snapshot();
-  s.db.exec('DROP TABLE reader_preferences; PRAGMA user_version=1');
+  s.db.exec('DROP TABLE book_subjects; DROP TABLE subject_categories; DROP TABLE reader_preferences; PRAGMA user_version=1');
   const legacyBackup=path.join(root,'legacy.readingos');await s.backup(legacyBackup);s.close();
   s=new Store(dir);
   try {
-    assert.equal(s.db.prepare('PRAGMA user_version').get().user_version,2);
+    assert.equal(s.db.prepare('PRAGMA user_version').get().user_version,3);
     assert.deepEqual(s.snapshot(),before);
     assert.ok(fs.existsSync(path.join(dir,'before-v2.sqlite')));
     const {DatabaseSync}=require('node:sqlite');
