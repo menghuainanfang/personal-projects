@@ -25,6 +25,8 @@
   },
   "dependencies": {
     "@daypicker/react": "10.0.2",
+    "@headless-tree/core": "1.8.0",
+    "@headless-tree/react": "1.8.0",
     "@mantine/core": "9.7.3",
     "@mantine/hooks": "9.7.3",
     "@radix-ui/react-dialog": "^1.2.0",
@@ -34,6 +36,7 @@
     "@xmldom/xmldom": "0.8.15",
     "dompurify": "3.4.17",
     "epubjs": "0.3.93",
+    "fflate": "0.8.3",
     "jszip": "^3.10.1",
     "lucide-react": "^0.468.0",
     "papaparse": "5.7.0",
